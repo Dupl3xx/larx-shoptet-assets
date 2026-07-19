@@ -813,7 +813,16 @@ body.in-index.larx-home-redesign .larx-products-wrapper .product .prices {
   flex-flow: row nowrap !important;
   align-items: baseline !important;
   gap: 14px !important;
-  margin: auto 0 16px !important;
+  margin: 16px 0 16px !important;
+  white-space: nowrap !important;
+}
+
+/* Keep every price block at the same measured distance below the fixed-height
+   product name. These higher-specificity invariants also win if an older
+   cached stylesheet briefly overlaps the current GitHub Pages asset. */
+body.in-index.larx-home-redesign .larx-products-wrapper .product.product .prices {
+  flex-wrap: nowrap !important;
+  margin-top: 16px !important;
   white-space: nowrap !important;
 }
 
@@ -824,6 +833,26 @@ body.in-index.larx-home-redesign .larx-products-wrapper .product .price-final {
   align-items: baseline !important;
   gap: 8px !important;
   white-space: nowrap !important;
+}
+
+body.in-index.larx-home-redesign .larx-products-wrapper .product.product .price-final {
+  min-width: max-content !important;
+  flex-wrap: nowrap !important;
+  white-space: nowrap !important;
+}
+
+body.in-index.larx-home-redesign .larx-products-wrapper .product.product .price-final strong,
+body.in-index.larx-home-redesign .larx-products-wrapper .product.product .pr-list-unit,
+body.in-index.larx-home-redesign .larx-products-wrapper .product.product .price-standard {
+  width: auto !important;
+  min-width: max-content !important;
+  flex: 0 0 auto !important;
+  white-space: nowrap !important;
+}
+
+body.in-index.larx-home-redesign .larx-products-wrapper .product.product .pr-list-unit {
+  display: inline-block !important;
+  margin: 0 !important;
 }
 
 body.in-index.larx-home-redesign .larx-products-wrapper .product .price-final strong {
@@ -853,6 +882,10 @@ body.in-index.larx-home-redesign .larx-products-wrapper .product .p-tools form {
   width: 100% !important;
   display: block !important;
   margin: 0 !important;
+}
+
+body.in-index.larx-home-redesign .larx-products-wrapper .product.product .p-tools {
+  margin-top: auto !important;
 }
 
 body.in-index.larx-home-redesign .larx-products-wrapper .product .btn-cart,
