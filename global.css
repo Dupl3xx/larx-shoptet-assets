@@ -26,6 +26,17 @@
 
 /* --- Header widgets ------------------------------------------------------- */
 
+/* Jupiter draws a full-page dark backdrop through body::before whenever a
+   submenu, login, search, cart or mobile navigation is open. Keep the layer
+   available for Shoptet's click-outside handling, but make it fully invisible. */
+body::before {
+  background: transparent !important;
+  background-color: transparent !important;
+  opacity: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
 #cart-widget .popup-widget-inner,
 #cart-widget .cart-widget-inner,
 .user-action-cart.cart-empty-widget .empty-cart-content,
