@@ -1,0 +1,1380 @@
+/*
+ * LARX homepage redesign
+ * Version: 1.0.1
+ * Scope: global header + homepage body.in-index only
+ */
+
+:root {
+  --larx-green: #63bc46;
+  --larx-green-hover: #52a93a;
+  --larx-green-dark: #34721f;
+  --larx-green-deep: #2b6519;
+  --larx-green-soft: #eaf5e6;
+  --larx-orange: #f5831f;
+  --larx-ink: #282527;
+  --larx-muted: #6f716f;
+  --larx-line: #e3e7e1;
+  --larx-surface: #f5f7f3;
+  --larx-white: #ffffff;
+  --larx-radius-sm: 12px;
+  --larx-radius: 20px;
+  --larx-radius-lg: 28px;
+  --larx-shadow: 0 10px 30px rgba(39, 75, 28, 0.08);
+  --larx-content: 1200px;
+  --larx-font: "Jost", "Segoe UI", Arial, sans-serif;
+}
+
+/* Keep component padding inside declared widths on every Shoptet breakpoint. */
+body.in-index.larx-home-redesign .larx-hero-layout,
+body.in-index.larx-home-redesign .larx-section-heading,
+body.in-index.larx-home-redesign .larx-products-wrapper,
+body.in-index.larx-home-redesign .larx-stock-banner,
+body.in-index.larx-home-redesign .larx-about-grid,
+body.in-index.larx-home-redesign .larx-blog {
+  box-sizing: border-box;
+}
+
+/* Header - native Shoptet behavior remains intact. */
+.top-navigation-bar {
+  background: var(--larx-green-dark) !important;
+  border: 0 !important;
+  color: var(--larx-white) !important;
+  font-family: var(--larx-font);
+}
+
+.top-navigation-bar .top-navigation-bar-menu > li > a,
+.top-navigation-bar .top-navigation-menu-trigger,
+.top-navigation-bar .top-nav-button,
+.top-navigation-bar .languagesMenu__flags {
+  color: var(--larx-white) !important;
+}
+
+.top-navigation-bar .top-navigation-bar-menu > li > a:hover,
+.top-navigation-bar .top-navigation-bar-menu > li > a:focus-visible,
+.top-navigation-bar .top-nav-button:hover,
+.top-navigation-bar .top-nav-button:focus-visible {
+  color: #dff2d8 !important;
+}
+
+#header {
+  background: var(--larx-white);
+  font-family: var(--larx-font);
+}
+
+#header .header-top {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+#header .header-top-wrapper {
+  align-items: center;
+  gap: 28px;
+}
+
+#header .site-name {
+  flex: 0 0 160px;
+}
+
+#header .site-name img {
+  width: auto;
+  max-width: 150px;
+  max-height: 58px;
+  object-fit: contain;
+}
+
+#header .search {
+  flex: 1 1 auto;
+  max-width: none;
+}
+
+#header .search-form fieldset {
+  position: relative;
+}
+
+#header .search-form .search-input {
+  min-height: 52px;
+  padding: 0 58px 0 24px !important;
+  border: 1px solid var(--larx-line) !important;
+  border-radius: 999px !important;
+  background: var(--larx-white) !important;
+  color: var(--larx-ink) !important;
+  box-shadow: none !important;
+  font-size: 16px;
+}
+
+#header .search-form .search-input:focus {
+  border-color: var(--larx-green) !important;
+  box-shadow: 0 0 0 3px rgba(99, 188, 70, 0.16) !important;
+}
+
+#header .search-form .search-button {
+  width: 52px;
+  min-width: 52px;
+  height: 52px;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  background: transparent !important;
+  color: transparent !important;
+  overflow: hidden;
+}
+
+#header .search-form .search-button::before {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  background: currentColor;
+  color: var(--larx-green-dark);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' d='m21 21-4.3-4.3m2.3-5.2A7.5 7.5 0 1 1 4 11.5a7.5 7.5 0 0 1 15 0Z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' d='m21 21-4.3-4.3m2.3-5.2A7.5 7.5 0 1 1 4 11.5a7.5 7.5 0 0 1 15 0Z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+#header .navigation-buttons {
+  flex: 0 0 auto;
+}
+
+/*
+ * Shoptet Jupiter assigns 20% + 45% + 35% to the three header columns.
+ * Together with the column gap that makes the cart wrap below the search.
+ * Keep all desktop/tablet controls in one row and let only search shrink.
+ */
+@media (min-width: 768px) {
+  #header .header-top-wrapper {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+  }
+
+  #header .site-name {
+    flex: 0 0 160px !important;
+    width: 160px !important;
+    max-width: 160px !important;
+    padding-right: 0 !important;
+  }
+
+  #header .search {
+    flex: 1 1 640px !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: 900px !important;
+  }
+
+  #header .navigation-buttons {
+    position: static !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    max-width: none !important;
+    margin-left: auto !important;
+    padding-left: 0 !important;
+    justify-content: flex-end !important;
+  }
+
+  #header .navigation-buttons .cart-count {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  #header .site-name {
+    flex-basis: 130px !important;
+    width: 130px !important;
+    max-width: 130px !important;
+  }
+}
+
+#header .navigation-buttons .cart-count {
+  min-height: 52px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 22px 0 52px !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: var(--larx-green-soft) !important;
+  color: var(--larx-green-dark) !important;
+  box-shadow: none !important;
+  font-weight: 700;
+}
+
+#header .navigation-buttons .cart-count:hover,
+#header .navigation-buttons .cart-count:focus-visible {
+  background: #dff0d9 !important;
+}
+
+#header .header-bottom {
+  background: var(--larx-white) !important;
+  border-top: 1px solid var(--larx-green-dark);
+  border-bottom: 1px solid var(--larx-green-dark);
+}
+
+#navigation .menu-level-1 > li > a {
+  position: relative;
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 18px !important;
+  background: transparent !important;
+  color: var(--larx-ink) !important;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+#navigation .menu-level-1 > li > a::after {
+  content: "";
+  position: absolute;
+  right: 18px;
+  bottom: -1px;
+  left: 18px;
+  height: 3px;
+  border-radius: 99px 99px 0 0;
+  background: var(--larx-orange);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 160ms ease;
+}
+
+#navigation .menu-level-1 > li:hover > a::after,
+#navigation .menu-level-1 > li > a:focus-visible::after,
+#navigation .menu-level-1 > li.active > a::after {
+  transform: scaleX(1);
+}
+
+#navigation .menu-level-2 {
+  border: 1px solid var(--larx-line) !important;
+  border-radius: 0 0 var(--larx-radius) var(--larx-radius) !important;
+  background: var(--larx-white) !important;
+  box-shadow: var(--larx-shadow) !important;
+  overflow: hidden;
+}
+
+/* Homepage foundation. The ready class is added only after successful JS setup. */
+body.in-index.larx-home-redesign {
+  color: var(--larx-ink);
+  font-family: var(--larx-font);
+}
+
+body.in-index.larx-home-redesign #content {
+  padding-top: 0 !important;
+}
+
+body.in-index.larx-redesign-ready .larx-original-hero,
+body.in-index.larx-redesign-ready .larx-original-about {
+  display: none !important;
+}
+
+body.in-index .larx-redesign-categories {
+  padding: 30px 0 34px;
+  background: var(--larx-white) !important;
+}
+
+body.in-index .larx-redesign-categories .larx-topcats__container {
+  max-width: var(--larx-content) !important;
+  padding: 0 20px !important;
+  gap: 20px !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+}
+
+body.in-index .larx-redesign-categories .larx-card {
+  max-width: none !important;
+  min-height: 202px !important;
+  padding: 18px !important;
+  border: 1px solid var(--larx-line) !important;
+  border-radius: var(--larx-radius) !important;
+  background: var(--larx-white) !important;
+  box-shadow: none !important;
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+body.in-index .larx-redesign-categories .larx-card:hover,
+body.in-index .larx-redesign-categories .larx-card:focus-visible {
+  transform: translateY(-3px) !important;
+  border-color: #cbdac5 !important;
+  box-shadow: var(--larx-shadow) !important;
+  outline: none;
+}
+
+body.in-index .larx-redesign-categories .larx-card__imgwrap {
+  min-height: 132px !important;
+  margin: 0 0 14px !important;
+  border-radius: 14px;
+  background: var(--larx-surface);
+  overflow: hidden;
+}
+
+body.in-index .larx-redesign-categories .larx-card__img {
+  max-height: 118px !important;
+  padding: 10px;
+  object-fit: contain;
+}
+
+body.in-index .larx-redesign-categories .larx-card__title {
+  color: var(--larx-ink) !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+}
+
+.larx-hero-layout {
+  width: calc(100% - 40px);
+  max-width: var(--larx-content);
+  margin: 18px auto 76px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(340px, 0.95fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+.larx-hero {
+  min-height: 390px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(36px, 5vw, 62px);
+  border-radius: var(--larx-radius-lg);
+  background: linear-gradient(115deg, #77c85b 0%, var(--larx-green) 38%, var(--larx-green-dark) 100%);
+  color: var(--larx-white);
+  overflow: hidden;
+}
+
+.larx-hero-title {
+  max-width: 720px;
+  margin: 0 0 20px !important;
+  color: var(--larx-white) !important;
+  font-family: var(--larx-font) !important;
+  font-size: clamp(34px, 4vw, 54px) !important;
+  font-weight: 750 !important;
+  line-height: 1.06 !important;
+  letter-spacing: -0.035em;
+}
+
+.larx-hero-description {
+  max-width: 620px;
+  margin: 0 0 28px !important;
+  color: rgba(255, 255, 255, 0.92) !important;
+  font-size: clamp(17px, 1.7vw, 22px) !important;
+  line-height: 1.5 !important;
+}
+
+.larx-hero-availability {
+  position: relative;
+  margin: 0 0 28px !important;
+  padding-left: 21px;
+  color: var(--larx-white) !important;
+  font-size: 15px !important;
+  font-weight: 700;
+}
+
+.larx-hero-availability::before {
+  content: "";
+  position: absolute;
+  top: 0.55em;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--larx-white);
+}
+
+.larx-hero-cta,
+.larx-about-cta {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 26px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  text-decoration: none !important;
+  font-size: 15px;
+  font-weight: 750;
+  transition: transform 160ms ease, background 160ms ease, color 160ms ease;
+}
+
+.larx-hero-cta {
+  background: var(--larx-white);
+  color: var(--larx-green-dark) !important;
+}
+
+.larx-hero-cta:hover,
+.larx-hero-cta:focus-visible {
+  transform: translateY(-2px);
+  background: var(--larx-green-soft);
+  outline: none;
+}
+
+.larx-tools {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.larx-tools-heading,
+.larx-partners-title {
+  position: relative;
+  margin: 0 0 10px !important;
+  padding-bottom: 13px;
+  color: var(--larx-green-dark) !important;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12em;
+  line-height: 1.3 !important;
+  text-transform: uppercase;
+}
+
+.larx-tools-heading::after,
+.larx-section-heading::after,
+.larx-blog .homepage-group-title::after {
+  content: "";
+  display: block;
+  width: 44px;
+  height: 3px;
+  margin: 12px auto 0;
+  border-radius: 99px;
+  background: var(--larx-orange);
+}
+
+.larx-tools-heading::after,
+.larx-partners-title::after {
+  margin-left: 0;
+}
+
+.larx-tool-card {
+  position: relative;
+  width: 100%;
+  min-height: 106px;
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr) 24px;
+  gap: 16px;
+  align-items: center;
+  padding: 18px 18px;
+  border: 1px solid var(--larx-line) !important;
+  border-left: 4px solid var(--larx-green) !important;
+  border-radius: 16px !important;
+  background: var(--larx-white) !important;
+  color: var(--larx-ink) !important;
+  text-align: left;
+  text-decoration: none !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.larx-tool-card[data-larx-tool="guide"] {
+  border-left-color: var(--larx-green-dark) !important;
+}
+
+.larx-tool-card[data-larx-tool="quote"] {
+  border-left-color: var(--larx-orange) !important;
+}
+
+.larx-tool-card:hover,
+.larx-tool-card:focus-visible {
+  transform: translateY(-2px);
+  border-color: #cbdac5 !important;
+  box-shadow: var(--larx-shadow) !important;
+  outline: none;
+}
+
+.larx-tool-card.is-unavailable {
+  cursor: help;
+}
+
+.larx-tool-icon {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: var(--larx-green-soft);
+  color: var(--larx-green-dark);
+}
+
+.larx-tool-icon svg {
+  width: 27px;
+  height: 27px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.larx-tool-content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.larx-tool-title {
+  color: var(--larx-ink);
+  font-size: 15px;
+  font-weight: 750;
+  line-height: 1.25;
+}
+
+.larx-tool-description {
+  color: var(--larx-muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.larx-tool-preparing {
+  color: var(--larx-green-dark);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.larx-tool-arrow {
+  color: var(--larx-green-dark);
+  font-size: 25px;
+  line-height: 1;
+}
+
+.larx-tool-badge {
+  position: absolute;
+  top: -9px;
+  right: 14px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: var(--larx-orange);
+  color: var(--larx-white);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.larx-section-heading {
+  max-width: var(--larx-content);
+  margin: 0 auto !important;
+  padding: 0 20px 34px !important;
+  color: var(--larx-ink) !important;
+  font-family: var(--larx-font) !important;
+  font-size: clamp(28px, 3vw, 38px) !important;
+  font-weight: 750 !important;
+  line-height: 1.15 !important;
+  text-align: center !important;
+  text-transform: none !important;
+}
+
+.larx-section-heading::before,
+.larx-blog .homepage-group-title::before {
+  content: attr(data-larx-eyebrow);
+  display: block;
+  margin-bottom: 10px;
+  color: var(--larx-green) !important;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.larx-products-wrapper {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 auto 76px !important;
+  padding: 0 !important;
+}
+
+/* Shoptet writes a slightly wider inline viewport on its carousel. Constrain
+   only the viewport, not the moving product track, so navigation stays native. */
+body.in-index.larx-home-redesign .larx-products-wrapper > .products {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+body.in-index.larx-home-redesign .larx-products-wrapper .product .p {
+  position: relative !important;
+  min-height: 530px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  border: 1px solid var(--larx-line) !important;
+  border-radius: var(--larx-radius) !important;
+  background: var(--larx-white) !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+}
+
+body.in-index.larx-home-redesign .larx-products-wrapper .product .image {
+  order: 1 !important;
+  width: 100% !important;
+  height: 292px !important;
+  min-height: 292px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 !important;
+  padding: 28px !important;
+  border-radius: 0 !important;
+  background: var(--larx-surface) !important;
+  overflow: hidden !important;
+}
+
+body.in-index.larx-home-redesign .larx-products-wrapper .product .image img {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+  mix-blend-mode: multiply;
+}
+
+body.in-index.larx-home-redesign .larx-products-wrapper .product a.name {
+  order: 2 !important;
+  min-height: 94px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px;
+  margin: 0 !important;
+  padding: 22px 22px 8px !important;
+  color: var(--larx-ink) !important;
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
+  text-decoration: none !important;
+}
+
+body.in-index.larx-home-redesign .larx-products-wrapper .product a.name > span:not(.larx-product-kind) {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.larx-product-kind {
+  display: block;
+  color: var(--larx-muted);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+body.in-index.larx-home-redesign .larx-products-wrapper .product .p-in {
+  order: 3 !important;
+  flex: 1 1 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 0 22px 20px !important;
+}
+
+body.in-index.larx-home-redesign .larx-products-wrapper .product .p-bottom,
+body.in-index.larx-home-redesign .larx-products-wrapper .product .p-bottom > div {
+  flex: 1 1 auto;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+body.in-index.larx-home-redesign .larx-products-wrapper .product .availability {
+  position: absolute !important;
+  top: 16px !important;
+  left: 16px !important;
+  z-index: 4 !important;
+  width: auto !important;
+  margin: 0 !important;
+  padding: 7px 13px !important;
+  border-radius: 999px !important;
+  background: var(--larx-green) !important;
+  color: var(--larx-white) !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+}
+
+body.in-index.larx-home-redesign .larx-products-wrapper .product .availability span {
+  color: var(--larx-white) !important;
+}
+
+body.in-index.larx-home-redesign .larx-products-wrapper .product .flags-default {
+  top: 16px !important;
+  right: 16px !important;
+  bottom: auto !important;
+  left: auto !important;
+  z-index: 4 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-end !important;
+  gap: 6px !important;
+}
+
+body.in-index.larx-home-redesign .larx-products-wrapper .product .flags-default .flag:not(.flag-sleva):not(.flag-new):not(.flag-novinka) {
+  display: none !important;
+}
+
+body.in-index.larx-home-redesign .larx-products-wrapper .product .flag-sleva,
+body.in-index.larx-home-redesign .larx-products-wrapper .product .flag-new,
+body.in-index.larx-home-redesign .larx-products-wrapper .product .flag-novinka {
+  position: static !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  min-height: 30px;
+  margin: 0 !important;
+  padding: 6px 10px !important;
+  border-radius: 999px !important;
+  background: var(--larx-orange) !important;
+  color: var(--larx-white) !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+}
+
+body.in-index.larx-home-redesign .larx-products-wrapper .product .p-in-in,
+body.in-index.larx-home-redesign .larx-products-wrapper .product .ratings-wrapper,
+body.in-index.larx-home-redesign .larx-products-wrapper .product .p-desc,
+body.in-index.larx-home-redesign .larx-products-wrapper .product .p-code,
+body.in-index.larx-home-redesign .larx-products-wrapper .product .quantity {
+  display: none !important;
+}
+
+body.in-index.larx-home-redesign .larx-products-wrapper .product .prices {
+  min-height: 46px;
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 10px !important;
+  margin: auto 0 16px !important;
+}
+
+body.in-index.larx-home-redesign .larx-products-wrapper .product .price-final strong {
+  color: var(--larx-ink) !important;
+  font-size: 25px !important;
+  font-weight: 750 !important;
+}
+
+body.in-index.larx-home-redesign .larx-products-wrapper .product .price-standard,
+body.in-index.larx-home-redesign .larx-products-wrapper .product .price-standard strong {
+  color: #888b88 !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  text-decoration: line-through !important;
+}
+
+body.in-index.larx-home-redesign .larx-products-wrapper .product .p-tools,
+body.in-index.larx-home-redesign .larx-products-wrapper .product .p-tools form {
+  width: 100% !important;
+  display: block !important;
+  margin: 0 !important;
+}
+
+body.in-index.larx-home-redesign .larx-products-wrapper .product .btn-cart,
+body.in-index.larx-home-redesign .larx-products-wrapper .product .btn-primary {
+  width: 100% !important;
+  min-height: 42px !important;
+  margin: 0 !important;
+  padding: 0 18px !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: var(--larx-green) !important;
+  color: var(--larx-white) !important;
+  font-size: 14px !important;
+  font-weight: 750 !important;
+  line-height: 42px !important;
+  box-shadow: none !important;
+}
+
+body.in-index.larx-home-redesign .larx-products-wrapper .product .btn-cart:hover,
+body.in-index.larx-home-redesign .larx-products-wrapper .product .btn-cart:focus-visible,
+body.in-index.larx-home-redesign .larx-products-wrapper .product .btn-primary:hover,
+body.in-index.larx-home-redesign .larx-products-wrapper .product .btn-primary:focus-visible {
+  background: var(--larx-green-hover) !important;
+}
+
+.larx-stock-banner {
+  width: calc(100% - 80px) !important;
+  max-width: calc(var(--larx-content) - 80px) !important;
+  margin: 0 auto 76px !important;
+  padding: 0 !important;
+}
+
+.larx-stock-banner > [class*="col-"] {
+  width: 100% !important;
+  padding: 0 !important;
+}
+
+.larx-stock-banner .banner-wrapper > span > div {
+  padding: 42px 34px !important;
+  border-radius: var(--larx-radius-lg) !important;
+  background: linear-gradient(100deg, var(--larx-green) 0%, var(--larx-green-dark) 100%) !important;
+  color: var(--larx-white) !important;
+}
+
+.larx-stock-banner h2 {
+  margin: 0 0 12px !important;
+  color: var(--larx-white) !important;
+  font-size: clamp(24px, 3vw, 34px) !important;
+  font-weight: 750 !important;
+  line-height: 1.2 !important;
+}
+
+.larx-stock-banner p {
+  margin: 0 !important;
+  color: rgba(255, 255, 255, 0.86) !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  line-height: 1.6 !important;
+}
+
+.larx-recommended-heading {
+  width: 100%;
+  max-width: none;
+  padding-top: 64px !important;
+  border-radius: var(--larx-radius-lg) var(--larx-radius-lg) 0 0;
+  background: var(--larx-surface);
+}
+
+.larx-recommended-products {
+  margin-top: -1px !important;
+  padding: 0 20px 64px !important;
+  border-radius: 0 0 var(--larx-radius-lg) var(--larx-radius-lg);
+  background: var(--larx-surface);
+}
+
+.larx-about-grid {
+  width: calc(100% - 40px);
+  max-width: var(--larx-content);
+  margin: 0 auto 76px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+}
+
+.larx-about-card,
+.larx-partners-card {
+  min-height: 320px;
+  padding: clamp(30px, 4vw, 48px);
+  border: 1px solid var(--larx-line);
+  border-radius: var(--larx-radius-lg);
+}
+
+.larx-about-card {
+  background: var(--larx-surface);
+}
+
+.larx-partners-card {
+  background: var(--larx-white);
+}
+
+.larx-about-title {
+  margin: 0 0 22px !important;
+  color: var(--larx-ink) !important;
+  font-size: 30px !important;
+  font-weight: 750 !important;
+}
+
+.larx-about-copy {
+  margin: 0 0 28px !important;
+  color: #4d504d !important;
+  font-size: 16px !important;
+  line-height: 1.7 !important;
+}
+
+.larx-about-copy strong {
+  color: var(--larx-green-dark);
+}
+
+.larx-about-cta {
+  border-color: var(--larx-ink);
+  color: var(--larx-ink) !important;
+}
+
+.larx-about-cta:hover,
+.larx-about-cta:focus-visible {
+  border-color: var(--larx-green-dark);
+  background: var(--larx-green-dark);
+  color: var(--larx-white) !important;
+  outline: none;
+}
+
+.larx-partners-title::after {
+  content: "";
+  display: block;
+  width: 44px;
+  height: 3px;
+  margin-top: 12px;
+  border-radius: 99px;
+  background: var(--larx-orange);
+}
+
+.larx-partners-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 8px 0 30px !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+.larx-partners-list li {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 23px;
+  border-radius: 999px;
+  background: var(--larx-surface);
+  color: #838783;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.larx-partners-claim {
+  margin: 0 !important;
+  color: var(--larx-green-dark) !important;
+  font-size: 15px !important;
+  font-weight: 750 !important;
+}
+
+body.in-index .larx-blog {
+  max-width: var(--larx-content) !important;
+  margin: 0 auto 72px !important;
+  padding: 0 20px !important;
+}
+
+body.in-index .larx-blog .homepage-group-title {
+  width: 100%;
+  margin: 0 0 42px !important;
+  color: var(--larx-ink) !important;
+  font-size: clamp(28px, 3vw, 38px) !important;
+  font-weight: 750 !important;
+  text-align: center !important;
+  text-transform: none !important;
+}
+
+body.in-index .larx-blog .news-item {
+  margin-bottom: 24px !important;
+  border: 1px solid var(--larx-line) !important;
+  border-radius: var(--larx-radius) !important;
+  background: var(--larx-white) !important;
+  overflow: hidden !important;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+body.in-index .larx-blog .news-item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--larx-shadow);
+}
+
+body.in-index .larx-blog .news-item .image {
+  height: 220px !important;
+  overflow: hidden;
+}
+
+body.in-index .larx-blog .news-item .image img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+body.in-index .larx-blog .news-item .text {
+  padding: 22px !important;
+}
+
+body.in-index .larx-blog .news-item .title {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--larx-ink) !important;
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+body.in-index .larx-blog .news-item .description {
+  color: var(--larx-muted) !important;
+  line-height: 1.55 !important;
+}
+
+.larx-toast {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 10020;
+  max-width: min(390px, calc(100vw - 32px));
+  padding: 16px 20px;
+  border-radius: 14px;
+  background: var(--larx-ink);
+  color: var(--larx-white);
+  font: 600 14px/1.5 var(--larx-font);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(16px);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.larx-toast.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 991px) {
+  #header .header-top-wrapper {
+    gap: 18px;
+  }
+
+  #header .site-name {
+    flex-basis: 130px;
+  }
+
+  #navigation .menu-level-1 > li > a {
+    padding-right: 11px !important;
+    padding-left: 11px !important;
+    font-size: 12px;
+  }
+
+  .larx-hero-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .larx-hero {
+    min-height: 350px;
+  }
+
+  .larx-tools {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .larx-tools-heading {
+    grid-column: 1 / -1;
+  }
+
+  .larx-tool-card {
+    min-height: 190px;
+    grid-template-columns: 1fr 22px;
+    align-content: start;
+  }
+
+  .larx-tool-icon {
+    grid-column: 1 / -1;
+  }
+
+  .larx-tool-content {
+    align-self: start;
+  }
+
+  .larx-tool-arrow {
+    align-self: end;
+  }
+
+  body.in-index.larx-home-redesign .larx-products-wrapper .product .p {
+    min-height: 500px !important;
+  }
+
+  body.in-index.larx-home-redesign .larx-products-wrapper .product .image {
+    height: 250px !important;
+    min-height: 250px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .top-navigation-bar {
+    display: none !important;
+  }
+
+  #header .header-top {
+    min-height: 62px;
+    padding: 8px 0 !important;
+  }
+
+  #header .header-top-wrapper {
+    min-height: 46px;
+    gap: 8px;
+  }
+
+  #header .site-name {
+    flex: 0 0 auto;
+    margin: 0 auto 0 42px;
+  }
+
+  #header .site-name img {
+    max-width: 92px;
+    max-height: 38px;
+  }
+
+  #header .navigation-buttons .cart-count {
+    min-height: 42px;
+    padding: 0 !important;
+    background: transparent !important;
+  }
+
+  #header .header-bottom {
+    border: 0;
+  }
+
+  body.in-index .larx-redesign-categories {
+    padding: 18px 0 28px;
+  }
+
+  body.in-index .larx-redesign-categories .larx-topcats__container {
+    padding: 0 14px !important;
+    gap: 12px !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  body.in-index .larx-redesign-categories .larx-card {
+    min-height: 158px !important;
+    padding: 10px !important;
+    border-radius: 16px !important;
+  }
+
+  body.in-index .larx-redesign-categories .larx-card__imgwrap {
+    min-height: 100px !important;
+    margin-bottom: 10px !important;
+  }
+
+  body.in-index .larx-redesign-categories .larx-card__img {
+    max-height: 94px !important;
+  }
+
+  body.in-index .larx-redesign-categories .larx-card__title {
+    font-size: 14px !important;
+  }
+
+  .larx-hero-layout {
+    width: calc(100% - 28px);
+    margin-top: 4px;
+    margin-bottom: 54px;
+    gap: 28px;
+  }
+
+  .larx-hero {
+    min-height: 430px;
+    padding: 32px 24px;
+    border-radius: 22px;
+  }
+
+  .larx-hero-title {
+    margin-bottom: 16px !important;
+    font-size: 36px !important;
+  }
+
+  .larx-hero-description {
+    margin-bottom: 24px !important;
+    font-size: 17px !important;
+  }
+
+  .larx-hero-availability {
+    margin-bottom: 24px !important;
+    font-size: 13px !important;
+  }
+
+  .larx-tools {
+    display: flex;
+  }
+
+  .larx-tool-card {
+    min-height: 102px;
+    grid-template-columns: 46px minmax(0, 1fr) 20px;
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .larx-tool-icon {
+    width: 46px;
+    height: 46px;
+  }
+
+  .larx-tool-icon {
+    grid-column: auto;
+  }
+
+  .larx-section-heading {
+    padding: 0 14px 28px !important;
+    font-size: 30px !important;
+  }
+
+  .larx-products-wrapper {
+    width: 100% !important;
+    margin-bottom: 54px !important;
+    padding: 0 !important;
+  }
+
+  body.in-index.larx-home-redesign .larx-products-wrapper .product .p {
+    min-height: 430px !important;
+    border-radius: 16px !important;
+  }
+
+  body.in-index.larx-home-redesign .larx-products-wrapper .product .image {
+    height: 190px !important;
+    min-height: 190px !important;
+    padding: 18px !important;
+  }
+
+  body.in-index.larx-home-redesign .larx-products-wrapper .product a.name {
+    min-height: 104px !important;
+    padding: 16px 14px 6px !important;
+    font-size: 14px !important;
+  }
+
+  body.in-index.larx-home-redesign .larx-products-wrapper .product .p-in {
+    padding: 0 14px 14px !important;
+  }
+
+  body.in-index.larx-home-redesign .larx-products-wrapper .product .availability {
+    top: 10px !important;
+    left: 10px !important;
+    padding: 6px 9px !important;
+    font-size: 9px !important;
+  }
+
+  body.in-index.larx-home-redesign .larx-products-wrapper .product .flags-default {
+    top: 10px !important;
+    right: 10px !important;
+  }
+
+  body.in-index.larx-home-redesign .larx-products-wrapper .product .flag-sleva,
+  body.in-index.larx-home-redesign .larx-products-wrapper .product .flag-new,
+  body.in-index.larx-home-redesign .larx-products-wrapper .product .flag-novinka {
+    min-width: 40px;
+    min-height: 25px;
+    padding: 5px 7px !important;
+    font-size: 9px !important;
+  }
+
+  body.in-index.larx-home-redesign .larx-products-wrapper .product .prices {
+    min-height: 40px;
+    flex-wrap: wrap;
+    gap: 4px 8px !important;
+    margin-bottom: 10px !important;
+  }
+
+  body.in-index.larx-home-redesign .larx-products-wrapper .product .price-final strong {
+    font-size: 19px !important;
+  }
+
+  body.in-index.larx-home-redesign .larx-products-wrapper .product .price-standard,
+  body.in-index.larx-home-redesign .larx-products-wrapper .product .price-standard strong {
+    font-size: 10px !important;
+  }
+
+  body.in-index.larx-home-redesign .larx-products-wrapper .product .btn-cart,
+  body.in-index.larx-home-redesign .larx-products-wrapper .product .btn-primary {
+    min-height: 38px !important;
+    padding: 0 8px !important;
+    font-size: 12px !important;
+    line-height: 38px !important;
+  }
+
+  .larx-stock-banner {
+    width: calc(100% - 28px) !important;
+    margin-bottom: 54px !important;
+  }
+
+  .larx-stock-banner .banner-wrapper > span > div {
+    padding: 30px 20px !important;
+    border-radius: 22px !important;
+  }
+
+  .larx-stock-banner h2 {
+    font-size: 24px !important;
+  }
+
+  .larx-stock-banner p {
+    font-size: 13px !important;
+  }
+
+  .larx-recommended-heading {
+    width: 100%;
+    max-width: none;
+    padding-top: 44px !important;
+  }
+
+  .larx-recommended-products {
+    width: 100% !important;
+    padding: 0 8px 44px !important;
+  }
+
+  .larx-about-grid {
+    width: calc(100% - 28px);
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 54px;
+  }
+
+  .larx-about-card,
+  .larx-partners-card {
+    min-height: 0;
+    padding: 28px 22px;
+    border-radius: 22px;
+  }
+
+  .larx-about-title {
+    font-size: 27px !important;
+  }
+
+  .larx-about-copy {
+    font-size: 15px !important;
+  }
+
+  .larx-partners-list li {
+    padding: 0 16px;
+    font-size: 12px;
+  }
+
+  body.in-index .larx-blog {
+    margin-bottom: 54px !important;
+    padding: 0 14px !important;
+  }
+
+  body.in-index .larx-blog .homepage-group-title {
+    margin-bottom: 30px !important;
+    font-size: 30px !important;
+  }
+
+  body.in-index .larx-blog .news-item .image {
+    height: 210px !important;
+  }
+
+  .larx-toast {
+    right: 16px;
+    bottom: 16px;
+    left: 16px;
+    max-width: none;
+  }
+}
+
+@media (max-width: 420px) {
+  body.in-index.larx-home-redesign .larx-products-wrapper .product .p {
+    min-height: 408px !important;
+  }
+
+  body.in-index.larx-home-redesign .larx-products-wrapper .product .image {
+    height: 166px !important;
+    min-height: 166px !important;
+  }
+
+  body.in-index.larx-home-redesign .larx-products-wrapper .product a.name {
+    font-size: 13px !important;
+  }
+
+  .larx-hero-title {
+    font-size: 32px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .larx-tool-card,
+  .larx-hero-cta,
+  .larx-about-cta,
+  .larx-toast,
+  #navigation .menu-level-1 > li > a::after {
+    transition: none !important;
+  }
+}
+
+@media print {
+  .larx-tools,
+  .larx-toast {
+    display: none !important;
+  }
+}
