@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var VERSION = '1.0.3';
+  var VERSION = '1.0.4';
   var HOME_CLASS = 'larx-home-redesign';
   var READY_CLASS = 'larx-redesign-ready';
   var DEFAULT_TOOL_URLS = {
@@ -382,7 +382,7 @@
     var partners = element('aside', 'larx-partners-card');
     partners.appendChild(element('h2', 'larx-partners-title', copy.partnersTitle));
     var list = element('ul', 'larx-partners-list');
-    ['AGORA DTM', 'UNI HOBBY', 'Kaufland', 'HORNBACH', 'Alza.cz'].forEach(function (name) {
+    ['AGORA DMT', 'UNI HOBBY', 'Kaufland', 'HORNBACH', 'Alza.cz'].forEach(function (name) {
       list.appendChild(element('li', '', name));
     });
     partners.appendChild(list);
