@@ -216,10 +216,8 @@
     card.dataset.larxTool = key;
     if (href) {
       card.href = href;
-      if (key === 'quote') {
-        card.target = '_blank';
-        card.rel = 'noopener';
-      }
+      card.target = '_blank';
+      card.rel = 'noopener';
     } else {
       card.type = 'button';
       card.setAttribute('aria-disabled', 'true');
