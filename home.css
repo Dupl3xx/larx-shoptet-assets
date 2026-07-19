@@ -1,6 +1,6 @@
 /*
  * LARX homepage redesign
- * Version: 1.1.1
+ * Version: 1.1.2
  * Scope: global header + homepage body.in-index only
  */
 
@@ -1104,15 +1104,30 @@ body.in-index .larx-blog .homepage-group-title {
 
 body.in-index .larx-blog .news-item {
   margin-bottom: 24px !important;
+  border: 0 !important;
+  background: transparent !important;
+  overflow: hidden !important;
+  transition: transform 160ms ease;
+}
+
+/* Shoptet uses the news item itself as a grid column and its horizontal
+ * padding as the gutter. Keep that gutter outside the visible card so the
+ * article cards do not touch without changing the responsive column widths. */
+body.in-index .larx-blog .news-item > a {
+  display: block;
+  height: 100%;
   border: 1px solid var(--larx-line) !important;
   border-radius: var(--larx-radius) !important;
   background: var(--larx-white) !important;
   overflow: hidden !important;
-  transition: transform 160ms ease, box-shadow 160ms ease;
+  transition: box-shadow 160ms ease;
 }
 
 body.in-index .larx-blog .news-item:hover {
   transform: translateY(-3px);
+}
+
+body.in-index .larx-blog .news-item:hover > a {
   box-shadow: var(--larx-shadow);
 }
 
