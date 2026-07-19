@@ -743,6 +743,12 @@ body.in-index.larx-home-redesign .larx-products-wrapper .product .flag-novinka {
   line-height: 1 !important;
 }
 
+/* The theme adds the localized "Sleva" label through ::before. As a flex
+ * item its trailing whitespace collapses, so keep a visible word gap here. */
+body.in-index.larx-home-redesign .larx-products-wrapper .product .flag-sleva::before {
+  margin-right: 0.28em !important;
+}
+
 body.in-index.larx-home-redesign .larx-products-wrapper .product .p-in-in,
 body.in-index.larx-home-redesign .larx-products-wrapper .product .ratings-wrapper,
 body.in-index.larx-home-redesign .larx-products-wrapper .product .p-desc,
