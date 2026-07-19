@@ -759,10 +759,23 @@ body.in-index.larx-home-redesign .larx-products-wrapper .product .quantity {
 
 body.in-index.larx-home-redesign .larx-products-wrapper .product .prices {
   min-height: 46px;
+  width: 100% !important;
+  max-width: 100% !important;
   display: flex !important;
+  flex-flow: row nowrap !important;
   align-items: baseline !important;
-  gap: 10px !important;
+  gap: 14px !important;
   margin: auto 0 16px !important;
+  white-space: nowrap !important;
+}
+
+body.in-index.larx-home-redesign .larx-products-wrapper .product .price-final {
+  width: auto !important;
+  display: inline-flex !important;
+  flex: 0 0 auto !important;
+  align-items: baseline !important;
+  gap: 8px !important;
+  white-space: nowrap !important;
 }
 
 body.in-index.larx-home-redesign .larx-products-wrapper .product .price-final strong {
@@ -777,6 +790,14 @@ body.in-index.larx-home-redesign .larx-products-wrapper .product .price-standard
   font-size: 13px !important;
   font-weight: 500 !important;
   text-decoration: line-through !important;
+}
+
+body.in-index.larx-home-redesign .larx-products-wrapper .product .price-standard {
+  width: auto !important;
+  display: inline-flex !important;
+  flex: 0 0 auto !important;
+  margin: 0 !important;
+  white-space: nowrap !important;
 }
 
 body.in-index.larx-home-redesign .larx-products-wrapper .product .p-tools,
@@ -1266,9 +1287,13 @@ body.in-index .larx-blog .news-item .description {
 
   body.in-index.larx-home-redesign .larx-products-wrapper .product .prices {
     min-height: 40px;
-    flex-wrap: wrap;
-    gap: 4px 8px !important;
+    flex-wrap: nowrap !important;
+    gap: 6px !important;
     margin-bottom: 10px !important;
+  }
+
+  body.in-index.larx-home-redesign .larx-products-wrapper .product .price-final {
+    gap: 4px !important;
   }
 
   body.in-index.larx-home-redesign .larx-products-wrapper .product .price-final strong {
@@ -1380,8 +1405,50 @@ body.in-index .larx-blog .news-item .description {
     font-size: 13px !important;
   }
 
+  body.in-index.larx-home-redesign .larx-products-wrapper .product .p-in {
+    padding: 0 clamp(2px, 1.54vw, 6px) 14px !important;
+  }
+
+  body.in-index.larx-home-redesign .larx-products-wrapper .product .prices {
+    gap: 3px !important;
+  }
+
+  body.in-index.larx-home-redesign .larx-products-wrapper .product .price-final {
+    gap: 2px !important;
+  }
+
+  body.in-index.larx-home-redesign .larx-products-wrapper .product .price-final strong {
+    font-size: 17px !important;
+  }
+
+  body.in-index.larx-home-redesign .larx-products-wrapper .product .pr-list-unit,
+  body.in-index.larx-home-redesign .larx-products-wrapper .product .price-standard,
+  body.in-index.larx-home-redesign .larx-products-wrapper .product .price-standard strong {
+    font-size: 9px !important;
+  }
+
   .larx-hero-title {
     font-size: 32px !important;
+  }
+}
+
+@media (max-width: 375px) {
+  body.in-index.larx-home-redesign .larx-products-wrapper .product .prices {
+    gap: 2px !important;
+  }
+
+  body.in-index.larx-home-redesign .larx-products-wrapper .product .price-final {
+    gap: 1px !important;
+  }
+
+  body.in-index.larx-home-redesign .larx-products-wrapper .product .price-final strong {
+    font-size: clamp(12px, 4vw, 15px) !important;
+  }
+
+  body.in-index.larx-home-redesign .larx-products-wrapper .product .pr-list-unit,
+  body.in-index.larx-home-redesign .larx-products-wrapper .product .price-standard,
+  body.in-index.larx-home-redesign .larx-products-wrapper .product .price-standard strong {
+    font-size: clamp(6px, 2.1vw, 8px) !important;
   }
 }
 
