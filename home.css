@@ -636,12 +636,18 @@ body.in-index.larx-home-redesign .larx-products-wrapper > .products {
   max-width: 100% !important;
 }
 
-body.in-index.larx-home-redesign .larx-products-wrapper .product .p {
+/* Jupiter draws separators on the outer carousel cells. The cards already
+   have their own outline, so remove those lines between neighbouring cards. */
+body.in-index.larx-home-redesign .larx-products-wrapper .product {
+  border: 0 !important;
+}
+
+body.in-index.larx-home-redesign .larx-products-wrapper .product.product > .p {
   position: relative !important;
   min-height: 530px !important;
   display: flex !important;
   flex-direction: column !important;
-  border: 1px solid var(--larx-line) !important;
+  border: 2px solid var(--larx-line) !important;
   border-radius: var(--larx-radius) !important;
   background: var(--larx-white) !important;
   box-shadow: none !important;
