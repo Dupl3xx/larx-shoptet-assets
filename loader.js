@@ -17,7 +17,7 @@
     if (!document.getElementById(preloadStyleId)) {
       var style = document.createElement("style");
       style.id = preloadStyleId;
-      style.textContent = "html." + preloadClass + " body.in-index{visibility:hidden;animation:larx-preload-failsafe 0s 5s forwards}@keyframes larx-preload-failsafe{to{visibility:visible}}";
+      style.textContent = "html." + preloadClass + " body{visibility:hidden;animation:larx-preload-failsafe 0s 5s forwards}@keyframes larx-preload-failsafe{to{visibility:visible}}";
       document.head.appendChild(style);
     }
     root.classList.add(preloadClass);
@@ -47,9 +47,17 @@
     revealWhenReady();
   }, { once: true });
 
-  document.addEventListener("DOMContentLoaded", function () {
-    if (!document.body || !document.body.classList.contains("in-index")) reveal();
-  }, { once: true });
+  function markNonHomepageReady() {
+    if (!document.body || document.body.classList.contains("in-index")) return;
+    redesignReady = true;
+    revealWhenReady();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", markNonHomepageReady, { once: true });
+  } else {
+    markNonHomepageReady();
+  }
 
   window.LARX_HOME_CONFIG = window.LARX_HOME_CONFIG || {
     toolUrls: {
