@@ -197,6 +197,33 @@ body.in-index.larx-home-redesign .larx-blog {
   font-weight: 700;
 }
 
+#header .navigation-buttons .cart-count.full > i {
+  position: absolute !important;
+  top: 21px !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: 58px !important;
+  z-index: 2;
+  width: 20px !important;
+  height: 20px !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--larx-green-dark) !important;
+  font-family: var(--larx-font) !important;
+  font-size: 10px !important;
+  font-style: normal;
+  font-weight: 800 !important;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.04em;
+  line-height: 1 !important;
+}
+
 #header .navigation-buttons .cart-count:hover,
 #header .navigation-buttons .cart-count:focus-visible {
   background: #dff0d9 !important;
@@ -1152,6 +1179,14 @@ body.in-index .larx-blog .news-item .description {
     min-height: 42px;
     padding: 0 !important;
     background: transparent !important;
+  }
+
+  #header .navigation-buttons .cart-count.full > i {
+    top: 27px !important;
+    left: 2px !important;
+    width: 16px !important;
+    height: 16px !important;
+    font-size: 8px !important;
   }
 
   #header .header-bottom {
