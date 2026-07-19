@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var VERSION = '1.0.0';
+  var VERSION = '1.0.1';
   var HOME_CLASS = 'larx-home-redesign';
   var READY_CLASS = 'larx-redesign-ready';
 
@@ -418,6 +418,7 @@
       scheduled = true;
       window.requestAnimationFrame(function () {
         scheduled = false;
+        decorateCategories();
         annotateProductCards(copy);
       });
     });

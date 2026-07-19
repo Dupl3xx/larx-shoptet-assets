@@ -303,18 +303,26 @@ body.in-index .larx-redesign-categories .larx-card:focus-visible {
   outline: none;
 }
 
-body.in-index .larx-redesign-categories .larx-card__imgwrap {
+body.in-index #larx-topcats .larx-card .larx-card__imgwrap {
+  height: 132px !important;
   min-height: 132px !important;
   margin: 0 0 14px !important;
   border-radius: 14px;
-  background: var(--larx-surface);
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: var(--larx-white) !important;
   overflow: hidden;
 }
 
-body.in-index .larx-redesign-categories .larx-card__img {
-  max-height: 118px !important;
-  padding: 10px;
-  object-fit: contain;
+body.in-index #larx-topcats .larx-card .larx-card__img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  padding: 0 !important;
+  object-fit: contain !important;
 }
 
 body.in-index .larx-redesign-categories .larx-card__title {
@@ -1135,13 +1143,14 @@ body.in-index .larx-blog .news-item .description {
     border-radius: 16px !important;
   }
 
-  body.in-index .larx-redesign-categories .larx-card__imgwrap {
+  body.in-index #larx-topcats .larx-card .larx-card__imgwrap {
+    height: 100px !important;
     min-height: 100px !important;
     margin-bottom: 10px !important;
   }
 
-  body.in-index .larx-redesign-categories .larx-card__img {
-    max-height: 94px !important;
+  body.in-index #larx-topcats .larx-card .larx-card__img {
+    max-height: none !important;
   }
 
   body.in-index .larx-redesign-categories .larx-card__title {
