@@ -214,6 +214,10 @@ body.in-index.larx-home-redesign .larx-blog {
   #navigation.fitted .menu-level-1 {
     justify-content: center !important;
   }
+
+  #navigation.fitted .menu-level-2 {
+    justify-content: center !important;
+  }
 }
 
 #navigation .menu-level-1 > li > a {
