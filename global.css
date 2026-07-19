@@ -1,0 +1,214 @@
+/*
+ * LARX global Shoptet overrides
+ * Applies on every storefront page. Homepage redesign remains in home.css.
+ * Source of truth: GitHub Pages; loaded by loader.js after the inline preload guard.
+ */
+
+/* --- Prices --------------------------------------------------------------- */
+
+.price-standard,
+.price-save {
+  color: #e00000 !important;
+  font-weight: 700 !important;
+}
+
+.price-save.flag.flag-sleva {
+  color: #fff !important;
+}
+
+/* --- Product detail ------------------------------------------------------- */
+
+/* The inquiry link is intentionally hidden; all other product actions remain. */
+.link-icons a.link-icon.chat,
+.link-icons a[href*=":dotaz"] {
+  display: none !important;
+}
+
+/* --- Header widgets ------------------------------------------------------- */
+
+#cart-widget .popup-widget-inner,
+#cart-widget .cart-widget-inner,
+.user-action-cart.cart-empty-widget .empty-cart-content,
+.user-action-login .popup-widget-inner {
+  border: 1px solid #f85b3f !important;
+  border-radius: 8px !important;
+  background: #fff;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1) !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.user-action-cart.cart-empty-widget .empty-cart-content,
+.header-bottom .menu-level-2 {
+  overflow: hidden;
+}
+
+.user-action-cart.cart-empty-widget .empty-cart-content .top {
+  border: 0 !important;
+}
+
+/* Desktop navigation visuals are owned by home.css. Keeping them in one place
+   prevents the former orange/green border specificity conflict. */
+
+/* --- Category filters ----------------------------------------------------- */
+
+/* Only the price filter is hidden in film and Carbon Kit categories. */
+body.type-category:is(.in-topne-folie, .id-709, .in-larx-carbon-kit, .id-712) .filters .slider-wrapper:has(.param-price-filter),
+body.type-category:is(.in-topne-folie, .id-709, .in-larx-carbon-kit, .id-712) #price-filter-form,
+body.type-category:is(.in-topne-folie, .id-709, .in-larx-carbon-kit, .id-712) .filters .filter-price,
+body.type-category:is(.in-topne-folie, .id-709, .in-larx-carbon-kit, .id-712) .filters .price-slider,
+body.type-category:is(.in-topne-folie, .id-709, .in-larx-carbon-kit, .id-712) .filters .param-price-filter {
+  display: none !important;
+}
+
+/* Categories without useful filters use the complete content width. The
+   type-category guard prevents these rules from leaking into product IDs 898/901. */
+body.type-category:is(
+  .in-topne-rohoze,
+  .id-706,
+  .in-termostaty,
+  .id-721,
+  .in-spotrebni-material,
+  .id-718,
+  .in-topne-rohoze-s-termostatem,
+  .in-topne-rohoze-2
+) aside.sidebar.sidebar-left,
+body.type-category:is(
+  .in-topne-rohoze,
+  .id-706,
+  .in-termostaty,
+  .id-721,
+  .in-spotrebni-material,
+  .id-718,
+  .in-topne-rohoze-s-termostatem,
+  .in-topne-rohoze-2
+) #filters-wrapper,
+body.type-category:is(
+  .in-topne-rohoze,
+  .id-706,
+  .in-termostaty,
+  .id-721,
+  .in-spotrebni-material,
+  .id-718,
+  .in-topne-rohoze-s-termostatem,
+  .in-topne-rohoze-2
+) .box-filters {
+  display: none !important;
+}
+
+body.type-category:is(
+  .in-topne-rohoze,
+  .id-706,
+  .in-termostaty,
+  .id-721,
+  .in-spotrebni-material,
+  .id-718,
+  .in-topne-rohoze-s-termostatem,
+  .in-topne-rohoze-2
+) main#content {
+  width: 100% !important;
+  max-width: 100% !important;
+  float: none !important;
+}
+
+/* --- Success notifications ------------------------------------------------ */
+
+:root {
+  --larx-notification-height: 40px;
+}
+
+/* Scope to successful messages. Errors and checkout warnings must be allowed
+   to wrap naturally and remain fully readable. */
+.messages > .msg-success {
+  position: fixed !important;
+  z-index: 99999 !important;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100% !important;
+  height: var(--larx-notification-height) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+}
+
+.messages > .msg-success .container {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box;
+}
+
+.messages > .msg-success,
+.messages > .msg-success a,
+.messages > .msg-success span,
+.messages > .msg-success p {
+  color: #fff !important;
+  font-size: 15px !important;
+  line-height: 1.25 !important;
+  text-align: center !important;
+}
+
+.messages > .msg-success p {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* The mobile header is fixed at 76 px. Place the transient success message
+   directly below it instead of covering its logo and controls. */
+@media (max-width: 767px) {
+  .messages > .msg-success {
+    top: 76px;
+  }
+
+  .messages > .msg-success,
+  .messages > .msg-success a,
+  .messages > .msg-success span,
+  .messages > .msg-success p {
+    font-size: 13px !important;
+  }
+}
+
+/* --- Cart layout ---------------------------------------------------------- */
+
+body.desktop.in-kosik table.cart-table td.p-name form.delete-cart-item {
+  display: none !important;
+}
+
+body.desktop.in-kosik table.cart-table td.p-total {
+  position: relative !important;
+}
+
+body.desktop.in-kosik table.cart-table td.p-total .remove-item {
+  position: absolute !important;
+  top: 50%;
+  right: 140px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  line-height: 0;
+  transform: translateY(-50%);
+}
+
+body.desktop.in-kosik table.cart-table .p-name .inline,
+body.desktop.in-kosik table.cart-table .p-total .inline {
+  position: static !important;
+}
+
+/* --- Currency controls ---------------------------------------------------- */
+
+.languagesMenu__box[data-target="currency"],
+a[href*="/action/Currency/changeCurrency/"],
+li:has(a[href*="/action/Currency/changeCurrency/"]),
+.larx-force-hidden {
+  display: none !important;
+}

@@ -1,13 +1,49 @@
 (function () {
   'use strict';
 
-  var VERSION = '1.0.4';
+  var VERSION = '1.1.0';
   var HOME_CLASS = 'larx-home-redesign';
   var READY_CLASS = 'larx-redesign-ready';
   var DEFAULT_TOOL_URLS = {
     calculator: 'https://www.uhlikovefolie.cz/jak-to-funguje',
     guide: 'https://www.uhlikovefolie.cz/instalacni-manual',
     quote: 'https://www.uhlikovefolie.cz/nabidka-pomoci-ai'
+  };
+  var CATEGORY_CARDS = [
+    {
+      key: 'mats',
+      image: 'https://cdn.myshoptet.com/usr/www.larx.cz/user/shop/detail/106_larx-heating-mat-lsdts-topna-rohoz--0-5--2-m-1-m---160-w.png',
+      href: { cs: '/topne-rohoze/', sk: '/sk/vykurovacie-rohoze/', en: '/en/heating-mats/' }
+    },
+    {
+      key: 'films',
+      image: 'https://cdn.myshoptet.com/usr/www.larx.cz/user/shop/detail/166_uhlikova-folie-2.png',
+      href: { cs: '/topne-folie/', sk: '/sk/vykurovacie-folie/', en: '/en/heating-films/' }
+    },
+    {
+      key: 'kit',
+      image: 'https://cdn.myshoptet.com/usr/www.larx.cz/user/shop/detail/193-3_eco-kategorie-b.png',
+      href: { cs: '/larx-carbon-kit/', sk: '/sk/larx-carbon-kit/', en: '/en/larx-carbon-kit/' }
+    },
+    {
+      key: 'thermostats',
+      image: 'https://cdn.myshoptet.com/usr/www.larx.cz/user/shop/detail/112_product-wifi-termostat-larx-crop.png',
+      href: { cs: '/termostaty/', sk: '/sk/termostaty/', en: '/en/termostaty/' }
+    }
+  ];
+  var CATEGORY_COPY = {
+    cs: {
+      label: 'Nejoblíbenější kategorie',
+      titles: { mats: 'Topné rohože', films: 'Topné fólie', kit: 'LARX Carbon Kit', thermostats: 'Termostaty' }
+    },
+    sk: {
+      label: 'Najobľúbenejšie kategórie',
+      titles: { mats: 'Vykurovacie rohože', films: 'Vykurovacie fólie', kit: 'LARX Carbon Kit', thermostats: 'Termostaty' }
+    },
+    en: {
+      label: 'Popular categories',
+      titles: { mats: 'Heating mats', films: 'Heating films', kit: 'LARX Carbon Kit', thermostats: 'Thermostats' }
+    }
   };
 
   var COPY = {
@@ -170,6 +206,56 @@
     if (className) node.className = className;
     if (typeof text === 'string') node.textContent = text;
     return node;
+  }
+
+  function buildCategories(language) {
+    var existing = document.getElementById('larx-topcats');
+    window.__LARX_TOPCATS_INIT__ = true;
+    if (existing) {
+      decorateCategories();
+      return existing;
+    }
+
+    var header = document.getElementById('header');
+    if (!header) return null;
+
+    var localized = CATEGORY_COPY[language] || CATEGORY_COPY.cs;
+    var section = element('section', 'larx-redesign-categories');
+    section.id = 'larx-topcats';
+    section.setAttribute('aria-label', localized.label);
+
+    var container = element('div', 'larx-topcats__container');
+    CATEGORY_CARDS.forEach(function (category) {
+      var title = localized.titles[category.key] || CATEGORY_COPY.cs.titles[category.key];
+      var card = element('a', 'larx-card');
+      card.href = category.href[language] || category.href.cs;
+      card.setAttribute('aria-label', title);
+
+      var imageWrap = element('span', 'larx-card__imgwrap');
+      var image = element('img', 'larx-card__img');
+      image.src = category.image;
+      image.alt = title;
+      image.loading = 'lazy';
+      image.decoding = 'async';
+      imageWrap.appendChild(image);
+
+      card.appendChild(imageWrap);
+      card.appendChild(element('span', 'larx-card__title', title));
+      container.appendChild(card);
+    });
+    section.appendChild(container);
+
+    var spacerTop = element('div');
+    spacerTop.id = 'larx-topcats-spacer';
+    spacerTop.style.height = '28px';
+    var spacerBottom = element('div');
+    spacerBottom.id = 'larx-topcats-spacer-bottom';
+    spacerBottom.style.height = '28px';
+
+    header.insertAdjacentElement('afterend', spacerTop);
+    spacerTop.insertAdjacentElement('afterend', section);
+    section.insertAdjacentElement('afterend', spacerBottom);
+    return section;
   }
 
   function validUrl(value) {
@@ -437,7 +523,10 @@
     if (document.body.dataset.larxRedesignInitialized === 'true') return;
 
     var main = document.getElementById('content');
-    if (!main) return;
+    if (!main) {
+      document.dispatchEvent(new CustomEvent('larxRedesignFailed', { detail: { reason: 'missing-content' } }));
+      return;
+    }
 
     var language = getLanguage();
     var copy = COPY[language];
@@ -446,7 +535,7 @@
     document.body.classList.add(HOME_CLASS);
 
     try {
-      decorateCategories();
+      buildCategories(language);
       buildHero(main, copy);
       decorateGroup('.homepage-products-heading-13', 'larx-products-mats', copy.groups.mats, 'larx-mats');
       decorateGroup('.homepage-products-heading-16', 'larx-products-films', copy.groups.films, 'larx-films');
@@ -461,6 +550,7 @@
     } catch (error) {
       document.body.classList.remove(READY_CLASS);
       if (window.console && console.error) console.error('[LARX redesign] Initialization failed:', error);
+      document.dispatchEvent(new CustomEvent('larxRedesignFailed', { detail: { reason: 'initialization-error' } }));
     }
   }
 

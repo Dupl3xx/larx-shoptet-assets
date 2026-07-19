@@ -5,13 +5,18 @@
   window.__larxRedesignLoaderStarted = true;
 
   var version = Date.now();
-  var pages = "https://dupl3xx.github.io/larx-shoptet-assets/";
-  var shoptet = "https://cdn.myshoptet.com/usr/www.larx.cz/user/documents/upload/larx-redesign/";
+  var assetBase = "https://dupl3xx.github.io/larx-shoptet-assets/";
   var root = document.documentElement;
   var preloadClass = "larx-preload";
   var preloadStyleId = "larx-preload-style";
-  var cssReady = false;
+  var requiredStyles = ["global.css", "home.css"];
+  var loadedStyles = 0;
+  var siteReady = false;
   var redesignReady = false;
+  var failed = false;
+
+  window.__larxAssetBase = assetBase;
+  window.__larxAssetVersion = version;
 
   function ensurePreloadGuard() {
     if (!document.getElementById(preloadStyleId)) {
@@ -27,8 +32,15 @@
     root.classList.remove(preloadClass);
   }
 
+  function failOpen(reason) {
+    if (failed) return;
+    failed = true;
+    root.setAttribute("data-larx-loader-failed", reason || "unknown");
+    reveal();
+  }
+
   function revealWhenReady() {
-    if (!cssReady || !redesignReady) return;
+    if (failed || loadedStyles !== requiredStyles.length || !siteReady || !redesignReady) return;
     if (window.requestAnimationFrame) {
       window.requestAnimationFrame(reveal);
     } else {
@@ -36,22 +48,29 @@
     }
   }
 
-  /* The inline Shoptet snippet activates this before the body is parsed. Keep
-     a loader-side fallback for installations that still use the older line. */
-  if (root.classList.contains(preloadClass) || document.readyState === "loading") {
-    ensurePreloadGuard();
+  function markNonHomepageReady() {
+    if (!document.body || document.body.classList.contains("in-index")) return;
+    redesignReady = true;
+    revealWhenReady();
   }
+
+  /* The inline Shoptet snippet activates the class before body parsing. This
+     loader-side copy is a safe fallback for direct or delayed installations. */
+  ensurePreloadGuard();
+
+  document.addEventListener("larxSiteReady", function () {
+    siteReady = true;
+    revealWhenReady();
+  }, { once: true });
 
   document.addEventListener("larxRedesignReady", function () {
     redesignReady = true;
     revealWhenReady();
   }, { once: true });
 
-  function markNonHomepageReady() {
-    if (!document.body || document.body.classList.contains("in-index")) return;
-    redesignReady = true;
-    revealWhenReady();
-  }
+  document.addEventListener("larxRedesignFailed", function () {
+    failOpen("redesign-initialization");
+  }, { once: true });
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", markNonHomepageReady, { once: true });
@@ -67,36 +86,38 @@
     }
   };
 
-  var stylesheet = document.createElement("link");
-  stylesheet.rel = "stylesheet";
-  stylesheet.href = pages + "home.css?v=" + version;
-  stylesheet.setAttribute("data-larx-source", "github-pages");
-  stylesheet.onload = function () {
-    cssReady = true;
-    revealWhenReady();
-  };
-  stylesheet.onerror = function () {
-    if (stylesheet.getAttribute("data-larx-source") === "shoptet-fallback") return;
-    stylesheet.href = shoptet + "home.css?v=2";
-    stylesheet.setAttribute("data-larx-source", "shoptet-fallback");
-  };
-  document.head.appendChild(stylesheet);
+  requiredStyles.forEach(function (fileName) {
+    var stylesheet = document.createElement("link");
+    stylesheet.rel = "stylesheet";
+    stylesheet.href = assetBase + fileName + "?v=" + version;
+    stylesheet.setAttribute("data-larx-source", "github-pages");
+    stylesheet.setAttribute("data-larx-asset", fileName);
+    stylesheet.onload = function () {
+      loadedStyles += 1;
+      revealWhenReady();
+    };
+    stylesheet.onerror = function () {
+      failOpen("style:" + fileName);
+    };
+    document.head.appendChild(stylesheet);
+  });
 
-  function loadScript(source, label) {
+  function loadScript(fileName, onload) {
     var script = document.createElement("script");
-    script.src = source;
+    script.src = assetBase + fileName + "?v=" + version;
     script.async = false;
-    script.setAttribute("data-larx-source", label);
-    if (label === "github-pages") {
-      script.onerror = function () {
-        script.remove();
-        loadScript(shoptet + "home.js?v=2", "shoptet-fallback");
-      };
-    }
+    script.setAttribute("data-larx-source", "github-pages");
+    script.setAttribute("data-larx-asset", fileName);
+    script.onload = onload || null;
+    script.onerror = function () {
+      failOpen("script:" + fileName);
+    };
     document.head.appendChild(script);
   }
 
-  /* Fetch the application immediately in parallel with CSS. home.js already
-     waits for DOMContentLoaded when necessary. */
-  loadScript(pages + "home.js?v=" + version, "github-pages");
+  /* site.js installs global behavior first. home.js follows in deterministic
+     order and only changes the homepage. CSS downloads remain parallel. */
+  loadScript("site.js", function () {
+    if (!failed) loadScript("home.js");
+  });
 }(window, document));
