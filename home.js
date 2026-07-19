@@ -1,9 +1,14 @@
 (function () {
   'use strict';
 
-  var VERSION = '1.0.1';
+  var VERSION = '1.0.2';
   var HOME_CLASS = 'larx-home-redesign';
   var READY_CLASS = 'larx-redesign-ready';
+  var DEFAULT_TOOL_URLS = {
+    calculator: 'https://www.uhlikovefolie.cz/jak-to-funguje',
+    guide: 'https://www.uhlikovefolie.cz/instalacni-manual',
+    quote: 'https://www.uhlikovefolie.cz/nabidka-pomoci-ai'
+  };
 
   var COPY = {
     cs: {
@@ -182,9 +187,9 @@
     var config = window.LARX_HOME_CONFIG || {};
     var urls = config.toolUrls || {};
     return {
-      calculator: validUrl(urls.calculator),
-      guide: validUrl(urls.guide),
-      quote: validUrl(urls.quote)
+      calculator: validUrl(urls.calculator) || DEFAULT_TOOL_URLS.calculator,
+      guide: validUrl(urls.guide) || DEFAULT_TOOL_URLS.guide,
+      quote: validUrl(urls.quote) || DEFAULT_TOOL_URLS.quote
     };
   }
 
@@ -211,6 +216,10 @@
     card.dataset.larxTool = key;
     if (href) {
       card.href = href;
+      if (key === 'quote') {
+        card.target = '_blank';
+        card.rel = 'noopener';
+      }
     } else {
       card.type = 'button';
       card.setAttribute('aria-disabled', 'true');
