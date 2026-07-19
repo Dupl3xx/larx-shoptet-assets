@@ -34,6 +34,17 @@ body.in-index.larx-home-redesign .larx-blog {
   box-sizing: border-box;
 }
 
+/* Jupiter gives the desktop footer row -20px side margins. At exact container
+   breakpoints (992/1200/1440px) only about 10px remain to the viewport edge,
+   which creates horizontal page scrolling. Keep the usual gutter expansion,
+   but never let the row extend past the viewport. */
+@media (min-width: 992px) {
+  body.in-index.larx-home-redesign #footer .footer-rows > .custom-footer {
+    margin-right: max(-20px, calc((100% - 100vw) / 2)) !important;
+    margin-left: max(-20px, calc((100% - 100vw) / 2)) !important;
+  }
+}
+
 /* Header - native Shoptet behavior remains intact. */
 .top-navigation-bar {
   background: var(--larx-green-dark) !important;
