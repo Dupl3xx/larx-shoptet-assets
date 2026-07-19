@@ -208,6 +208,14 @@ body.in-index.larx-home-redesign .larx-blog {
   border-bottom: 1px solid var(--larx-green-dark);
 }
 
+/* Center the complete desktop menu when Shoptet confirms that every item fits.
+   On narrower widths, native menu splitting must keep control of the row. */
+@media (min-width: 768px) {
+  #navigation.fitted .menu-level-1 {
+    justify-content: center !important;
+  }
+}
+
 #navigation .menu-level-1 > li > a {
   position: relative;
   min-height: 58px;
