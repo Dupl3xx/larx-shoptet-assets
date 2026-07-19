@@ -45,6 +45,14 @@ body.in-index.larx-home-redesign .larx-blog {
   }
 }
 
+/* Classic Windows scrollbars make 100vw about 15px wider than the usable
+   layout area. Clip only the full-bleed footer gutter so it can never create
+   a page-level horizontal scrollbar; hidden remains the legacy fallback. */
+body.in-index.larx-home-redesign #footer {
+  overflow-x: hidden !important;
+  overflow-x: clip !important;
+}
+
 /* Header - native Shoptet behavior remains intact. */
 .top-navigation-bar {
   background: var(--larx-green-dark) !important;
