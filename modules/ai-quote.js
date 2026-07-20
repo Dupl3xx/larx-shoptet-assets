@@ -22,7 +22,7 @@
           '<p class="larx-ai-quote__eyebrow">Chytrý nástroj LARX</p>',
           '<h2 id="larx-ai-intro-title">Návrh vytápění z půdorysu bez zdlouhavého počítání</h2>',
           '<p>Nahrajte půdorys, doplňte kontakt a zvolte typ topného systému. Připravíme automatický návrh materiálu a orientační nacenění, které vám přijde e-mailem.</p>',
-          '<p class="larx-ai-quote__note"><strong>Nástroj je v testovacím provozu.</strong> Výsledek před objednáním doporučujeme zkontrolovat s naším technikem.</p>',
+          '<p class="larx-ai-quote__note"><strong>Nástroj je v testovacím provozu.</strong> Výsledek před objednáním doporučujeme zkontrolovat.</p>',
         '</div>',
         '<ol class="larx-ai-quote__steps" aria-label="Jak nacenění probíhá">',
           '<li><span>1</span><strong>Nahrajete půdorys</strong><small>PDF, JPG nebo PNG</small></li>',
