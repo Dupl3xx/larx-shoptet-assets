@@ -34,7 +34,6 @@
         '<div class="larx-ai-quote__form-heading">',
           '<p class="larx-ai-quote__eyebrow">Podklady k projektu</p>',
           '<h2 id="larx-ai-form-title">Automatické nacenění projektu</h2>',
-          '<p>Povinné údaje jsou označené hvězdičkou.</p>',
         '</div>',
         '<form class="larx-ai-quote__form" enctype="multipart/form-data" novalidate>',
           '<div class="larx-ai-quote__grid">',
