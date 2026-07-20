@@ -1131,6 +1131,45 @@ body.type-product .p-to-cart-block .quantity button {
   width: 34px !important;
   height: 50px;
   padding: 0 !important;
+  border: 0 !important;
+  border-radius: 999px;
+  background: transparent !important;
+  color: var(--larx-green-dark, #34721f) !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+body.type-product .p-to-cart-block .quantity button::before {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin: 0 !important;
+  color: inherit !important;
+  font-family: inherit !important;
+  font-size: 20px !important;
+  font-weight: 650 !important;
+  line-height: 1 !important;
+  transform: translateY(1px);
+}
+
+body.type-product .p-to-cart-block .quantity button:hover,
+body.type-product .p-to-cart-block .quantity button:focus-visible {
+  background: rgba(99, 188, 70, 0.14) !important;
+  color: var(--larx-green-dark, #34721f) !important;
+  box-shadow: none !important;
+}
+
+body.type-product .p-to-cart-block .quantity button:focus-visible {
+  outline: 2px solid var(--larx-green, #63bc46);
+  outline-offset: -2px;
+}
+
+body.type-product .p-to-cart-block .quantity button:active {
+  background: var(--larx-green, #63bc46) !important;
+  color: #fff !important;
 }
 
 body.type-product .p-to-cart-block .quantity .decrease {
