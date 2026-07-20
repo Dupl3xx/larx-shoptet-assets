@@ -1,6 +1,6 @@
 /*
  * LARX homepage redesign
- * Version: 1.1.2
+ * Version: 1.1.3
  * Scope: global header + homepage body.in-index only
  */
 
@@ -1235,7 +1235,7 @@ body.in-index .larx-blog .news-item .description {
     align-self: end;
   }
 
-  body.in-index.larx-home-redesign .larx-products-wrapper .product .p {
+  body.in-index.larx-home-redesign .larx-products-wrapper .product.product > .p {
     min-height: 500px !important;
   }
 
@@ -1377,7 +1377,7 @@ body.in-index .larx-blog .news-item .description {
     padding: 0 !important;
   }
 
-  body.in-index.larx-home-redesign .larx-products-wrapper .product .p {
+  body.in-index.larx-home-redesign .larx-products-wrapper .product.product > .p {
     min-height: 430px !important;
     border-radius: 16px !important;
   }
@@ -1396,6 +1396,13 @@ body.in-index .larx-blog .news-item .description {
 
   body.in-index.larx-home-redesign .larx-products-wrapper .product .p-in {
     padding: 0 14px 14px !important;
+  }
+
+  /* Jupiter adds 24px of desktop form padding and the desktop card rule has
+   * higher specificity than the original mobile height override. Together
+   * they pushed the buy button far below the price on narrow iPhones. */
+  body.in-index.larx-home-redesign .larx-products-wrapper .product.product .p-tools {
+    padding: 0 !important;
   }
 
   body.in-index.larx-home-redesign .larx-products-wrapper .product .availability {
@@ -1526,7 +1533,7 @@ body.in-index .larx-blog .news-item .description {
 }
 
 @media (max-width: 420px) {
-  body.in-index.larx-home-redesign .larx-products-wrapper .product .p {
+  body.in-index.larx-home-redesign .larx-products-wrapper .product.product > .p {
     min-height: 408px !important;
   }
 
