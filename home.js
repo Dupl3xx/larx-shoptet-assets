@@ -57,17 +57,16 @@
       preparing: 'Připravujeme',
       tools: {
         calculator: {
-          title: 'Počítadlo nákladů na vytápění',
-          description: 'Spočítejte roční náklady a úsporu za pár kliknutí.'
+          title: 'Kalkulačka nákladů na vytápění',
+          description: 'Spočítejte si náklady a úsporu na pár kliknutí.'
         },
         guide: {
           title: 'Interaktivní průvodce objednávkou',
           description: 'Krok za krokem k té správné fólii či rohoži.'
         },
         quote: {
-          title: 'AI naceňovátko',
-          description: 'Nahrajte půdorys a získejte kalkulaci na míru.',
-          badge: 'NOVÉ'
+          title: 'AI nacenění Vašeho projektu',
+          description: 'Nahrajte půdorys a získejte kalkulaci na míru.'
         }
       },
       groups: {
@@ -112,8 +111,7 @@
         },
         quote: {
           title: 'AI cenová kalkulácia',
-          description: 'Nahrajte pôdorys a získajte kalkuláciu na mieru.',
-          badge: 'NOVÉ'
+          description: 'Nahrajte pôdorys a získajte kalkuláciu na mieru.'
         }
       },
       groups: {
@@ -158,8 +156,7 @@
         },
         quote: {
           title: 'AI quotation tool',
-          description: 'Upload a floor plan and request a tailored calculation.',
-          badge: 'NEW'
+          description: 'Upload a floor plan and request a tailored calculation.'
         }
       },
       groups: {
