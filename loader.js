@@ -9,7 +9,7 @@
   var root = document.documentElement;
   var preloadClass = "larx-preload";
   var preloadStyleId = "larx-preload-style";
-  var requiredStyles = ["global.css", "home.css"];
+  var requiredStyles = ["global.css", "home.css", "inner.css"];
   var loadedStyles = 0;
   var siteReady = false;
   var redesignReady = false;
