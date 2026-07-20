@@ -5,7 +5,7 @@
   var HOME_CLASS = 'larx-home-redesign';
   var READY_CLASS = 'larx-redesign-ready';
   var DEFAULT_TOOL_URLS = {
-    calculator: 'https://www.uhlikovefolie.cz/jak-to-funguje',
+    calculator: 'https://www.larx.cz/kalkulacka-nakladu-na-vytapeni/',
     guide: 'https://www.uhlikovefolie.cz/instalacni-manual',
     quote: 'https://www.larx.cz/nabidka-pomoci-ai/'
   };

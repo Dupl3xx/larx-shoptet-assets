@@ -7,6 +7,15 @@
   if (!root) return;
   window.__larxHeatingCalculatorInitialized = true;
 
+  var pageArticle = root.closest ? root.closest('.pageArticleDetail') : null;
+  var nativeTitle = pageArticle ? pageArticle.querySelector(':scope > header') : null;
+  var headingTag = nativeTitle ? 'h1' : 'h2';
+  if (nativeTitle) {
+    nativeTitle.classList.add('larx-calc__native-title');
+    var nativeHeading = nativeTitle.querySelector('h1');
+    if (nativeHeading) nativeHeading.classList.add('larx-calc__native-title');
+  }
+
   var BASE_AREA = 138;
   var MIN_AREA = 10;
   var MAX_AREA = 300;
@@ -89,7 +98,7 @@
     '<section class="larx-calc" aria-labelledby="larx-calc-title">',
       '<header class="larx-calc__hero">',
         '<p class="larx-calc__eyebrow">Chytrý nástroj LARX</p>',
-        '<h2 id="larx-calc-title">Kalkulačka nákladů na vytápění</h2>',
+        '<' + headingTag + ' id="larx-calc-title">Kalkulačka nákladů na vytápění</' + headingTag + '>',
         '<p>Velké srovnání pěti nejčastějších způsobů vytápění — pořizovací cena, náklady na spotřebu i celkové náklady za zvolené období.</p>',
       '</header>',
 

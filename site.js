@@ -177,11 +177,28 @@
     );
   }
 
+  function ensureHeatingCalculatorRoot() {
+    var root = document.getElementById('larx-heating-calculator') ||
+      document.querySelector('[data-larx-heating-calculator]');
+    var isCalculatorPath = /^\/kalkulacka-nakladu-na-vytapeni\/?$/i.test(window.location.pathname);
+    var isCalculatorBody = document.body && document.body.classList.contains('in-kalkulacka-nakladu-na-vytapeni');
+
+    if (!root && (isCalculatorPath || isCalculatorBody)) {
+      var container = document.querySelector('.pageArticleDetail [itemprop="about"]') ||
+        document.querySelector('.pageArticleDetail') ||
+        document.querySelector('.content-inner');
+      if (container) {
+        root = document.createElement('div');
+        root.id = 'larx-heating-calculator';
+        container.appendChild(root);
+      }
+    }
+
+    return root;
+  }
+
   function isHeatingCalculatorPage() {
-    return Boolean(
-      document.getElementById('larx-heating-calculator') ||
-      document.querySelector('[data-larx-heating-calculator]')
-    );
+    return Boolean(ensureHeatingCalculatorRoot());
   }
 
   function loadPageModules() {
