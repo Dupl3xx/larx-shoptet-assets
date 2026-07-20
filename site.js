@@ -177,6 +177,13 @@
     );
   }
 
+  function isHeatingCalculatorPage() {
+    return Boolean(
+      document.getElementById('larx-heating-calculator') ||
+      document.querySelector('[data-larx-heating-calculator]')
+    );
+  }
+
   function loadPageModules() {
     var cartPage = isCartPage();
     var modules = [
@@ -190,6 +197,13 @@
       modules.push(
         loadStylesheet('larx-ai-quote-style', 'modules/ai-quote.css').then(function () {
           return loadModule('larx-ai-quote-script', 'modules/ai-quote.js');
+        })
+      );
+    }
+    if (isHeatingCalculatorPage()) {
+      modules.push(
+        loadStylesheet('larx-heating-calculator-style', 'modules/heating-calculator.css').then(function () {
+          return loadModule('larx-heating-calculator-script', 'modules/heating-calculator.js');
         })
       );
     }
