@@ -1,0 +1,289 @@
+.larx-ai-quote {
+  --ai-green: var(--larx-green, #63bc46);
+  --ai-green-dark: var(--larx-green-dark, #34721f);
+  --ai-green-soft: var(--larx-green-soft, #eaf5e6);
+  --ai-orange: var(--larx-orange, #f5831f);
+  --ai-ink: var(--larx-ink, #282527);
+  --ai-muted: var(--larx-muted, #6f716f);
+  --ai-line: var(--larx-line, #e3e7e1);
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto 72px;
+  color: var(--ai-ink);
+  font-family: var(--larx-font, "Jost", "Segoe UI", Arial, sans-serif);
+}
+
+.larx-ai-quote *,
+.larx-ai-quote *::before,
+.larx-ai-quote *::after { box-sizing: border-box; }
+
+.larx-ai-quote__intro,
+.larx-ai-quote__form-card {
+  border: 1px solid var(--ai-line);
+  border-radius: 28px;
+  box-shadow: 0 12px 36px rgba(39, 75, 28, .08);
+}
+
+.larx-ai-quote__intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, .9fr);
+  gap: 48px;
+  padding: clamp(32px, 5vw, 64px);
+  background: linear-gradient(120deg, #f7f9f5 48%, #eaf5e6 100%);
+}
+
+.larx-ai-quote__eyebrow {
+  margin: 0 0 10px;
+  color: var(--ai-green-dark);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.larx-ai-quote h2 {
+  margin: 0;
+  color: var(--ai-ink);
+  font-size: clamp(28px, 3.2vw, 46px);
+  line-height: 1.08;
+}
+
+.larx-ai-quote__intro-copy > p:not(.larx-ai-quote__eyebrow) {
+  max-width: 720px;
+  margin: 24px 0 0;
+  color: #555856;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.larx-ai-quote__note {
+  padding: 15px 18px;
+  border-left: 4px solid var(--ai-orange);
+  border-radius: 0 14px 14px 0;
+  background: rgba(255, 255, 255, .72);
+}
+
+.larx-ai-quote__steps {
+  display: grid;
+  gap: 12px;
+  align-content: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.larx-ai-quote__steps li {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 1px 14px;
+  align-items: center;
+  min-height: 74px;
+  padding: 14px 18px;
+  border: 1px solid rgba(99, 188, 70, .22);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, .86);
+}
+
+.larx-ai-quote__steps li::before,
+.larx-ai-quote__steps li::after { display: none !important; content: none !important; }
+
+.larx-ai-quote__steps li > span {
+  grid-row: 1 / 3;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--ai-green);
+  color: #fff;
+  font-weight: 800;
+}
+
+.larx-ai-quote__steps strong { font-size: 16px; line-height: 1.25; }
+.larx-ai-quote__steps small { color: var(--ai-muted); font-size: 14px; }
+
+.larx-ai-quote__form-card {
+  display: grid;
+  grid-template-columns: minmax(240px, .72fr) minmax(0, 1.55fr);
+  gap: clamp(28px, 5vw, 72px);
+  margin-top: 28px;
+  padding: clamp(28px, 4.5vw, 58px);
+  background: #fff;
+}
+
+.larx-ai-quote__form-heading h2 { font-size: clamp(27px, 2.6vw, 38px); }
+.larx-ai-quote__form-heading > p:last-child { margin: 18px 0 0; color: var(--ai-muted); }
+.larx-ai-quote__form { min-width: 0; }
+
+.larx-ai-quote__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.larx-ai-quote__field { display: grid; gap: 8px; margin: 0; }
+.larx-ai-quote__field > span,
+.larx-ai-quote__fieldset legend { color: var(--ai-ink); font-size: 15px; font-weight: 750; }
+.larx-ai-quote b[aria-hidden="true"] { color: var(--ai-orange); }
+
+.larx-ai-quote__field input {
+  width: 100%;
+  height: 52px;
+  margin: 0;
+  padding: 0 16px;
+  border: 1px solid #d9ded7;
+  border-radius: 14px;
+  background: #fff;
+  color: var(--ai-ink);
+  font: inherit;
+  box-shadow: none;
+}
+
+.larx-ai-quote__field input:hover { border-color: #b9c7b4; }
+.larx-ai-quote__field input:focus,
+.larx-ai-quote__dropzone:focus,
+.larx-ai-quote__file-remove:focus,
+.larx-ai-quote__submit:focus {
+  outline: 3px solid rgba(99, 188, 70, .28);
+  outline-offset: 2px;
+}
+
+.larx-ai-quote__fieldset {
+  min-width: 0;
+  margin: 28px 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.larx-ai-quote__fieldset legend { width: 100%; margin: 0 0 12px; padding: 0; }
+.larx-ai-quote__choices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.larx-ai-quote__choice { position: relative; display: block; margin: 0; cursor: pointer; }
+.larx-ai-quote__choice input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.larx-ai-quote__choice > span {
+  display: grid;
+  min-height: 108px;
+  align-content: center;
+  gap: 5px;
+  padding: 18px 18px 18px 50px;
+  border: 1px solid var(--ai-line);
+  border-radius: 18px;
+  background: #f8faf7;
+}
+
+.larx-ai-quote__choice > span::before {
+  position: absolute;
+  top: 50%;
+  left: 18px;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #b9c4b6;
+  border-radius: 50%;
+  content: "";
+  transform: translateY(-50%);
+}
+
+.larx-ai-quote__choice input:checked + span { border-color: var(--ai-green); background: var(--ai-green-soft); box-shadow: inset 0 0 0 1px var(--ai-green); }
+.larx-ai-quote__choice input:checked + span::before { border: 6px solid var(--ai-green); background: #fff; }
+.larx-ai-quote__choice input:focus + span { outline: 3px solid rgba(99, 188, 70, .28); outline-offset: 2px; }
+.larx-ai-quote__choice strong { color: var(--ai-ink); font-size: 16px; line-height: 1.25; }
+.larx-ai-quote__choice small { color: var(--ai-muted); font-size: 13px; line-height: 1.4; }
+
+.larx-ai-quote__dropzone {
+  position: relative;
+  display: grid;
+  min-height: 168px;
+  place-items: center;
+  align-content: center;
+  gap: 7px;
+  padding: 24px;
+  border: 2px dashed #cbd5c7;
+  border-radius: 20px;
+  background: #f8faf7;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color .2s ease, background-color .2s ease;
+}
+
+.larx-ai-quote__dropzone:hover,
+.larx-ai-quote__dropzone.is-dragging { border-color: var(--ai-green); background: var(--ai-green-soft); }
+.larx-ai-quote__dropzone.is-invalid { border-color: #c84d3c; }
+.larx-ai-quote__file-input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.larx-ai-quote__upload-icon { display: grid; width: 42px; height: 42px; place-items: center; border-radius: 50%; background: var(--ai-green); color: #fff; font-size: 25px; font-weight: 700; line-height: 1; }
+.larx-ai-quote__dropzone strong { font-size: 16px; }
+.larx-ai-quote__dropzone small { color: var(--ai-muted); font-size: 13px; }
+
+.larx-ai-quote__files { display: grid; gap: 8px; margin-top: 10px; }
+.larx-ai-quote__file { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 11px 14px; border-radius: 13px; background: var(--ai-green-soft); }
+.larx-ai-quote__file > span { display: grid; min-width: 0; }
+.larx-ai-quote__file strong { overflow: hidden; font-size: 14px; text-overflow: ellipsis; white-space: nowrap; }
+.larx-ai-quote__file small { color: var(--ai-muted); font-size: 12px; }
+.larx-ai-quote__file-remove { flex: 0 0 auto; padding: 5px 0; border: 0; background: transparent; color: var(--ai-green-dark); font: inherit; font-size: 13px; font-weight: 700; text-decoration: underline; cursor: pointer; }
+.larx-ai-quote__file-error { margin: 9px 0 0; color: #a5362b; font-size: 14px; }
+
+.larx-ai-quote__consent { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 11px; align-items: start; margin: 25px 0 0; color: #555856; font-size: 14px; line-height: 1.55; }
+.larx-ai-quote__consent input[type="checkbox"] {
+  position: static !important;
+  display: block !important;
+  width: 20px !important;
+  height: 20px !important;
+  margin: 1px 0 0 !important;
+  clip: auto !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  accent-color: var(--ai-green);
+}
+.larx-ai-quote__consent > span { display: block; width: auto !important; min-width: 0; max-width: none !important; }
+.larx-ai-quote__consent a { color: var(--ai-green-dark); text-decoration: underline; }
+.larx-ai-quote__honeypot { position: absolute !important; left: -10000px !important; width: 1px !important; height: 1px !important; overflow: hidden !important; }
+
+.larx-ai-quote__actions { display: grid; gap: 12px; margin-top: 26px; }
+.larx-ai-quote__submit {
+  width: 100%;
+  min-height: 56px;
+  padding: 14px 24px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--ai-green);
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color .2s ease, transform .2s ease;
+}
+.larx-ai-quote__submit:hover { background: var(--larx-green-hover, #52a93a); transform: translateY(-1px); }
+.larx-ai-quote__submit:disabled { cursor: wait; opacity: .72; transform: none; }
+.larx-ai-quote__status { min-height: 22px; margin: 0; font-size: 14px; line-height: 1.55; }
+.larx-ai-quote__status.is-error { color: #a5362b; }
+.larx-ai-quote__status.is-success { padding: 13px 15px; border-radius: 13px; background: var(--ai-green-soft); color: var(--ai-green-dark); font-weight: 700; }
+
+@media (max-width: 991px) {
+  .larx-ai-quote__intro { grid-template-columns: 1fr; gap: 28px; }
+  .larx-ai-quote__steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .larx-ai-quote__steps li { grid-template-columns: 38px minmax(0, 1fr); padding: 12px; }
+  .larx-ai-quote__steps li > span { width: 38px; height: 38px; }
+  .larx-ai-quote__form-card { grid-template-columns: 1fr; gap: 28px; }
+}
+
+@media (max-width: 767px) {
+  .larx-ai-quote { margin-bottom: 48px; }
+  .larx-ai-quote__intro,
+  .larx-ai-quote__form-card { border-radius: 22px; }
+  .larx-ai-quote__intro { padding: 26px 20px; }
+  .larx-ai-quote__intro-copy > p:not(.larx-ai-quote__eyebrow) { margin-top: 18px; font-size: 15px; }
+  .larx-ai-quote__steps { grid-template-columns: 1fr; }
+  .larx-ai-quote__form-card { padding: 26px 20px; }
+  .larx-ai-quote__grid,
+  .larx-ai-quote__choices { grid-template-columns: 1fr; }
+  .larx-ai-quote__choice > span { min-height: 94px; }
+  .larx-ai-quote__dropzone { min-height: 150px; padding: 20px 16px; }
+  .larx-ai-quote__submit { font-size: 13px; letter-spacing: .04em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .larx-ai-quote__dropzone,
+  .larx-ai-quote__submit { transition: none; }
+}

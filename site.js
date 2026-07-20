@@ -150,6 +150,33 @@
     });
   }
 
+  function loadStylesheet(id, relativePath) {
+    if (document.getElementById(id)) return Promise.resolve('existing');
+
+    return new Promise(function (resolve) {
+      var link = document.createElement('link');
+      link.id = id;
+      link.rel = 'stylesheet';
+      link.href = assetBase + relativePath + '?v=' + assetVersion;
+      link.setAttribute('data-larx-module', relativePath);
+      link.onload = function () { resolve('github-pages'); };
+      link.onerror = function () {
+        window.__larxSiteModuleErrors = window.__larxSiteModuleErrors || [];
+        window.__larxSiteModuleErrors.push(relativePath);
+        resolve('failed');
+      };
+      document.head.appendChild(link);
+    });
+  }
+
+  function isAiQuotePage() {
+    return Boolean(
+      document.getElementById('larx-ai-quote') ||
+      document.querySelector('[data-larx-ai-quote]') ||
+      (document.body && document.body.classList.contains('in-nabidka-pomoci-ai'))
+    );
+  }
+
   function loadPageModules() {
     var cartPage = isCartPage();
     var modules = [
@@ -158,6 +185,13 @@
     if (cartPage) {
       modules.push(loadModule('larx-cart-consumables', 'modules/cart-consumables.js', 'vypocet.js'));
       modules.push(loadModule('larx-cart-share', 'modules/cart-share.js', 'sdilet_kosik.js'));
+    }
+    if (isAiQuotePage()) {
+      modules.push(
+        loadStylesheet('larx-ai-quote-style', 'modules/ai-quote.css').then(function () {
+          return loadModule('larx-ai-quote-script', 'modules/ai-quote.js');
+        })
+      );
     }
     return Promise.all(modules).then(function (sources) {
       emit('ShoptetDOMContentLoaded');
@@ -196,7 +230,7 @@
 
     loadPageModules().then(function (moduleSources) {
       emit('larxSiteReady', {
-        version: '1.2.0',
+        version: '1.3.0',
         modules: moduleSources,
         moduleErrors: window.__larxSiteModuleErrors || []
       });
