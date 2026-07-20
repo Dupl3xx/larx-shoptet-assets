@@ -107,16 +107,11 @@ body::before {
   margin-right: auto;
 }
 
-body.in-kosik .cart-inner .row.summary {
-  position: relative;
-}
-
 body.in-kosik .larx-empty-cart-link--page {
-  position: absolute;
-  z-index: 2;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  display: block;
+  width: 100%;
+  margin: 12px 0 0;
+  text-align: center;
 }
 
 @media (max-width: 767px) {
@@ -134,14 +129,6 @@ body.in-kosik .larx-empty-cart-link--page {
     text-align: center;
   }
 
-  body.in-kosik .larx-empty-cart-link--page {
-    position: static;
-    flex: 0 0 100%;
-    width: 100%;
-    margin: 14px 0;
-    text-align: center;
-    transform: none;
-  }
 }
 
 /* Desktop navigation visuals are owned by home.css. Keeping them in one place

@@ -213,15 +213,16 @@
     var existing = document.querySelector('.larx-empty-cart-link--page');
     var summary = document.querySelector('.cart-inner .row.summary');
     var rightColumn = summary && summary.querySelector('.col-md-4');
+    var checkout = rightColumn && rightColumn.querySelector('#continue-order-button');
     var hasItems = !cartIsEmpty() && deleteForms('page').length > 0;
 
-    if (!hasItems || !summary || !rightColumn) {
+    if (!hasItems || !summary || !rightColumn || !checkout) {
       if (existing) existing.remove();
       return;
     }
     if (!existing) existing = createLink('page');
-    if (existing.parentNode !== summary || existing.nextElementSibling !== rightColumn) {
-      summary.insertBefore(existing, rightColumn);
+    if (existing.parentNode !== checkout.parentNode || existing.nextElementSibling !== checkout) {
+      checkout.insertAdjacentElement('beforebegin', existing);
     }
   }
 
