@@ -216,7 +216,8 @@ body.in-index.larx-home-redesign #footer {
   font-weight: 700;
 }
 
-#header .navigation-buttons .cart-count.full > i {
+#header .navigation-buttons .cart-count.full > i,
+#header .navigation-buttons .cart-count:not(.full) .cart-price::before {
   position: absolute !important;
   top: 21px !important;
   right: auto !important;
@@ -1276,7 +1277,8 @@ body.in-index .larx-blog .news-item .description {
     background: transparent !important;
   }
 
-  #header .navigation-buttons .cart-count.full > i {
+  #header .navigation-buttons .cart-count.full > i,
+  #header .navigation-buttons .cart-count:not(.full) .cart-price::before {
     top: 27px !important;
     left: 2px !important;
     width: 16px !important;
