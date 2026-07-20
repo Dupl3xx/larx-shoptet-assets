@@ -1,13 +1,13 @@
 (function () {
   'use strict';
 
-  var VERSION = '1.1.3';
+  var VERSION = '1.1.4';
   var HOME_CLASS = 'larx-home-redesign';
   var READY_CLASS = 'larx-redesign-ready';
   var DEFAULT_TOOL_URLS = {
     calculator: 'https://www.uhlikovefolie.cz/jak-to-funguje',
     guide: 'https://www.uhlikovefolie.cz/instalacni-manual',
-    quote: 'https://www.uhlikovefolie.cz/nabidka-pomoci-ai'
+    quote: 'https://www.larx.cz/nabidka-pomoci-ai/'
   };
   var CATEGORY_CARDS = [
     {
