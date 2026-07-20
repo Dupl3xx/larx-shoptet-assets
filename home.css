@@ -1163,6 +1163,11 @@ body.in-index .larx-blog .news-item .description {
   line-height: 1.55 !important;
 }
 
+body.in-index .larx-blog .blog-btn .btn-tertialy {
+  border-radius: 999px !important;
+  overflow: hidden;
+}
+
 .larx-toast {
   position: fixed;
   right: 24px;

@@ -37,6 +37,13 @@ body::before {
   backdrop-filter: none !important;
 }
 
+/* Match the footer contact panel to the rounded cards used throughout the
+   redesign. Clipping keeps its internal column dividers inside the corners. */
+#footer .custom-footer__contact > .container {
+  border-radius: 28px !important;
+  overflow: hidden;
+}
+
 #cart-widget .popup-widget-inner,
 #cart-widget .cart-widget-inner,
 .user-action-cart.cart-empty-widget .empty-cart-content,
