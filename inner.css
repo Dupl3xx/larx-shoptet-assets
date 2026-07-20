@@ -1144,6 +1144,9 @@ body.type-product .p-to-cart-block .quantity .increase {
 }
 
 body.type-product .p-to-cart-block > .btn-conversion {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
   width: 100% !important;
   min-width: 0 !important;
   max-width: none;
@@ -1157,6 +1160,7 @@ body.type-product .p-to-cart-block > .btn-conversion {
   font-weight: 800;
   line-height: 1.25 !important;
   letter-spacing: 0.055em;
+  text-align: center;
   box-sizing: border-box;
   box-shadow: none !important;
 }
