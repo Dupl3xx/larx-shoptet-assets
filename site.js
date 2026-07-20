@@ -132,7 +132,7 @@
 
   function loadModule(id, relativePath, legacyFileName) {
     if (document.getElementById(id)) return Promise.resolve('existing');
-    if (hasLegacyModule(legacyFileName)) return Promise.resolve('legacy');
+    if (legacyFileName && hasLegacyModule(legacyFileName)) return Promise.resolve('legacy');
 
     return new Promise(function (resolve) {
       var script = document.createElement('script');
@@ -151,13 +151,17 @@
   }
 
   function loadPageModules() {
-    if (!isCartPage()) return Promise.resolve([]);
-    return Promise.all([
-      loadModule('larx-cart-consumables', 'modules/cart-consumables.js', 'vypocet.js'),
-      loadModule('larx-cart-share', 'modules/cart-share.js', 'sdilet_kosik.js')
-    ]).then(function (sources) {
+    var cartPage = isCartPage();
+    var modules = [
+      loadModule('larx-cart-empty', 'modules/cart-empty.js')
+    ];
+    if (cartPage) {
+      modules.push(loadModule('larx-cart-consumables', 'modules/cart-consumables.js', 'vypocet.js'));
+      modules.push(loadModule('larx-cart-share', 'modules/cart-share.js', 'sdilet_kosik.js'));
+    }
+    return Promise.all(modules).then(function (sources) {
       emit('ShoptetDOMContentLoaded');
-      emit('ShoptetDOMCartContentLoaded');
+      if (cartPage) emit('ShoptetDOMCartContentLoaded');
       return sources;
     });
   }
@@ -192,7 +196,7 @@
 
     loadPageModules().then(function (moduleSources) {
       emit('larxSiteReady', {
-        version: '1.1.0',
+        version: '1.2.0',
         modules: moduleSources,
         moduleErrors: window.__larxSiteModuleErrors || []
       });

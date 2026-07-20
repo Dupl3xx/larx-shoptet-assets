@@ -57,6 +57,86 @@ body::before {
   border: 0 !important;
 }
 
+/* A deliberately quiet secondary action. The JavaScript module uses the
+   native Shoptet delete forms one by one, so totals and the header stay in
+   sync after the whole cart is cleared. */
+.larx-empty-cart-link {
+  appearance: none;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #747774;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.35;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 150ms ease;
+}
+
+.larx-empty-cart-link:hover,
+.larx-empty-cart-link:focus-visible {
+  color: #282527;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.larx-empty-cart-link:disabled,
+.larx-empty-cart-link.is-busy {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+#cart-widget .cart-widget-bottom {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 24px;
+}
+
+#cart-widget .cart-widget-button {
+  flex: 0 0 auto;
+  margin: 0 !important;
+}
+
+body.in-kosik .cart-inner .row.summary {
+  position: relative;
+}
+
+body.in-kosik .larx-empty-cart-link--page {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 767px) {
+  #cart-widget .cart-widget-bottom {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  #cart-widget .cart-widget-button,
+  #cart-widget .larx-empty-cart-link--widget {
+    flex: 0 0 100%;
+    width: 100%;
+    text-align: center;
+  }
+
+  body.in-kosik .larx-empty-cart-link--page {
+    position: static;
+    flex: 0 0 100%;
+    width: 100%;
+    margin: 14px 0;
+    text-align: center;
+    transform: none;
+  }
+}
+
 /* Desktop navigation visuals are owned by home.css. Keeping them in one place
    prevents the former orange/green border specificity conflict. */
 
