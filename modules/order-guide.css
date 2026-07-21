@@ -735,6 +735,11 @@ button.larx-guide__path-item {
   line-height: 1.55;
 }
 
+body.larx-order-guide-page .larx-guide .larx-guide__power,
+body.in-interaktivni-pruvodce-objednavkou .larx-guide .larx-guide__power {
+  margin: 18px 0 0;
+}
+
 .larx-guide__power > span {
   display: grid;
   flex: 0 0 22px;
