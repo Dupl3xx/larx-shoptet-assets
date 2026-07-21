@@ -48,6 +48,15 @@ body.larx-order-guide-page .pageArticleDetail {
   -webkit-tap-highlight-color: transparent;
 }
 
+/* Shoptet adds decorative counters and bullets to article lists. The guide
+   supplies its own checkmarks and numbered tree, so native pseudo markers
+   would duplicate every symbol. */
+.larx-guide ul > li::before,
+.larx-guide ol > li::before {
+  content: none !important;
+  display: none !important;
+}
+
 .larx-guide__hero {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
