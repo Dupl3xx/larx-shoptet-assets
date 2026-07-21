@@ -128,7 +128,7 @@
       },
       groups: {
         mats: { title: 'Vykurovacie rohože', eyebrow: 'Skladom & ihneď na odoslanie' },
-        films: { title: 'Vykurovacie fólie', eyebrow: 'Ultratenké · 0,4 mm' },
+        films: { title: 'Vykurovacie fólie', eyebrow: 'Ultratenké' },
         recommended: { title: 'Odporúčame', eyebrow: 'Vybrané pre vás' }
       },
       kinds: {
@@ -173,7 +173,7 @@
       },
       groups: {
         mats: { title: 'Heating mats', eyebrow: 'In stock & ready to ship' },
-        films: { title: 'Heating films', eyebrow: 'Ultra-thin · 0.4 mm' },
+        films: { title: 'Heating films', eyebrow: 'Ultra-thin' },
         recommended: { title: 'We recommend', eyebrow: 'Selected for you' }
       },
       kinds: {
