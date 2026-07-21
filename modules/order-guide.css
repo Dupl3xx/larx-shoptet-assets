@@ -671,18 +671,20 @@ button.larx-guide__path-item {
 .larx-guide__estimate {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 14px;
   margin-top: 28px;
 }
 
 .larx-guide__estimate > div {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: end;
-  gap: 4px 16px;
-  padding: 18px 20px;
-  border-radius: 18px;
-  background: var(--guide-surface);
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  min-width: 0;
+  min-height: 136px;
+  padding: 20px 22px;
+  border: 1px solid #e1e9de;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #f8faf7 0%, var(--guide-surface) 100%);
 }
 
 .larx-guide__estimate small,
@@ -692,7 +694,7 @@ button.larx-guide__path-item {
 }
 
 .larx-guide__estimate small {
-  grid-column: 1 / -1;
+  margin: 0 0 12px;
   color: #898e88;
   font-size: 10px;
   font-weight: 800;
@@ -701,18 +703,23 @@ button.larx-guide__path-item {
 }
 
 .larx-guide__estimate strong {
+  width: 100%;
   color: var(--guide-green-dark);
-  font-size: clamp(18px, 2.2vw, 24px);
+  font-size: clamp(22px, 2.2vw, 28px);
   font-weight: 850;
-  line-height: 1.15;
+  line-height: 1.2;
+  overflow-wrap: normal;
+  text-wrap: balance;
+  word-break: normal;
 }
 
 .larx-guide__estimate span {
-  max-width: 190px;
+  max-width: none;
+  margin-top: 8px;
   color: var(--guide-muted);
-  font-size: 11px;
-  line-height: 1.4;
-  text-align: right;
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: left;
 }
 
 .larx-guide__power {
@@ -965,6 +972,10 @@ button.larx-guide__path-item {
   }
 
   .larx-guide__options.has-three {
+    grid-template-columns: 1fr;
+  }
+
+  .larx-guide__estimate {
     grid-template-columns: 1fr;
   }
 

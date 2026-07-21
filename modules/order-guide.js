@@ -388,7 +388,7 @@
     var primaryHref = ROUTES[result.route];
     var thermostatWord = state.zones === 1 ? 'termostat' : state.zones < 5 ? 'termostaty' : 'termostatů';
     var circuitWord = state.zones === 1 ? 'okruh' : state.zones < 5 ? 'okruhy' : 'okruhů';
-    var zoneText = state.zones + ' ' + thermostatWord + ' / ' + state.zones + ' ' + circuitWord;
+    var zoneText = state.zones + ' ' + thermostatWord + ' · ' + state.zones + ' ' + circuitWord;
     var isFilm = Boolean(result.widths);
     var nextStepTitle = isFilm ? 'Nechte si dopočítat spotřební materiál' : 'Vyberte rohož a regulaci';
     var nextStepText = isFilm ?
