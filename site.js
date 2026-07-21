@@ -170,11 +170,18 @@
   }
 
   function isAiQuotePage() {
-    return Boolean(
-      document.getElementById('larx-ai-quote') ||
-      document.querySelector('[data-larx-ai-quote]') ||
-      (document.body && document.body.classList.contains('in-nabidka-pomoci-ai'))
+    var root = document.getElementById('larx-ai-quote') ||
+      document.querySelector('[data-larx-ai-quote]');
+    var isKnownCzechPage = document.body && (
+      document.body.classList.contains('in-nabidka-pomoci-ai') ||
+      document.body.classList.contains('in-automaticke-naceneni-projektu-pomoci-ai')
     );
+
+    if (root && document.body) {
+      document.body.classList.add('larx-ai-quote-page');
+    }
+
+    return Boolean(root || isKnownCzechPage);
   }
 
   function ensureHeatingCalculatorRoot() {

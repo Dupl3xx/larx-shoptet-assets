@@ -17,16 +17,16 @@
 .larx-ai-quote *::before,
 .larx-ai-quote *::after { box-sizing: border-box; }
 
-body.in-nabidka-pomoci-ai .pageArticleDetail {
+body.larx-ai-quote-page .pageArticleDetail {
   padding: clamp(22px, 3.4vw, 42px);
 }
 
-body.in-nabidka-pomoci-ai .pageArticleDetail > header {
+body.larx-ai-quote-page .pageArticleDetail > header {
   margin-bottom: 24px;
   padding-bottom: 16px;
 }
 
-body.in-nabidka-pomoci-ai .pageArticleDetail > header h1 {
+body.larx-ai-quote-page .pageArticleDetail > header h1 {
   font-size: clamp(28px, 3vw, 42px);
   line-height: 1.1;
 }
@@ -46,7 +46,7 @@ body.in-nabidka-pomoci-ai .pageArticleDetail > header h1 {
   background: linear-gradient(120deg, #f7f9f5 48%, #eaf5e6 100%);
 }
 
-body.in-nabidka-pomoci-ai .larx-ai-quote .larx-ai-quote__eyebrow {
+body.larx-ai-quote-page .larx-ai-quote .larx-ai-quote__eyebrow {
   margin: 0 0 8px;
   color: var(--ai-green-dark);
   font-size: 12px;
@@ -61,14 +61,14 @@ body.in-nabidka-pomoci-ai .larx-ai-quote .larx-ai-quote__eyebrow {
   line-height: 1.08;
 }
 
-body.in-nabidka-pomoci-ai .larx-ai-quote .larx-ai-quote__intro h2 {
+body.larx-ai-quote-page .larx-ai-quote .larx-ai-quote__intro h2 {
   margin: 0;
   color: var(--ai-ink);
   font-size: clamp(26px, 2.6vw, 36px);
   line-height: 1.12;
 }
 
-body.in-nabidka-pomoci-ai .larx-ai-quote .larx-ai-quote__intro-copy > p:not(.larx-ai-quote__eyebrow) {
+body.larx-ai-quote-page .larx-ai-quote .larx-ai-quote__intro-copy > p:not(.larx-ai-quote__eyebrow) {
   max-width: 720px;
   margin: 16px 0 0;
   color: #555856;
@@ -76,7 +76,7 @@ body.in-nabidka-pomoci-ai .larx-ai-quote .larx-ai-quote__intro-copy > p:not(.lar
   line-height: 1.55;
 }
 
-body.in-nabidka-pomoci-ai .larx-ai-quote .larx-ai-quote__intro-copy > p.larx-ai-quote__note {
+body.larx-ai-quote-page .larx-ai-quote .larx-ai-quote__intro-copy > p.larx-ai-quote__note {
   padding: 11px 14px;
   border-left: 4px solid var(--ai-orange);
   border-radius: 0 12px 12px 0;
@@ -85,7 +85,7 @@ body.in-nabidka-pomoci-ai .larx-ai-quote .larx-ai-quote__intro-copy > p.larx-ai-
   line-height: 1.5;
 }
 
-body.in-nabidka-pomoci-ai .larx-ai-quote ol.larx-ai-quote__steps {
+body.larx-ai-quote-page .larx-ai-quote ol.larx-ai-quote__steps {
   display: grid;
   gap: 10px;
   align-content: center;
@@ -94,7 +94,7 @@ body.in-nabidka-pomoci-ai .larx-ai-quote ol.larx-ai-quote__steps {
   list-style: none;
 }
 
-body.in-nabidka-pomoci-ai .larx-ai-quote ol.larx-ai-quote__steps li {
+body.larx-ai-quote-page .larx-ai-quote ol.larx-ai-quote__steps li {
   display: grid;
   grid-template-columns: 36px minmax(0, 1fr);
   gap: 0 12px;
@@ -134,7 +134,7 @@ body.in-nabidka-pomoci-ai .larx-ai-quote ol.larx-ai-quote__steps li {
   background: #fff;
 }
 
-body.in-nabidka-pomoci-ai .larx-ai-quote .larx-ai-quote__form-heading h2 {
+body.larx-ai-quote-page .larx-ai-quote .larx-ai-quote__form-heading h2 {
   margin: 0;
   font-size: clamp(27px, 2.6vw, 38px);
 }
@@ -289,7 +289,7 @@ body.in-nabidka-pomoci-ai .larx-ai-quote .larx-ai-quote__form-heading h2 {
 @media (max-width: 991px) {
   .larx-ai-quote__intro { grid-template-columns: 1fr; gap: 22px; }
   .larx-ai-quote__steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  body.in-nabidka-pomoci-ai .larx-ai-quote ol.larx-ai-quote__steps li { grid-template-columns: 34px minmax(0, 1fr); padding: 10px; }
+  body.larx-ai-quote-page .larx-ai-quote ol.larx-ai-quote__steps li { grid-template-columns: 34px minmax(0, 1fr); padding: 10px; }
   .larx-ai-quote__steps li > span { width: 34px; height: 34px; }
   .larx-ai-quote__form-card { grid-template-columns: 1fr; gap: 28px; }
 }
@@ -299,9 +299,9 @@ body.in-nabidka-pomoci-ai .larx-ai-quote .larx-ai-quote__form-heading h2 {
   .larx-ai-quote__intro,
   .larx-ai-quote__form-card { border-radius: 22px; }
   .larx-ai-quote__intro { gap: 18px; padding: 22px 18px; }
-  body.in-nabidka-pomoci-ai .larx-ai-quote .larx-ai-quote__intro-copy > p:not(.larx-ai-quote__eyebrow) { margin-top: 14px; font-size: 15px; }
+  body.larx-ai-quote-page .larx-ai-quote .larx-ai-quote__intro-copy > p:not(.larx-ai-quote__eyebrow) { margin-top: 14px; font-size: 15px; }
   .larx-ai-quote__steps { grid-template-columns: 1fr; }
-  body.in-nabidka-pomoci-ai .larx-ai-quote ol.larx-ai-quote__steps li { min-height: 58px; }
+  body.larx-ai-quote-page .larx-ai-quote ol.larx-ai-quote__steps li { min-height: 58px; }
   .larx-ai-quote__form-card { padding: 26px 20px; }
   .larx-ai-quote__grid,
   .larx-ai-quote__choices { grid-template-columns: 1fr; }

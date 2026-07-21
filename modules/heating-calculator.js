@@ -108,7 +108,20 @@
   var copy = translations[language];
   var currency = language === 'cs' ? 'Kč' : '€';
   var currencyRate = language === 'cs' ? 1 : 24.5;
-  var languagePrefix = language === 'cs' ? '' : '/' + language;
+  var linkPaths = {
+    cs: {
+      foils: '/topne-folie/',
+      aiQuote: '/automaticke-naceneni-projektu-pomoci-ai/'
+    },
+    sk: {
+      foils: '/sk/vykurovacie-folie/',
+      aiQuote: '/sk/automaticke-nacenenie-projektu-pomocou-ai/'
+    },
+    en: {
+      foils: '/en/heating-films/',
+      aiQuote: '/en/automatic-project-pricing-using-ai/'
+    }
+  }[language];
 
   var pageArticle = root.closest ? root.closest('.pageArticleDetail') : null;
   var nativeTitle = pageArticle ? pageArticle.querySelector(':scope > header') : null;
@@ -256,8 +269,8 @@
       '<p class="larx-calc__disclaimer">' + copy.disclaimer + '</p>',
 
       '<div class="larx-calc__actions">',
-        '<a class="larx-calc__button is-primary" href="' + languagePrefix + '/topne-folie/">' + copy.chooseFoils + '</a>',
-        '<a class="larx-calc__button is-secondary" href="' + languagePrefix + '/nabidka-pomoci-ai/">' + copy.aiQuote + '</a>',
+        '<a class="larx-calc__button is-primary" href="' + linkPaths.foils + '">' + copy.chooseFoils + '</a>',
+        '<a class="larx-calc__button is-secondary" href="' + linkPaths.aiQuote + '">' + copy.aiQuote + '</a>',
       '</div>',
     '</section>'
   ].join('');

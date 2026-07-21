@@ -5,9 +5,17 @@
   var HOME_CLASS = 'larx-home-redesign';
   var READY_CLASS = 'larx-redesign-ready';
   var DEFAULT_TOOL_URLS = {
-    calculator: 'https://www.larx.cz/kalkulacka-nakladu-na-vytapeni/',
+    calculator: {
+      cs: 'https://www.larx.cz/kalkulacka-nakladu-na-vytapeni/',
+      sk: 'https://www.larx.cz/sk/kalkulacka-nakladov-na-vykurovanie/',
+      en: 'https://www.larx.cz/en/heating-cost-calculator/'
+    },
     guide: 'https://www.uhlikovefolie.cz/instalacni-manual',
-    quote: 'https://www.larx.cz/nabidka-pomoci-ai/'
+    quote: {
+      cs: 'https://www.larx.cz/automaticke-naceneni-projektu-pomoci-ai/',
+      sk: 'https://www.larx.cz/sk/automaticke-nacenenie-projektu-pomocou-ai/',
+      en: 'https://www.larx.cz/en/automatic-project-pricing-using-ai/'
+    }
   };
   var CATEGORY_CARDS = [
     {
@@ -269,10 +277,19 @@
   function getToolUrls() {
     var config = window.LARX_HOME_CONFIG || {};
     var urls = config.toolUrls || {};
+    var language = getLanguage();
+
+    function localizedUrl(value) {
+      if (value && typeof value === 'object') {
+        value = value[language] || value.cs || '';
+      }
+      return validUrl(value);
+    }
+
     return {
-      calculator: validUrl(urls.calculator) || DEFAULT_TOOL_URLS.calculator,
-      guide: validUrl(urls.guide) || DEFAULT_TOOL_URLS.guide,
-      quote: validUrl(urls.quote) || DEFAULT_TOOL_URLS.quote
+      calculator: localizedUrl(urls.calculator) || localizedUrl(DEFAULT_TOOL_URLS.calculator),
+      guide: localizedUrl(urls.guide) || localizedUrl(DEFAULT_TOOL_URLS.guide),
+      quote: localizedUrl(urls.quote) || localizedUrl(DEFAULT_TOOL_URLS.quote)
     };
   }
 

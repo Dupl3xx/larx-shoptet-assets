@@ -6,6 +6,7 @@
   var root = document.querySelector('[data-larx-ai-quote], #larx-ai-quote');
   if (!root) return;
   window.__larxAiQuoteInitialized = true;
+  if (document.body) document.body.classList.add('larx-ai-quote-page');
 
   var DEFAULT_ENDPOINT = 'https://www.uhlikovefolie.cz/php/api/larx-ai-quote.php';
   var MAX_FILES = 5;
