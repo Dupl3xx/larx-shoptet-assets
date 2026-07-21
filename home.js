@@ -10,7 +10,11 @@
       sk: 'https://www.larx.cz/sk/kalkulacka-nakladov-na-vykurovanie/',
       en: 'https://www.larx.cz/en/heating-cost-calculator/'
     },
-    guide: 'https://www.uhlikovefolie.cz/instalacni-manual',
+    guide: {
+      cs: 'https://www.larx.cz/interaktivni-pruvodce-objednavkou/',
+      sk: 'https://www.uhlikovefolie.cz/instalacni-manual',
+      en: 'https://www.uhlikovefolie.cz/instalacni-manual'
+    },
     quote: {
       cs: 'https://www.larx.cz/automaticke-naceneni-projektu-pomoci-ai/',
       sk: 'https://www.larx.cz/sk/automaticke-nacenenie-projektu-pomocou-ai/',

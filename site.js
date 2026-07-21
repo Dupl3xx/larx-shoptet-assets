@@ -234,6 +234,35 @@
     return Boolean(ensureHeatingCalculatorRoot());
   }
 
+  function ensureOrderGuideRoot() {
+    var root = document.getElementById('larx-order-guide') ||
+      document.querySelector('[data-larx-order-guide]');
+    var isGuidePath = /^\/interaktivni-pruvodce-objednavkou\/?$/i.test(window.location.pathname);
+    var isGuideBody = document.body &&
+      document.body.classList.contains('in-interaktivni-pruvodce-objednavkou');
+
+    if (!root && (isGuidePath || isGuideBody)) {
+      var container = document.querySelector('.pageArticleDetail [itemprop="about"]') ||
+        document.querySelector('.pageArticleDetail') ||
+        document.querySelector('.content-inner');
+      if (container) {
+        root = document.createElement('div');
+        root.id = 'larx-order-guide';
+        container.appendChild(root);
+      }
+    }
+
+    if (root && document.body) {
+      document.body.classList.add('larx-order-guide-page');
+    }
+
+    return root;
+  }
+
+  function isOrderGuidePage() {
+    return Boolean(ensureOrderGuideRoot());
+  }
+
   function loadPageModules() {
     var cartPage = isCartPage();
     var modules = [
@@ -254,6 +283,13 @@
       modules.push(
         loadStylesheet('larx-heating-calculator-style', 'modules/heating-calculator.css').then(function () {
           return loadModule('larx-heating-calculator-script', 'modules/heating-calculator.js');
+        })
+      );
+    }
+    if (isOrderGuidePage()) {
+      modules.push(
+        loadStylesheet('larx-order-guide-style', 'modules/order-guide.css').then(function () {
+          return loadModule('larx-order-guide-script', 'modules/order-guide.js');
         })
       );
     }
