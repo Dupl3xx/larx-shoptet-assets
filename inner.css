@@ -1990,6 +1990,199 @@ body.type-page .content-inner > .empty-content {
   text-align: center;
 }
 
+/* 404: replace Shoptet's absolutely positioned contact panel with a stable,
+   responsive card that keeps every edge and text block inside the frame. */
+body.in-404 .content-inner > .empty-content-404 {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.75fr);
+  grid-template-areas:
+    "title contact"
+    "message contact"
+    "action contact";
+  gap: 18px clamp(28px, 4vw, 56px);
+  align-items: start;
+  margin: clamp(28px, 5vw, 56px) 0;
+  padding: clamp(34px, 5vw, 60px);
+  overflow: hidden;
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 92% 12%, rgba(99, 188, 70, 0.16), transparent 34%),
+    linear-gradient(135deg, #fff 0%, #f4f8f1 100%);
+  box-shadow: var(--larx-shadow, 0 10px 30px rgba(39, 75, 28, 0.08));
+  text-align: left;
+}
+
+body.in-404 .empty-content-404 > h1 {
+  grid-area: title;
+  align-self: end;
+  min-width: 0;
+  margin: 0;
+  color: var(--larx-ink, #282628);
+  font-size: clamp(32px, 4.2vw, 52px);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  text-align: left;
+}
+
+body.in-404 .empty-content-404 > h1::after {
+  content: "";
+  display: block;
+  width: 58px;
+  height: 4px;
+  margin-top: 22px;
+  border-radius: 999px;
+  background: var(--larx-orange, #f5831f);
+}
+
+body.in-404 .empty-content-404 > h2 {
+  display: none;
+}
+
+body.in-404 .empty-content-404 > p:first-of-type {
+  grid-area: message;
+  min-width: 0;
+  margin: 0;
+  color: var(--larx-muted, #6d716c);
+  font-size: 17px;
+  line-height: 1.65;
+  text-align: left;
+}
+
+body.in-404 .empty-content-404 > p:first-of-type > span {
+  display: none;
+}
+
+body.in-404 .empty-content-404 > p:nth-of-type(2) {
+  grid-area: action;
+  margin: 10px 0 0;
+  text-align: left;
+}
+
+body.in-404 .empty-content-404 [data-testid="buttonBackToShop"] {
+  display: inline-flex;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 28px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--larx-green, #63bc46);
+  box-shadow: none;
+  color: #fff;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+body.in-404 .empty-content-404 [data-testid="buttonBackToShop"]:hover,
+body.in-404 .empty-content-404 [data-testid="buttonBackToShop"]:focus-visible {
+  background: var(--larx-green-dark, #34721f);
+  color: #fff;
+}
+
+body.in-404 .empty-content-404 > .contact-side {
+  position: static;
+  grid-area: contact;
+  align-self: stretch;
+  width: auto;
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  padding: clamp(24px, 3vw, 34px);
+  border: 1px solid var(--larx-line, #e3e7e1);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 12px 30px rgba(39, 75, 28, 0.07);
+  text-align: left;
+}
+
+body.in-404 .empty-content-404 > .contact-side h5 {
+  margin: 0 0 8px;
+  color: var(--larx-ink, #282628);
+  font-size: 21px;
+  line-height: 1.25;
+}
+
+body.in-404 .empty-content-404 > .contact-side > p {
+  margin: 0;
+  color: var(--larx-muted, #6d716c);
+  line-height: 1.55;
+}
+
+body.in-404 .empty-content-404 .contact-box,
+body.in-404 .empty-content-404 .contact-box.no-image {
+  position: static;
+  width: auto;
+  min-width: 0;
+  margin: 20px 0 0;
+  padding: 0;
+  background: transparent;
+}
+
+body.in-404 .empty-content-404 .contact-box ul {
+  display: grid;
+  gap: 14px;
+  width: auto;
+  margin: 0;
+  padding: 0;
+}
+
+body.in-404 .empty-content-404 .contact-box li {
+  width: auto;
+  margin: 0;
+}
+
+body.in-404 .empty-content-404 .contact-box a {
+  color: var(--larx-ink, #282628);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+body.in-404 .empty-content-404 .contact-box .social-icon-list,
+body.in-404 .pk-kategorie {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  body.in-404 .content-inner > .empty-content-404 {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "title"
+      "message"
+      "action"
+      "contact";
+    gap: 18px;
+    margin: 24px 0 32px;
+    padding: 28px 22px;
+    border-radius: 24px;
+  }
+
+  body.in-404 .empty-content-404 > h1 {
+    font-size: clamp(30px, 9vw, 40px);
+  }
+
+  body.in-404 .empty-content-404 > h1::after {
+    margin-top: 18px;
+  }
+
+  body.in-404 .empty-content-404 > p:first-of-type {
+    font-size: 16px;
+  }
+
+  body.in-404 .empty-content-404 > p:nth-of-type(2) {
+    margin-top: 2px;
+  }
+
+  body.in-404 .empty-content-404 [data-testid="buttonBackToShop"] {
+    width: 100%;
+  }
+
+  body.in-404 .empty-content-404 > .contact-side {
+    margin-top: 8px;
+    padding: 24px 20px;
+    border-radius: 18px;
+  }
+}
+
 /* --- Responsive behavior ------------------------------------------------ */
 
 @media (max-width: 1199px) {
