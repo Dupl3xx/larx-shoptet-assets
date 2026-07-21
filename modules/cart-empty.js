@@ -76,7 +76,7 @@
   function deleteForms(mode) {
     var selector = mode === 'widget'
       ? '#cart-widget form.js-remove-form[action*="/action/Cart/deleteCartItem/"]'
-      : 'body.in-kosik .cart-table form.delete-cart-item[action*="/action/Cart/deleteCartItem/"]';
+      : 'body:is(.in-kosik, .in-cart) .cart-table form.delete-cart-item[action*="/action/Cart/deleteCartItem/"]';
     var byItem = {};
 
     Array.prototype.forEach.call(document.querySelectorAll(selector), function (form) {
@@ -209,7 +209,7 @@
   }
 
   function injectPageLink() {
-    if (!document.body || !document.body.classList.contains('in-kosik')) return;
+    if (!document.body || (!document.body.classList.contains('in-kosik') && !document.body.classList.contains('in-cart'))) return;
     var existing = document.querySelector('.larx-empty-cart-link--page');
     var summary = document.querySelector('.cart-inner .row.summary');
     var rightColumn = summary && summary.querySelector('.col-md-4');

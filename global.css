@@ -114,7 +114,7 @@ body::before {
   margin-right: auto;
 }
 
-body.in-kosik .larx-empty-cart-link--page {
+body:is(.in-kosik, .in-cart) .larx-empty-cart-link--page {
   display: block;
   width: 100%;
   margin: 12px 0 0;
@@ -270,15 +270,15 @@ body.type-category:is(
 
 /* --- Cart layout ---------------------------------------------------------- */
 
-body.desktop.in-kosik table.cart-table td.p-name form.delete-cart-item {
+body.desktop:is(.in-kosik, .in-cart) table.cart-table td.p-name form.delete-cart-item {
   display: none !important;
 }
 
-body.desktop.in-kosik table.cart-table td.p-total {
+body.desktop:is(.in-kosik, .in-cart) table.cart-table td.p-total {
   position: relative !important;
 }
 
-body.desktop.in-kosik table.cart-table td.p-total .remove-item {
+body.desktop:is(.in-kosik, .in-cart) table.cart-table td.p-total .remove-item {
   position: absolute !important;
   top: 50%;
   right: 140px;
@@ -291,8 +291,8 @@ body.desktop.in-kosik table.cart-table td.p-total .remove-item {
   transform: translateY(-50%);
 }
 
-body.desktop.in-kosik table.cart-table .p-name .inline,
-body.desktop.in-kosik table.cart-table .p-total .inline {
+body.desktop:is(.in-kosik, .in-cart) table.cart-table .p-name .inline,
+body.desktop:is(.in-kosik, .in-cart) table.cart-table .p-total .inline {
   position: static !important;
 }
 
