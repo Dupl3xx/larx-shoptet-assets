@@ -126,20 +126,13 @@ body.larx-ai-quote-page .larx-ai-quote ol.larx-ai-quote__steps li {
 .larx-ai-quote__steps small { color: var(--ai-muted); font-size: 13px; line-height: 1.3; }
 
 .larx-ai-quote__form-card {
-  display: grid;
-  grid-template-columns: minmax(240px, .72fr) minmax(0, 1.55fr);
-  gap: clamp(28px, 5vw, 72px);
+  display: block;
   margin-top: 28px;
   padding: clamp(28px, 4.5vw, 58px);
   background: #fff;
 }
 
-body.larx-ai-quote-page .larx-ai-quote .larx-ai-quote__form-heading h2 {
-  margin: 0;
-  font-size: clamp(27px, 2.6vw, 38px);
-}
-.larx-ai-quote__form-heading > p:last-child { margin: 18px 0 0; color: var(--ai-muted); }
-.larx-ai-quote__form { min-width: 0; }
+.larx-ai-quote__form { width: 100%; min-width: 0; }
 
 .larx-ai-quote__grid {
   display: grid;
@@ -291,7 +284,6 @@ body.larx-ai-quote-page .larx-ai-quote .larx-ai-quote__form-heading h2 {
   .larx-ai-quote__steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   body.larx-ai-quote-page .larx-ai-quote ol.larx-ai-quote__steps li { grid-template-columns: 34px minmax(0, 1fr); padding: 10px; }
   .larx-ai-quote__steps li > span { width: 34px; height: 34px; }
-  .larx-ai-quote__form-card { grid-template-columns: 1fr; gap: 28px; }
 }
 
 @media (max-width: 767px) {
