@@ -62,8 +62,7 @@ body.larx-heating-calculator-page .pageArticleDetail {
   background: var(--larx-calc-orange);
 }
 
-.larx-calc__eyebrow,
-.larx-calc__card-index {
+.larx-calc__eyebrow {
   margin: 0 0 10px;
   color: var(--larx-calc-green-dark);
   font-size: 12px;
@@ -222,11 +221,6 @@ body.larx-heating-calculator-page .pageArticleDetail {
   justify-content: space-between;
   gap: 20px;
   margin-bottom: 26px;
-}
-
-.larx-calc__card-index {
-  margin-bottom: 5px;
-  color: var(--larx-calc-orange);
 }
 
 .larx-calc__card h3 {

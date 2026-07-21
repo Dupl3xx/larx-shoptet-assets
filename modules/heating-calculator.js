@@ -224,13 +224,13 @@
       '</div>',
 
       '<div class="larx-calc__card" data-calc-card="purchase">',
-        '<div class="larx-calc__card-head"><div><p class="larx-calc__card-index">01</p><h3>' + copy.purchase + '</h3></div></div>',
+        '<div class="larx-calc__card-head"><div><h3>' + copy.purchase + '</h3></div></div>',
         '<div class="larx-calc__rows">' + rowsMarkup('purchase') + '</div>',
       '</div>',
 
       '<div class="larx-calc__card" data-calc-card="consumption">',
         '<div class="larx-calc__card-head">',
-          '<div><p class="larx-calc__card-index">02</p><h3>' + copy.consumption + '</h3></div>',
+          '<div><h3>' + copy.consumption + '</h3></div>',
           '<div class="larx-calc__period" role="group" aria-label="' + copy.consumptionPeriod + '">',
             '<button type="button" class="is-active" data-calc-period="year" aria-pressed="true">' + copy.yearly + '</button>',
             '<button type="button" data-calc-period="month" aria-pressed="false">' + copy.monthly + '</button>',
@@ -241,7 +241,7 @@
 
       '<div class="larx-calc__card" data-calc-card="total">',
         '<div class="larx-calc__card-head">',
-          '<div><p class="larx-calc__card-index">03</p><h3>' + copy.total + '</h3></div>',
+          '<div><h3>' + copy.total + '</h3></div>',
           '<div class="larx-calc__period is-years" role="group" aria-label="' + copy.totalPeriod + '">',
             '<button type="button" data-calc-years="5" aria-pressed="false">' + copy.yearLabels[5] + '</button>',
             '<button type="button" class="is-active" data-calc-years="10" aria-pressed="true">' + copy.yearLabels[10] + '</button>',
