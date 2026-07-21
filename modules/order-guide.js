@@ -332,7 +332,7 @@
 
   function renderStructureStep() {
     return questionHeader('Krok 1 ze 3', 'Co bude přímo nad vytápěním?', 'Vyberte konstrukci podlahy. Ta určuje vhodný topný prvek i potřebné ochranné vrstvy.') +
-      '<div class="larx-guide__options" role="group" aria-label="Typ podlahové konstrukce">' +
+      '<div class="larx-guide__options has-three" role="group" aria-label="Typ podlahové konstrukce">' +
         STRUCTURES.map(function (item) { return optionMarkup(item, state.structure === item.key); }).join('') +
       '</div>' + navigationMarkup(Boolean(state.structure), false);
   }
