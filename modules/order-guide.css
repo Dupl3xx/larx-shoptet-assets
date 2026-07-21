@@ -555,8 +555,7 @@ button.larx-guide__path-item {
   font-weight: 750;
 }
 
-.larx-guide__width,
-.larx-guide__fixed-width {
+.larx-guide__width {
   margin: 16px 0 0;
   padding: 20px;
   border: 1px solid var(--guide-line);
@@ -603,20 +602,6 @@ button.larx-guide__path-item {
   border-color: var(--guide-green);
   background: var(--guide-green-soft);
   color: var(--guide-green-dark);
-}
-
-.larx-guide__fixed-width {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  color: var(--guide-muted);
-  font-size: 13px;
-}
-
-.larx-guide__fixed-width strong {
-  color: var(--guide-green-dark);
-  font-size: 18px;
 }
 
 .larx-guide__validation {

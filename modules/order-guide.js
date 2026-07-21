@@ -14,9 +14,6 @@
     durableFilm: '/odolne-uhlikove-folie/',
     mat: '/topne-rohoze-160w/',
     matSet: '/topne-rohoze-s-termostatem/',
-    kitEco: '/larx-carbon-kit-eco-100/',
-    kitHeat: '/larx-carbon-kit-heat-180/',
-    kitGround: '/larx-carbon-kit-ground-150/',
     thermostats: '/termostaty/',
     consumables: '/spotrebni-material/',
     aiQuote: '/automaticke-naceneni-projektu-pomoci-ai/',
@@ -27,12 +24,10 @@
     floating: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M7 14h34v8H7zM10 24h28v7H10zM13 33h22v5H13z"></path></svg>',
     screed: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 9h36v8H6zM8 21h32v6H8zM6 31h36v8H6z"></path><path d="m12 14 4-3 4 3 4-3 4 3 4-3 4 3"></path></svg>',
     tile: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M7 7h15v15H7zM26 7h15v15H26zM7 26h15v15H7zM26 26h15v15H26z"></path></svg>',
-    ready: '<svg viewBox="0 0 48 48" aria-hidden="true"><rect x="8" y="10" width="32" height="28" rx="4"></rect><path d="M8 20h32M18 10v28M25 29l4 4 8-9"></path></svg>',
     dry: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 33h32M10 27h28M13 21h22M16 15h16"></path></svg>',
     damp: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6S13 19 13 29a11 11 0 0 0 22 0C35 19 24 6 24 6Z"></path><path d="M20 34c3 2 7 1 9-2"></path></svg>',
     separate: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M15 8h18v9H15zM9 31h30v9H9zM24 17v14M19 26l5 5 5-5"></path></svg>',
     bundle: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M9 14h30v25H9zM15 8h18v6H15zM16 24l5 5 11-12"></path></svg>',
-    eco: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M39 9C22 9 11 17 11 29c0 6 4 10 10 10 12 0 19-12 18-30Z"></path><path d="M11 39c5-10 13-17 24-25"></path></svg>',
     heat: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M18 38c-5-3-8-8-8-14 0-7 5-12 11-18 0 7 4 9 4 14 3-2 5-5 6-9 5 5 8 9 8 15 0 8-6 14-14 14"></path><path d="M25 40c-4 0-7-3-7-7 0-3 2-5 5-8 0 4 3 5 3 8 2-1 3-3 4-5 2 2 3 4 3 6 0 3-3 6-8 6Z"></path></svg>',
     ground: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6v23M13 29h22M17 35h14M21 41h6"></path></svg>'
   };
@@ -55,12 +50,6 @@
       icon: 'tile',
       title: 'Dlažba nebo kámen',
       text: 'Tenká topná rohož přímo pod dlažbu do flexibilního lepidla či stěrky.'
-    },
-    {
-      key: 'ready',
-      icon: 'ready',
-      title: 'Chci hotovou fólii s přívodním kabelem',
-      text: 'Předem připravený LARX Carbon Kit v konkrétní délce pro snazší montáž.'
     }
   ];
 
@@ -81,16 +70,16 @@
     ],
     screed: [
       {
-        key: 'screedDry',
+        key: 'screedWetLayer',
         icon: 'heat',
-        title: 'Běžný suchý prostor',
-        text: 'Odolná fólie pod beton, anhydrit nebo systémové podlahové desky.'
+        title: 'Beton nebo anhydrit',
+        text: 'Odolná fólie na metráž v akumulační vrstvě.'
       },
       {
-        key: 'screedDamp',
-        icon: 'ground',
-        title: 'Vlhký prostor nebo koupelna',
-        text: 'Hotová výkonná fólie s integrovaným uzemněním pro náročnější prostředí.'
+        key: 'screedBoards',
+        icon: 'separate',
+        title: 'Systémové podlahové desky',
+        text: 'Odolná fólie na metráž v suché skladbě ze systémových desek.'
       }
     ],
     tile: [
@@ -105,26 +94,6 @@
         icon: 'bundle',
         title: 'Rohož v sadě s termostatem',
         text: 'Chci sladěnou sadu pro jeden samostatně regulovaný okruh.'
-      }
-    ],
-    ready: [
-      {
-        key: 'kitEco',
-        icon: 'eco',
-        title: 'Carbon Kit Eco · 100 W/m²',
-        text: 'Pod skládanou podlahu v běžné obytné místnosti.'
-      },
-      {
-        key: 'kitHeat',
-        icon: 'heat',
-        title: 'Carbon Kit Heat · 180 W/m²',
-        text: 'Vyšší výkon pod beton, anhydrit nebo podlahové desky.'
-      },
-      {
-        key: 'kitGround',
-        icon: 'ground',
-        title: 'Carbon Kit Ground · 150 W/m²',
-        text: 'Do koupelen a vlhkých prostor, kde je požadované uzemnění.'
       }
     ]
   };
@@ -160,34 +129,34 @@
         ['Ochranné vrstvy', 'Podložka, separační a PE fólie dle doporučené skladby a požadavků na ochranu proti vlhkosti.']
       ]
     },
-    screedDry: {
-      key: 'durable-film',
+    screedWetLayer: {
+      key: 'durable-film-screed',
       title: 'Odolná uhlíková fólie pod beton nebo anhydrit',
-      badge: 'Akumulační vrstva',
+      badge: 'Beton / anhydrit',
       route: 'durableFilm',
-      power: 'Odolná fólie 150 W/m² je určená pod potěr nebo podlahové desky.',
-      why: 'Zesílené provedení je vhodné tam, kde bude topný prvek chráněný v mokré či deskové podlahové skladbě.',
+      power: 'Odolná fólie 150 W/m² je určená pod betonový nebo anhydritový potěr.',
+      why: 'Zesílená metrážová fólie je vhodná tam, kde bude topný prvek chráněný v betonové nebo anhydritové vrstvě.',
       widths: [0.5, 1],
       items: [
         ['Odolná topná fólie', 'Pásy navrhněte podle vytápěné plochy a dilatačních celků místnosti.'],
         ['Regulace', 'Termostat a podlahové čidlo pro každý samostatně řízený okruh.'],
         ['Připojení fólie', 'Vodiče, konektory, izolační a butylová páska podle počtu pásů a připojovacích bodů.'],
-        ['Ochranná skladba', 'Rastrová separační fólie, PE fólie 0,2 mm a další vrstvy podle zvoleného potěru či systému desek.']
+        ['Ochranná skladba', 'Rastrová separační fólie, PE fólie 0,2 mm a další vrstvy podle zvoleného potěru.']
       ]
     },
-    screedDamp: {
-      key: 'kit-ground',
-      title: 'LARX Carbon Kit Ground · 150 W/m²',
-      badge: 'Vlhký prostor',
-      route: 'kitGround',
-      power: 'Hotová fólie s integrovaným uzemněním pro koupelny a další vlhké prostory.',
-      why: 'Předem připravené délky a zemnicí vrstva zjednodušují návrh, ale elektrické připojení a skladbu musí stále ověřit odborník.',
-      fixedWidth: 0.5,
+    screedBoards: {
+      key: 'durable-film-boards',
+      title: 'Odolná uhlíková fólie pod systémové desky',
+      badge: 'Systémové desky',
+      route: 'durableFilm',
+      power: 'Odolná fólie 150 W/m² je vhodná do správně navržené suché skladby z podlahových desek.',
+      why: 'Metrážová fólie umožňuje navrhnout jednotlivé pásy podle dispozice místnosti a rozměrů systémových desek.',
+      widths: [0.5, 1],
       items: [
-        ['Carbon Kit Ground', 'Vyberte kombinaci hotových délek, která se vejde do čisté vytápěné plochy.'],
-        ['Regulace', 'Termostat s podlahovým čidlem pro každý samostatný okruh.'],
-        ['Bezpečné připojení', 'Zemnění, jištění, ochranné pospojování a přívod vždy navrhne a zapojí kvalifikovaný elektrikář.'],
-        ['Podlahová skladba', 'Ochranné a separační vrstvy musí odpovídat mokrému prostředí i finální krytině.']
+        ['Odolná topná fólie', 'Šířku a délku pásů zvolte podle čisté vytápěné plochy a rastru desek.'],
+        ['Regulace', 'Termostat s podlahovým čidlem pro každý samostatně řízený okruh.'],
+        ['Připojení fólie', 'Vodiče, konektory, izolační a butylová páska podle počtu pásů a připojovacích bodů.'],
+        ['Desková skladba', 'Separační, ochranné a roznášecí vrstvy musí odpovídat systému použitému výrobcem podlahových desek.']
       ]
     },
     matPlain: {
@@ -216,51 +185,6 @@
         ['Další regulační zóny', 'Pro každý další nezávislý okruh potřebujete vlastní termostat a odpovídající rohož.'],
         ['Instalační příprava', 'Chránička pro podlahové čidlo, penetrace a flexibilní lepidlo či stěrka.'],
         ['Elektroinstalace', 'Jištění, přívod a připojení musí odpovídat výkonu všech rohoží v okruhu.']
-      ]
-    },
-    kitEco: {
-      key: 'kit-eco',
-      title: 'LARX Carbon Kit Eco · 100 W/m²',
-      badge: 'Pod skládanou podlahu',
-      route: 'kitEco',
-      power: 'Hotová fólie šířky 0,5 m s přívodním kabelem pro suchou instalaci.',
-      why: 'Vhodná pro běžné obytné místnosti, když chcete skládat plochu z připravených délek bez lisování konektorů na fólii.',
-      fixedWidth: 0.5,
-      items: [
-        ['Carbon Kit Eco', 'Sestavte plochu z dostupných délek tak, aby se jednotlivé fólie nepřekrývaly.'],
-        ['Regulace', 'Termostat s podlahovým čidlem pro každý samostatně řízený okruh.'],
-        ['Podlahová skladba', 'Kompatibilní podložka, separační a ochranná PE fólie podle finální krytiny.'],
-        ['Napájení', 'Přívody hotových fólií se připojí podle projektu; výkon okruhu musí odpovídat termostatu a jištění.']
-      ]
-    },
-    kitHeat: {
-      key: 'kit-heat',
-      title: 'LARX Carbon Kit Heat · 180 W/m²',
-      badge: 'Vyšší výkon',
-      route: 'kitHeat',
-      power: 'Hotová výkonná fólie šířky 0,5 m pod beton, anhydrit nebo podlahové desky.',
-      why: 'Připravené délky jsou vhodné pro akumulační skladbu a prostory s vyšším požadavkem na výkon.',
-      fixedWidth: 0.5,
-      items: [
-        ['Carbon Kit Heat', 'Vyberte kombinaci délek podle čisté vytápěné plochy a dispozice místnosti.'],
-        ['Regulace', 'Termostat s podlahovým čidlem pro každý samostatný okruh.'],
-        ['Ochranná skladba', 'Separační a PE fólie a další vrstvy musí odpovídat konkrétnímu potěru či deskovému systému.'],
-        ['Napájení', 'Celkový výkon, přívod, jištění a případný stykač ověří elektrikář.']
-      ]
-    },
-    kitGround: {
-      key: 'kit-ground',
-      title: 'LARX Carbon Kit Ground · 150 W/m²',
-      badge: 'Integrované zemnění',
-      route: 'kitGround',
-      power: 'Hotová fólie šířky 0,5 m pro koupelny a jiné vlhké prostory.',
-      why: 'Integrované uzemnění je vhodné tam, kde je klíčová zvýšená elektrická bezpečnost.',
-      fixedWidth: 0.5,
-      items: [
-        ['Carbon Kit Ground', 'Sestavte potřebnou plochu z připravených délek bez překrývání fólií.'],
-        ['Regulace', 'Termostat s podlahovým čidlem pro každý samostatně řízený okruh.'],
-        ['Zemnění a ochrany', 'Zapojení zemnění, pospojování, jištění a proudového chrániče vždy ověří elektrikář.'],
-        ['Podlahová skladba', 'Použijte ochranné vrstvy určené pro konkrétní vlhké prostředí a finální krytinu.']
       ]
     }
   };
@@ -416,10 +340,10 @@
   function renderSolutionStep() {
     var options = SOLUTIONS[state.structure] || [];
     var heading = state.structure === 'tile' ? 'Chcete rohož samostatně, nebo s termostatem?' :
-      state.structure === 'ready' ? 'Kde bude hotová fólie instalovaná?' :
+      state.structure === 'screed' ? 'Do jaké vrstvy bude fólie instalovaná?' :
       'V jakém prostředí bude podlaha?';
     var intro = state.structure === 'tile' ? 'Rozměr rohože se volí podle čisté vytápěné plochy. Sada navíc obsahuje sladěný termostat.' :
-      state.structure === 'ready' ? 'Vyberte variantu Carbon Kit podle skladby podlahy, požadovaného výkonu a vlhkosti.' :
+      state.structure === 'screed' ? 'Vyberte mokrou akumulační vrstvu nebo suchou skladbu ze systémových desek. V obou případech doporučíme odolnou fólii na metráž.' :
       'Ve vlhkém prostoru je nutné zohlednit zemnění, ochranné pospojování a vhodnou skladbu.';
     return questionHeader('Krok 2 ze 3', heading, intro) +
       '<div class="larx-guide__options' + (options.length === 3 ? ' has-three' : '') + '" role="group" aria-label="Varianta řešení">' +
@@ -428,7 +352,6 @@
   }
 
   function renderWidthSelector() {
-    var result = getResult();
     var widths = getAllowedWidths();
     if (widths.length) {
       return '<fieldset class="larx-guide__width"><legend>Předpokládaná šířka pásu</legend>' +
@@ -437,9 +360,6 @@
           var selected = Number(state.width) === width;
           return '<button type="button" data-guide-width="' + width + '" class="' + (selected ? 'is-selected' : '') + '" aria-pressed="' + (selected ? 'true' : 'false') + '">' + formatNumber(width) + ' m</button>';
         }).join('') + '</div></fieldset>';
-    }
-    if (result && result.fixedWidth) {
-      return '<div class="larx-guide__fixed-width"><span>Pevná šířka hotové fólie</span><strong>' + formatNumber(result.fixedWidth) + ' m</strong></div>';
     }
     return '';
   }
@@ -459,9 +379,6 @@
       var metres = Math.ceil((state.area / state.width) * 10) / 10;
       return '<strong>cca ' + formatNumber(metres) + ' bm</strong><span>fólie šířky ' + formatNumber(state.width) + ' m</span>';
     }
-    if (result.fixedWidth) {
-      return '<strong>cca ' + formatNumber(state.area) + ' m²</strong><span>z hotových pásů šířky ' + formatNumber(result.fixedWidth) + ' m</span>';
-    }
     return '<strong>cca ' + formatNumber(state.area) + ' m²</strong><span>rohoží v dostupných velikostech</span>';
   }
 
@@ -472,6 +389,11 @@
     var thermostatWord = state.zones === 1 ? 'termostat' : state.zones < 5 ? 'termostaty' : 'termostatů';
     var circuitWord = state.zones === 1 ? 'okruh' : state.zones < 5 ? 'okruhy' : 'okruhů';
     var zoneText = state.zones + ' ' + thermostatWord + ' / ' + state.zones + ' ' + circuitWord;
+    var isFilm = Boolean(result.widths);
+    var nextStepTitle = isFilm ? 'Nechte si dopočítat spotřební materiál' : 'Vyberte rohož a regulaci';
+    var nextStepText = isFilm ?
+      'Nejprve vložte metrážovou fólii a termostaty do košíku. Potom v košíku použijte tlačítko Vypočítat spotřební materiál — množství vodičů, konektorů a pásek se dopočítá podle vybraného systému. U složitější dispozice využijte AI nacenění projektu.' :
+      'Vyberte velikost rohože tak, aby nepřesáhla čistou vytápěnou plochu. Pokud nekupujete sadu, přidejte termostat pro každý samostatný okruh. Lepidlo, penetraci a elektroinstalační materiál zvolte podle konkrétní skladby.';
     var itemMarkup = result.items.map(function (item, index) {
       return '<li><span>' + (index + 1) + '</span><div><strong>' + escapeHtml(item[0]) + '</strong><p>' + escapeHtml(item[1]) + '</p></div></li>';
     }).join('');
@@ -487,7 +409,7 @@
       '</div>' +
       '<p class="larx-guide__power"><span aria-hidden="true">i</span>' + escapeHtml(result.power) + '</p>' +
       '<section class="larx-guide__shopping"><div class="larx-guide__section-head"><p class="larx-guide__question-eyebrow">Co budete potřebovat</p><h3>Nákupní a instalační seznam</h3></div><ol>' + itemMarkup + '</ol></section>' +
-      '<section class="larx-guide__cart-flow"><div><p class="larx-guide__question-eyebrow">Nejpřesnější další krok</p><h3>Nechte si dopočítat spotřební materiál</h3><p>U metrážové fólie nejprve vložte fólii a termostaty do košíku. Potom v košíku použijte tlačítko <strong>Vypočítat spotřební materiál</strong> — množství vodičů, konektorů a pásek se dopočítá podle vybraného systému. U složitější dispozice využijte AI nacenění projektu.</p></div>' +
+      '<section class="larx-guide__cart-flow"><div><p class="larx-guide__question-eyebrow">Nejpřesnější další krok</p><h3>' + escapeHtml(nextStepTitle) + '</h3><p>' + escapeHtml(nextStepText) + '</p></div>' +
         '<div class="larx-guide__result-actions"><a class="larx-guide__button is-primary" data-guide-primary href="' + primaryHref + '">Vybrat doporučené produkty <span aria-hidden="true">→</span></a><a class="larx-guide__button is-secondary" href="' + ROUTES.thermostats + '">Vybrat termostat</a><a class="larx-guide__text-link" href="' + ROUTES.consumables + '">Prohlédnout spotřební materiál</a></div>' +
       '</section>' +
       '<aside class="larx-guide__safety"><strong>Než objednáte</strong><p>Výsledek je orientační, nikoli elektroprojekt. Rozložení pásů, výkon, jištění, proudový chránič, zemnění a připojení k síti musí ověřit kvalifikovaný elektrikář. Fólie ani rohože nepatří pod pevné předměty bez možnosti odvodu tepla.</p><div><a href="' + ROUTES.aiQuote + '">AI nacenění složitějšího projektu</a><a href="' + ROUTES.installation + '" target="_blank" rel="noopener">Prohlédnout instalační návod</a></div></aside>' +
