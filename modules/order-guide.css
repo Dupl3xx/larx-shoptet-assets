@@ -897,28 +897,6 @@ button.larx-guide__path-item {
   margin-top: 0;
 }
 
-.larx-guide__footnote {
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-  gap: 12px;
-  max-width: 900px;
-  margin: 22px auto 0;
-  color: #838882;
-  font-size: 11px;
-  line-height: 1.6;
-  text-align: center;
-}
-
-.larx-guide__footnote strong {
-  flex: 0 0 auto;
-  color: var(--guide-green-dark);
-}
-
-.larx-guide__footnote p {
-  margin: 0;
-}
-
 .larx-guide__mobile-progress {
   display: none;
 }
@@ -1247,11 +1225,6 @@ button.larx-guide__path-item {
     margin-left: 10px;
   }
 
-  .larx-guide__footnote {
-    align-items: center;
-    flex-direction: column;
-    gap: 4px;
-  }
 }
 
 @media (max-width: 350px) {

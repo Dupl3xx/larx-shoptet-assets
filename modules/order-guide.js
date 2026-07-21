@@ -538,7 +538,6 @@
         '<aside class="larx-guide__path" aria-label="Postup průvodce"><p>Váš výběr</p><ol data-guide-path></ol><button type="button" data-guide-reset>Vymazat výběr</button></aside>',
         '<div class="larx-guide__panel" data-guide-content aria-live="polite"></div>',
       '</div>',
-      '<footer class="larx-guide__footnote"><strong>Dobré vědět</strong><p>U elektrického podlahového vytápění se vždy počítá čistá vytápěná plocha. Přesné rozložení, výkon a elektroinstalaci potvrďte před objednáním podle konkrétní místnosti.</p></footer>',
     '</section>'
   ].join('');
 
