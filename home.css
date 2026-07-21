@@ -213,7 +213,26 @@ body.in-index.larx-home-redesign #footer {
   background: var(--larx-green-soft) !important;
   color: var(--larx-green-dark) !important;
   box-shadow: none !important;
+  outline: 0 !important;
+  -webkit-tap-highlight-color: transparent;
   font-weight: 700;
+}
+
+#header .navigation-buttons .cart-count:focus {
+  outline: 0 !important;
+}
+
+/* Shoptet hides the price below its large-desktop breakpoint even though the
+   tablet header has enough room. Keep the full cart label from 768 px up and
+   let the search field absorb the small width difference. */
+@media (min-width: 768px) and (max-width: 1199px) {
+  #header .navigation-buttons .cart-count .cart-price {
+    display: inline-block !important;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 
 #header .navigation-buttons .cart-count.full > i,
@@ -1280,6 +1299,14 @@ body.in-index .larx-blog .blog-btn .btn-tertialy {
     min-height: 42px;
     padding: 0 !important;
     background: transparent !important;
+  }
+
+  #header .navigation-buttons .cart-count:hover,
+  #header .navigation-buttons .cart-count:focus,
+  #header .navigation-buttons .cart-count:focus-visible {
+    background: transparent !important;
+    box-shadow: none !important;
+    outline: 0 !important;
   }
 
   #header .navigation-buttons .cart-count.full > i,
