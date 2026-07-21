@@ -12,8 +12,8 @@
     },
     guide: {
       cs: 'https://www.larx.cz/interaktivni-pruvodce-objednavkou/',
-      sk: 'https://www.uhlikovefolie.cz/instalacni-manual',
-      en: 'https://www.uhlikovefolie.cz/instalacni-manual'
+      sk: 'https://www.larx.cz/interaktivni-pruvodce-objednavkou/',
+      en: 'https://www.larx.cz/interaktivni-pruvodce-objednavkou/'
     },
     quote: {
       cs: 'https://www.larx.cz/automaticke-naceneni-projektu-pomoci-ai/',
