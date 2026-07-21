@@ -79,7 +79,7 @@
       },
       groups: {
         mats: { title: 'Topné rohože', eyebrow: 'Skladem & ihned k odeslání' },
-        films: { title: 'Topné fólie', eyebrow: 'Ultratenké · 0,4 mm' },
+        films: { title: 'Topné fólie', eyebrow: 'Ultratenké' },
         recommended: { title: 'Doporučujeme', eyebrow: 'Vybráno pro vás' }
       },
       kinds: {
