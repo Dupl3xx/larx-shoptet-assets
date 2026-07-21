@@ -347,11 +347,19 @@ button.larx-guide__path-item {
 
 .larx-guide__options.has-three .larx-guide__option {
   grid-template-columns: 48px minmax(0, 1fr) 28px;
+  grid-template-rows: 48px auto;
   align-content: center;
   min-height: 190px;
 }
 
+.larx-guide__options.has-three .larx-guide__option-copy {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+
 .larx-guide__options.has-three .larx-guide__check {
+  grid-column: 3;
+  grid-row: 1;
   position: static;
 }
 
@@ -946,7 +954,7 @@ button.larx-guide__path-item {
   }
 }
 
-@media (max-width: 980px) {
+@media (max-width: 1023px) {
   .larx-guide__workspace {
     grid-template-columns: 225px minmax(0, 1fr);
   }
@@ -962,11 +970,19 @@ button.larx-guide__path-item {
 
   .larx-guide__options.has-three .larx-guide__option {
     grid-template-columns: 54px minmax(0, 1fr) 28px;
+    grid-template-rows: auto;
     align-content: center;
     min-height: 124px;
   }
 
+  .larx-guide__options.has-three .larx-guide__option-copy {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
   .larx-guide__options.has-three .larx-guide__check {
+    grid-column: auto;
+    grid-row: auto;
     position: static;
   }
 
