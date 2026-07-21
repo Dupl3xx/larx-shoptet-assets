@@ -169,26 +169,48 @@
     });
   }
 
-  function isAiQuotePage() {
+  function ensureAiQuoteRoot() {
     var root = document.getElementById('larx-ai-quote') ||
       document.querySelector('[data-larx-ai-quote]');
-    var isKnownCzechPage = document.body && (
+    var isKnownPath = /^(?:\/automaticke-naceneni-projektu-pomoci-ai|\/en\/automatic-project-pricing-using-ai|\/sk\/automaticke-nacenenie-projektu-pomocou-ai)\/?$/i.test(window.location.pathname);
+    var isKnownBody = document.body && (
       document.body.classList.contains('in-nabidka-pomoci-ai') ||
-      document.body.classList.contains('in-automaticke-naceneni-projektu-pomoci-ai')
+      document.body.classList.contains('in-automaticke-naceneni-projektu-pomoci-ai') ||
+      document.body.classList.contains('in-automatic-project-pricing-using-ai') ||
+      document.body.classList.contains('in-automaticke-nacenenie-projektu-pomocou-ai')
     );
+
+    if (!root && (isKnownPath || isKnownBody)) {
+      var container = document.querySelector('.pageArticleDetail [itemprop="about"]') ||
+        document.querySelector('.pageArticleDetail') ||
+        document.querySelector('.content-inner');
+      if (container) {
+        root = document.createElement('div');
+        root.id = 'larx-ai-quote';
+        container.appendChild(root);
+      }
+    }
 
     if (root && document.body) {
       document.body.classList.add('larx-ai-quote-page');
     }
 
-    return Boolean(root || isKnownCzechPage);
+    return root;
+  }
+
+  function isAiQuotePage() {
+    return Boolean(ensureAiQuoteRoot());
   }
 
   function ensureHeatingCalculatorRoot() {
     var root = document.getElementById('larx-heating-calculator') ||
       document.querySelector('[data-larx-heating-calculator]');
-    var isCalculatorPath = /^\/kalkulacka-nakladu-na-vytapeni\/?$/i.test(window.location.pathname);
-    var isCalculatorBody = document.body && document.body.classList.contains('in-kalkulacka-nakladu-na-vytapeni');
+    var isCalculatorPath = /^(?:\/kalkulacka-nakladu-na-vytapeni|\/en\/heating-cost-calculator|\/sk\/kalkulacka-nakladov-na-vykurovanie)\/?$/i.test(window.location.pathname);
+    var isCalculatorBody = document.body && (
+      document.body.classList.contains('in-kalkulacka-nakladu-na-vytapeni') ||
+      document.body.classList.contains('in-heating-cost-calculator') ||
+      document.body.classList.contains('in-kalkulacka-nakladov-na-vykurovanie')
+    );
 
     if (!root && (isCalculatorPath || isCalculatorBody)) {
       var container = document.querySelector('.pageArticleDetail [itemprop="about"]') ||
