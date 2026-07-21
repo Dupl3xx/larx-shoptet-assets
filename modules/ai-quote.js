@@ -158,7 +158,7 @@
       '<section class="larx-ai-quote__intro" aria-labelledby="larx-ai-intro-title">',
         '<div class="larx-ai-quote__intro-copy">',
           '<p class="larx-ai-quote__eyebrow">' + copy.eyebrow + '</p>',
-          '<h2 id="larx-ai-intro-title">' + copy.introTitle + '</h2>',
+          '<h1 id="larx-ai-intro-title">' + copy.introTitle + '</h1>',
           '<p>' + copy.introBody + '</p>',
           '<p class="larx-ai-quote__note"><strong>' + copy.betaStrong + '</strong> ' + copy.betaRest + '</p>',
         '</div>',
