@@ -194,6 +194,10 @@
       }
     }
 
+    if (root && document.body) {
+      document.body.classList.add('larx-heating-calculator-page');
+    }
+
     return root;
   }
 

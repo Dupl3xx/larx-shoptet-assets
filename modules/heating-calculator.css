@@ -6,7 +6,8 @@
 
 /* The calculator already has its own cards. Remove only Shoptet's generic
    article frame on this page, in every language mutation of the URL. */
-body.in-kalkulacka-nakladu-na-vytapeni .pageArticleDetail {
+body.in-kalkulacka-nakladu-na-vytapeni .pageArticleDetail,
+body.larx-heating-calculator-page .pageArticleDetail {
   padding: 0;
   border: 0;
   border-radius: 0;
