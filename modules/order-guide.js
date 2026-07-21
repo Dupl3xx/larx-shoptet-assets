@@ -7,18 +7,27 @@
   if (!root) return;
   window.__larxOrderGuideInitialized = true;
 
+  var LANGUAGE = (document.documentElement.lang || '').toLowerCase().slice(0, 2);
+  if (['cs', 'en', 'sk'].indexOf(LANGUAGE) === -1) LANGUAGE = 'cs';
+  var LOCALE = { cs: 'cs-CZ', en: 'en-GB', sk: 'sk-SK' }[LANGUAGE];
   var STORAGE_KEY = 'larx-order-guide-v1';
   var ROUTES = {
-    classicFilm: '/uhlikove-topne-folie/',
-    groundedFilm: '/uhlikove-folie-se-zemnenim/',
-    durableFilm: '/odolne-uhlikove-folie/',
-    mat: '/topne-rohoze-160w/',
-    matSet: '/topne-rohoze-s-termostatem/',
-    thermostats: '/termostaty/',
-    consumables: '/spotrebni-material/',
-    aiQuote: '/automaticke-naceneni-projektu-pomoci-ai/',
-    installation: 'https://www.uhlikovefolie.cz/instalacni-manual'
-  };
+    cs: {
+      classicFilm: '/uhlikove-topne-folie/', groundedFilm: '/uhlikove-folie-se-zemnenim/', durableFilm: '/odolne-uhlikove-folie/',
+      mat: '/topne-rohoze-160w/', matSet: '/topne-rohoze-s-termostatem/', thermostats: '/termostaty/', consumables: '/spotrebni-material/',
+      aiQuote: '/automaticke-naceneni-projektu-pomoci-ai/', installation: 'https://www.uhlikovefolie.cz/instalacni-manual'
+    },
+    en: {
+      classicFilm: '/en/carbon-films/', groundedFilm: '/en/film-with-grounding/', durableFilm: '/en/durable-carbon-films/',
+      mat: '/en/heating-mats-160w-m2/', matSet: '/en/heating-mats-160w-m2-in-a-set-with-a-thermostat/', thermostats: '/en/thermostats/', consumables: '/en/materials/',
+      aiQuote: '/en/automatic-project-pricing-using-ai/', installation: 'https://www.carbon-film.com/installation-manual'
+    },
+    sk: {
+      classicFilm: '/sk/uhlikove-folie/', groundedFilm: '/sk/folia-s-uzemneniem/', durableFilm: '/sk/odolne-uhlikove-folie/',
+      mat: '/sk/vykurovacie-rohoze-160w-m2/', matSet: '/sk/vykurovacie-rohoze-160w-m2-v-sade-s-termostatom/', thermostats: '/sk/termostaty/', consumables: '/sk/spotrebny-material/',
+      aiQuote: '/sk/automaticke-nacenenie-projektu-pomocou-ai/', installation: 'https://www.vykurovaciefolie.sk/instalacny-manual'
+    }
+  }[LANGUAGE];
 
   var ICONS = {
     floating: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M7 14h34v8H7zM10 24h28v7H10zM13 33h22v5H13z"></path></svg>',
@@ -32,7 +41,7 @@
     ground: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6v23M13 29h22M17 35h14M21 41h6"></path></svg>'
   };
 
-  var STRUCTURES = [
+  var BASE_STRUCTURES = [
     {
       key: 'floating',
       icon: 'floating',
@@ -53,7 +62,7 @@
     }
   ];
 
-  var SOLUTIONS = {
+  var BASE_SOLUTIONS = {
     floating: [
       {
         key: 'floatingDry',
@@ -98,7 +107,7 @@
     ]
   };
 
-  var RESULTS = {
+  var BASE_RESULTS = {
     floatingDry: {
       key: 'classic-film',
       title: 'Uhlíková fólie pod skládanou krytinu',
@@ -189,7 +198,267 @@
     }
   };
 
-  var STEP_LABELS = ['Typ podlahy', 'Vhodná varianta', 'Rozměry a regulace', 'Doporučení'];
+  var DATA_TRANSLATIONS = {
+    en: {
+      'Skládaná nebo plovoucí podlaha': 'Floating or click flooring',
+      'Laminát, vinyl click nebo dřevěná podlaha. Suchá instalace bez zalití.': 'Laminate, click vinyl or wood flooring. Dry installation without screed.',
+      'Beton, anhydrit nebo podlahové desky': 'Concrete, anhydrite or floor panels',
+      'Topný prvek bude chráněný v akumulační vrstvě nebo systémové desce.': 'The heating element will be protected in a screed layer or a floor panel system.',
+      'Dlažba': 'Tiles',
+      'Tenká topná rohož přímo pod dlažbu do flexibilního lepidla či stěrky.': 'A thin heating mat installed directly under tiles in flexible adhesive or levelling compound.',
+      'Běžná suchá místnost': 'Standard dry room',
+      'Obývací pokoj, ložnice, pracovna nebo chodba bez zvýšené vlhkosti.': 'Living room, bedroom, study or hallway without increased humidity.',
+      'Prostor se zvýšenou vlhkostí': 'Room with increased humidity',
+      'Koupelna, technická místnost, sklep či jiné místo, kde je nutné řešit uzemnění.': 'Bathroom, utility room, basement or another area where grounding must be addressed.',
+      'Beton nebo anhydrit': 'Concrete or anhydrite',
+      'Odolná fólie na metráž v akumulační vrstvě.': 'Durable cut-to-length film in a screed layer.',
+      'Systémové podlahové desky': 'Floor panel system',
+      'Odolná fólie na metráž v suché skladbě ze systémových desek.': 'Durable cut-to-length film in a dry floor panel system.',
+      'Samostatná topná rohož': 'Heating mat only',
+      'Termostat už mám nebo jej chci vybrat samostatně.': 'I already have a thermostat or want to select one separately.',
+      'Rohož v sadě s termostatem': 'Heating mat set with thermostat',
+      'Chci sladěnou sadu pro jeden samostatně regulovaný okruh.': 'I want a matched set for one independently controlled circuit.',
+      'Uhlíková fólie pod skládanou krytinu': 'Carbon heating film under floating flooring',
+      'Suchá instalace': 'Dry installation',
+      'Pro běžné obytné místnosti se nejčastěji volí 80–100 W/m².': 'For standard living areas, 80–100 W/m² is the most common choice.',
+      'Tenká metrážová fólie se pokládá pod vhodný laminát, vinyl click nebo dřevo a nezvyšuje výrazně skladbu podlahy.': 'Thin cut-to-length film is installed under suitable laminate, click vinyl or wood without significantly increasing the floor build-up.',
+      'Topná fólie': 'Heating film',
+      'Metráž a šířku pásů zvolte podle skutečného půdorysu vytápěné plochy.': 'Choose the film length and strip widths according to the actual heated floor plan.',
+      'Regulace': 'Controls',
+      'Jeden vhodný termostat s podlahovým čidlem pro každý samostatně řízený okruh.': 'One suitable thermostat with a floor sensor for each independently controlled circuit.',
+      'Připojení fólie': 'Film connection',
+      'Hnědý a modrý vodič, připojovací konektory a správná izolace hran i spojů.': 'Brown and blue wires, connection clips and correct insulation of edges and joints.',
+      'Podlahová skladba': 'Floor build-up',
+      'Kompatibilní podložka, rastrová separační fólie a ochranná PE fólie 0,2 mm podle skladby podlahy.': 'A compatible underlay, grid separation film and 0.2 mm protective PE film according to the floor build-up.',
+      'Uhlíková fólie se zemněním': 'Grounded carbon heating film',
+      'Zvýšená vlhkost': 'Increased humidity',
+      'Varianta se zemněním je určená pro prostory, kde může vznikat vlhkost.': 'The grounded version is intended for areas where moisture may occur.',
+      'Integrovaná zemnicí vrstva zvyšuje bezpečnost v koupelnách, technických místnostech, garážích nebo sklepech.': 'The integrated grounding layer improves safety in bathrooms, utility rooms, garages or basements.',
+      'Fólie se zemněním': 'Grounded film',
+      'Použijte pouze variantu a skladbu určenou výrobcem pro konkrétní podlahovou krytinu.': 'Use only the version and floor build-up approved by the manufacturer for the selected floor covering.',
+      'Termostat s podlahovým čidlem pro každý samostatný okruh.': 'A thermostat with a floor sensor for each independently controlled circuit.',
+      'Termostat s podlahovým čidlem pro každý samostatně řízený okruh.': 'A thermostat with a floor sensor for each independently controlled circuit.',
+      'Připojení a zemnění': 'Connection and grounding',
+      'Vodiče, konektory, izolaci a zemnicí prvek navrhne elektrikář podle konkrétní fólie a místních podmínek.': 'The electrician will specify wires, clips, insulation and the grounding element according to the selected film and local conditions.',
+      'Ochranné vrstvy': 'Protective layers',
+      'Podložka, separační a PE fólie dle doporučené skladby a požadavků na ochranu proti vlhkosti.': 'Underlay, separation film and PE film according to the recommended floor build-up and moisture protection requirements.',
+      'Odolná uhlíková fólie pod beton nebo anhydrit': 'Durable carbon heating film under concrete or anhydrite',
+      'Beton / anhydrit': 'Concrete / anhydrite',
+      'Odolná fólie 150 W/m² je určená pod betonový nebo anhydritový potěr.': 'Durable 150 W/m² film is intended for installation under concrete or anhydrite screed.',
+      'Zesílená metrážová fólie je vhodná tam, kde bude topný prvek chráněný v betonové nebo anhydritové vrstvě.': 'Reinforced cut-to-length film is suitable where the heating element will be protected in a concrete or anhydrite layer.',
+      'Odolná topná fólie': 'Durable heating film',
+      'Pásy navrhněte podle vytápěné plochy a dilatačních celků místnosti.': 'Design the strips according to the heated area and the room expansion zones.',
+      'Termostat a podlahové čidlo pro každý samostatně řízený okruh.': 'A thermostat and floor sensor for each independently controlled circuit.',
+      'Vodiče, konektory, izolační a butylová páska podle počtu pásů a připojovacích bodů.': 'Wires, clips, insulating tape and butyl tape according to the number of strips and connection points.',
+      'Ochranná skladba': 'Protective floor build-up',
+      'Rastrová separační fólie, PE fólie 0,2 mm a další vrstvy podle zvoleného potěru.': 'Grid separation film, 0.2 mm PE film and other layers required by the selected screed system.',
+      'Odolná uhlíková fólie pod systémové desky': 'Durable carbon heating film under floor panels',
+      'Systémové desky': 'Floor panels',
+      'Odolná fólie 150 W/m² je vhodná do správně navržené suché skladby z podlahových desek.': 'Durable 150 W/m² film is suitable for a correctly designed dry floor panel build-up.',
+      'Metrážová fólie umožňuje navrhnout jednotlivé pásy podle dispozice místnosti a rozměrů systémových desek.': 'Cut-to-length film makes it possible to design individual strips according to the room layout and panel dimensions.',
+      'Šířku a délku pásů zvolte podle čisté vytápěné plochy a rastru desek.': 'Choose strip width and length according to the net heated area and the panel grid.',
+      'Desková skladba': 'Panel floor build-up',
+      'Separační, ochranné a roznášecí vrstvy musí odpovídat systému použitému výrobcem podlahových desek.': 'The separation, protection and load-distribution layers must comply with the floor panel manufacturer system.',
+      'Topná rohož LARX · 160 W/m²': 'LARX heating mat · 160 W/m²',
+      'Přímo pod dlažbu': 'Directly under tiles',
+      'Tenká samolepicí rohož se instaluje přímo pod keramickou dlažbu.': 'The thin self-adhesive mat is installed directly under ceramic tiles.',
+      'Hodí se pro koupelny, kuchyně a rekonstrukce, kde je důležitá malá stavební výška a rychlý náběh.': 'Suitable for bathrooms, kitchens and renovations where a low build-up and quick heat-up are important.',
+      'Topná rohož': 'Heating mat',
+      'Zvolte kombinaci dostupných velikostí tak, aby nepřesáhla skutečnou vytápěnou plochu. Topný kabel se nezkracuje.': 'Combine available sizes without exceeding the actual heated area. The heating cable must not be shortened.',
+      'Termostat a čidlo': 'Thermostat and sensor',
+      'Pokud je nemáte, vyberte jeden vhodný termostat s podlahovým čidlem pro každý okruh.': 'If you do not already have them, select one suitable thermostat with a floor sensor for each circuit.',
+      'Instalační příprava': 'Installation preparation',
+      'Chránička pro čidlo, penetrace a flexibilní lepidlo nebo stěrka vhodná pro podlahové vytápění.': 'Conduit for the sensor, primer and flexible adhesive or levelling compound suitable for underfloor heating.',
+      'Elektroinstalace': 'Electrical installation',
+      'Přívod, jištění a případný stykač se dimenzují podle celkového výkonu okruhu.': 'The supply cable, protection and any contactor must be sized for the total circuit output.',
+      'Topná rohož LARX v sadě s termostatem': 'LARX heating mat set with thermostat',
+      'Kompletní sada': 'Complete set',
+      'Rohož 160 W/m² a termostat tvoří sladěný základ pro jeden regulovaný okruh.': 'The 160 W/m² mat and thermostat form a matched basis for one controlled circuit.',
+      'Praktická volba pro jednu koupelnu nebo místnost, pokud termostat ještě nemáte.': 'A practical choice for one bathroom or room when you do not already have a thermostat.',
+      'Sada rohože s termostatem': 'Heating mat set with thermostat',
+      'Vyberte velikost rohože podle čisté plochy bez vany, sprchy a pevného nábytku.': 'Choose the mat size according to the net area excluding the bathtub, shower and fixed furniture.',
+      'Další regulační zóny': 'Additional control zones',
+      'Pro každý další nezávislý okruh potřebujete vlastní termostat a odpovídající rohož.': 'Each additional independent circuit requires its own thermostat and corresponding mat.',
+      'Chránička pro podlahové čidlo, penetrace a flexibilní lepidlo či stěrka.': 'Conduit for the floor sensor, primer and flexible adhesive or levelling compound.',
+      'Jištění, přívod a připojení musí odpovídat výkonu všech rohoží v okruhu.': 'Protection, supply and connection must match the output of all mats in the circuit.'
+    },
+    sk: {
+      'Skládaná nebo plovoucí podlaha': 'Plávajúca alebo skladaná podlaha',
+      'Laminát, vinyl click nebo dřevěná podlaha. Suchá instalace bez zalití.': 'Laminát, vinyl click alebo drevená podlaha. Suchá inštalácia bez zaliatia.',
+      'Beton, anhydrit nebo podlahové desky': 'Betón, anhydrit alebo podlahové dosky',
+      'Topný prvek bude chráněný v akumulační vrstvě nebo systémové desce.': 'Vykurovací prvok bude chránený v akumulačnej vrstve alebo systémovej doske.',
+      'Dlažba': 'Dlažba',
+      'Tenká topná rohož přímo pod dlažbu do flexibilního lepidla či stěrky.': 'Tenká vykurovacia rohož priamo pod dlažbu do flexibilného lepidla alebo stierky.',
+      'Běžná suchá místnost': 'Bežná suchá miestnosť',
+      'Obývací pokoj, ložnice, pracovna nebo chodba bez zvýšené vlhkosti.': 'Obývacia izba, spálňa, pracovňa alebo chodba bez zvýšenej vlhkosti.',
+      'Prostor se zvýšenou vlhkostí': 'Priestor so zvýšenou vlhkosťou',
+      'Koupelna, technická místnost, sklep či jiné místo, kde je nutné řešit uzemnění.': 'Kúpeľňa, technická miestnosť, pivnica alebo iné miesto, kde je potrebné riešiť uzemnenie.',
+      'Beton nebo anhydrit': 'Betón alebo anhydrit',
+      'Odolná fólie na metráž v akumulační vrstvě.': 'Odolná fólia na metráž v akumulačnej vrstve.',
+      'Systémové podlahové desky': 'Systémové podlahové dosky',
+      'Odolná fólie na metráž v suché skladbě ze systémových desek.': 'Odolná fólia na metráž v suchej skladbe zo systémových dosiek.',
+      'Samostatná topná rohož': 'Samostatná vykurovacia rohož',
+      'Termostat už mám nebo jej chci vybrat samostatně.': 'Termostat už mám alebo ho chcem vybrať samostatne.',
+      'Rohož v sadě s termostatem': 'Rohož v sade s termostatom',
+      'Chci sladěnou sadu pro jeden samostatně regulovaný okruh.': 'Chcem zladenú sadu pre jeden samostatne regulovaný okruh.',
+      'Uhlíková fólie pod skládanou krytinu': 'Uhlíková fólia pod plávajúcu krytinu',
+      'Suchá instalace': 'Suchá inštalácia',
+      'Pro běžné obytné místnosti se nejčastěji volí 80–100 W/m².': 'Pre bežné obytné miestnosti sa najčastejšie volí 80–100 W/m².',
+      'Tenká metrážová fólie se pokládá pod vhodný laminát, vinyl click nebo dřevo a nezvyšuje výrazně skladbu podlahy.': 'Tenká metrážová fólia sa kladie pod vhodný laminát, vinyl click alebo drevo a výrazne nezvyšuje skladbu podlahy.',
+      'Topná fólie': 'Vykurovacia fólia',
+      'Metráž a šířku pásů zvolte podle skutečného půdorysu vytápěné plochy.': 'Metráž a šírku pásov zvoľte podľa skutočného pôdorysu vykurovanej plochy.',
+      'Regulace': 'Regulácia',
+      'Jeden vhodný termostat s podlahovým čidlem pro každý samostatně řízený okruh.': 'Jeden vhodný termostat s podlahovým snímačom pre každý samostatne riadený okruh.',
+      'Připojení fólie': 'Pripojenie fólie',
+      'Hnědý a modrý vodič, připojovací konektory a správná izolace hran i spojů.': 'Hnedý a modrý vodič, pripojovacie konektory a správna izolácia hrán aj spojov.',
+      'Podlahová skladba': 'Skladba podlahy',
+      'Kompatibilní podložka, rastrová separační fólie a ochranná PE fólie 0,2 mm podle skladby podlahy.': 'Kompatibilná podložka, rastrová separačná fólia a ochranná PE fólia 0,2 mm podľa skladby podlahy.',
+      'Uhlíková fólie se zemněním': 'Uhlíková fólia s uzemnením',
+      'Zvýšená vlhkost': 'Zvýšená vlhkosť',
+      'Varianta se zemněním je určená pro prostory, kde může vznikat vlhkost.': 'Variant s uzemnením je určený pre priestory, kde môže vznikať vlhkosť.',
+      'Integrovaná zemnicí vrstva zvyšuje bezpečnost v koupelnách, technických místnostech, garážích nebo sklepech.': 'Integrovaná uzemňovacia vrstva zvyšuje bezpečnosť v kúpeľniach, technických miestnostiach, garážach alebo pivniciach.',
+      'Fólie se zemněním': 'Fólia s uzemnením',
+      'Použijte pouze variantu a skladbu určenou výrobcem pro konkrétní podlahovou krytinu.': 'Použite iba variant a skladbu určenú výrobcom pre konkrétnu podlahovú krytinu.',
+      'Termostat s podlahovým čidlem pro každý samostatný okruh.': 'Termostat s podlahovým snímačom pre každý samostatný okruh.',
+      'Termostat s podlahovým čidlem pro každý samostatně řízený okruh.': 'Termostat s podlahovým snímačom pre každý samostatne regulovaný okruh.',
+      'Připojení a zemnění': 'Pripojenie a uzemnenie',
+      'Vodiče, konektory, izolaci a zemnicí prvek navrhne elektrikář podle konkrétní fólie a místních podmínek.': 'Vodiče, konektory, izoláciu a uzemňovací prvok navrhne elektrikár podľa konkrétnej fólie a miestnych podmienok.',
+      'Ochranné vrstvy': 'Ochranné vrstvy',
+      'Podložka, separační a PE fólie dle doporučené skladby a požadavků na ochranu proti vlhkosti.': 'Podložka, separačná a PE fólia podľa odporúčanej skladby a požiadaviek na ochranu proti vlhkosti.',
+      'Odolná uhlíková fólie pod beton nebo anhydrit': 'Odolná uhlíková fólia pod betón alebo anhydrit',
+      'Beton / anhydrit': 'Betón / anhydrit',
+      'Odolná fólie 150 W/m² je určená pod betonový nebo anhydritový potěr.': 'Odolná fólia 150 W/m² je určená pod betónový alebo anhydritový poter.',
+      'Zesílená metrážová fólie je vhodná tam, kde bude topný prvek chráněný v betonové nebo anhydritové vrstvě.': 'Zosilnená metrážová fólia je vhodná tam, kde bude vykurovací prvok chránený v betónovej alebo anhydritovej vrstve.',
+      'Odolná topná fólie': 'Odolná vykurovacia fólia',
+      'Pásy navrhněte podle vytápěné plochy a dilatačních celků místnosti.': 'Pásy navrhnite podľa vykurovanej plochy a dilatačných celkov miestnosti.',
+      'Termostat a podlahové čidlo pro každý samostatně řízený okruh.': 'Termostat a podlahový snímač pre každý samostatne riadený okruh.',
+      'Vodiče, konektory, izolační a butylová páska podle počtu pásů a připojovacích bodů.': 'Vodiče, konektory, izolačná a butylová páska podľa počtu pásov a pripojovacích bodov.',
+      'Ochranná skladba': 'Ochranná skladba',
+      'Rastrová separační fólie, PE fólie 0,2 mm a další vrstvy podle zvoleného potěru.': 'Rastrová separačná fólia, PE fólia 0,2 mm a ďalšie vrstvy podľa zvoleného poteru.',
+      'Odolná uhlíková fólie pod systémové desky': 'Odolná uhlíková fólia pod systémové dosky',
+      'Systémové desky': 'Systémové dosky',
+      'Odolná fólie 150 W/m² je vhodná do správně navržené suché skladby z podlahových desek.': 'Odolná fólia 150 W/m² je vhodná do správne navrhnutej suchej skladby z podlahových dosiek.',
+      'Metrážová fólie umožňuje navrhnout jednotlivé pásy podle dispozice místnosti a rozměrů systémových desek.': 'Metrážová fólia umožňuje navrhnúť jednotlivé pásy podľa dispozície miestnosti a rozmerov systémových dosiek.',
+      'Šířku a délku pásů zvolte podle čisté vytápěné plochy a rastru desek.': 'Šírku a dĺžku pásov zvoľte podľa čistej vykurovanej plochy a rastra dosiek.',
+      'Desková skladba': 'Dosková skladba',
+      'Separační, ochranné a roznášecí vrstvy musí odpovídat systému použitému výrobcem podlahových desek.': 'Separačné, ochranné a roznášacie vrstvy musia zodpovedať systému výrobcu podlahových dosiek.',
+      'Topná rohož LARX · 160 W/m²': 'Vykurovacia rohož LARX · 160 W/m²',
+      'Přímo pod dlažbu': 'Priamo pod dlažbu',
+      'Tenká samolepicí rohož se instaluje přímo pod keramickou dlažbu.': 'Tenká samolepiaca rohož sa inštaluje priamo pod keramickú dlažbu.',
+      'Hodí se pro koupelny, kuchyně a rekonstrukce, kde je důležitá malá stavební výška a rychlý náběh.': 'Hodí sa do kúpeľní, kuchýň a rekonštrukcií, kde je dôležitá malá stavebná výška a rýchly nábeh.',
+      'Topná rohož': 'Vykurovacia rohož',
+      'Zvolte kombinaci dostupných velikostí tak, aby nepřesáhla skutečnou vytápěnou plochu. Topný kabel se nezkracuje.': 'Zvoľte kombináciu dostupných veľkostí tak, aby nepresiahla skutočnú vykurovanú plochu. Vykurovací kábel sa neskracuje.',
+      'Termostat a čidlo': 'Termostat a snímač',
+      'Pokud je nemáte, vyberte jeden vhodný termostat s podlahovým čidlem pro každý okruh.': 'Ak ich nemáte, vyberte jeden vhodný termostat s podlahovým snímačom pre každý okruh.',
+      'Instalační příprava': 'Príprava inštalácie',
+      'Chránička pro čidlo, penetrace a flexibilní lepidlo nebo stěrka vhodná pro podlahové vytápění.': 'Chránička pre snímač, penetrácia a flexibilné lepidlo alebo stierka vhodná na podlahové vykurovanie.',
+      'Elektroinstalace': 'Elektroinštalácia',
+      'Přívod, jištění a případný stykač se dimenzují podle celkového výkonu okruhu.': 'Prívod, istenie a prípadný stýkač sa dimenzujú podľa celkového výkonu okruhu.',
+      'Topná rohož LARX v sadě s termostatem': 'Vykurovacia rohož LARX v sade s termostatom',
+      'Kompletní sada': 'Kompletná sada',
+      'Rohož 160 W/m² a termostat tvoří sladěný základ pro jeden regulovaný okruh.': 'Rohož 160 W/m² a termostat tvoria zladený základ pre jeden regulovaný okruh.',
+      'Praktická volba pro jednu koupelnu nebo místnost, pokud termostat ještě nemáte.': 'Praktická voľba pre jednu kúpeľňu alebo miestnosť, ak termostat ešte nemáte.',
+      'Sada rohože s termostatem': 'Sada rohože s termostatom',
+      'Vyberte velikost rohože podle čisté plochy bez vany, sprchy a pevného nábytku.': 'Vyberte veľkosť rohože podľa čistej plochy bez vane, sprchy a pevného nábytku.',
+      'Další regulační zóny': 'Ďalšie regulačné zóny',
+      'Pro každý další nezávislý okruh potřebujete vlastní termostat a odpovídající rohož.': 'Pre každý ďalší nezávislý okruh potrebujete vlastný termostat a zodpovedajúcu rohož.',
+      'Chránička pro podlahové čidlo, penetrace a flexibilní lepidlo či stěrka.': 'Chránička pre podlahový snímač, penetrácia a flexibilné lepidlo alebo stierka.',
+      'Jištění, přívod a připojení musí odpovídat výkonu všech rohoží v okruhu.': 'Istenie, prívod a pripojenie musia zodpovedať výkonu všetkých rohoží v okruhu.'
+    }
+  };
+
+  function localizeData(value) {
+    if (Array.isArray(value)) return value.map(localizeData);
+    if (value && typeof value === 'object') {
+      return Object.keys(value).reduce(function (result, key) {
+        result[key] = localizeData(value[key]);
+        return result;
+      }, {});
+    }
+    if (typeof value === 'string' && LANGUAGE !== 'cs') return DATA_TRANSLATIONS[LANGUAGE][value] || value;
+    return value;
+  }
+
+  var STRUCTURES = localizeData(BASE_STRUCTURES);
+  var SOLUTIONS = localizeData(BASE_SOLUTIONS);
+  var RESULTS = localizeData(BASE_RESULTS);
+
+  var COPY = {
+    cs: {
+      pageTitle: 'Interaktivní průvodce objednávkou - LARX', heroEyebrow: 'Chytrý nástroj LARX', heroTitle: 'Interaktivní průvodce objednávkou',
+      heroText: 'Vyberte skladbu podlahy a odpovězte na několik krátkých otázek. Doporučíme vhodný systém, orientační množství a přehled všeho, co budete potřebovat.',
+      heroAria: 'Vlastnosti průvodce', features: ['3 krátké kroky', 'Bez registrace', 'Výsledek ihned'], progressAria: 'Průběh průvodce', progressTitle: 'Orientační výběr systému',
+      pathAria: 'Postup průvodce', pathTitle: 'Váš výběr', reset: 'Vymazat výběr', pending: 'Čeká na výběr',
+      stepLabels: ['Typ podlahy', 'Vhodná varianta', 'Rozměry a regulace', 'Doporučení'], stepOf: 'Krok {current} ze {total}',
+      back: 'Zpět', continue: 'Pokračovat', showResult: 'Zobrazit doporučení',
+      structureTitle: 'Co bude přímo nad vytápěním?', structureText: 'Vyberte konstrukci podlahy. Ta určuje vhodný topný prvek i potřebné ochranné vrstvy.', structureAria: 'Typ podlahové konstrukce',
+      solutionAria: 'Varianta řešení', solutionHeadings: { tile: 'Chcete rohož samostatně, nebo s termostatem?', screed: 'Do jaké vrstvy bude fólie instalovaná?', floating: 'V jakém prostředí bude podlaha?' },
+      solutionTexts: { tile: 'Rozměr rohože se volí podle čisté vytápěné plochy. Sada navíc obsahuje sladěný termostat.', screed: 'Vyberte mokrou akumulační vrstvu nebo suchou skladbu ze systémových desek. V obou případech doporučíme odolnou fólii na metráž.', floating: 'Ve vlhkém prostoru je nutné zohlednit zemnění, ochranné pospojování a vhodnou skladbu.' },
+      parameterTitle: 'Jak velká je čistá vytápěná plocha?', parameterText: 'Nezapočítávejte vanu, sprchový kout ani pevný nábytek s plným dnem. Každá samostatně regulovaná místnost obvykle tvoří vlastní okruh.',
+      area: 'Vytápěná plocha', areaRange: '0,5 až 500 m²', zones: 'Počet regulačních okruhů', zonesHint: 'Obvykle jeden na místnost', pieces: 'ks',
+      widthTitle: 'Předpokládaná šířka pásu', widthText: 'Pokud si nejste jistí, ponechte 0,5 m. V praxi lze pro lepší pokrytí kombinovat více šířek.', widthAria: 'Šířka fólie',
+      areaError: 'Zadejte vytápěnou plochu od 0,5 do 500 m².', zonesError: 'Zadejte 1 až 20 celých regulačních okruhů.',
+      approximate: 'cca', linearMetres: 'bm', filmWidth: 'fólie šířky {width} m', matsQuantity: 'rohoží v dostupných velikostech',
+      resultEyebrow: 'Vaše orientační řešení', estimateAria: 'Orientační množství', heatedArea: 'Topná plocha', regulation: 'Regulace', regulationNote: 'počet potvrďte podle elektroprojektu',
+      shoppingEyebrow: 'Co budete potřebovat', shoppingTitle: 'Nákupní a instalační seznam', nextEyebrow: 'Nejpřesnější další krok',
+      filmNextTitle: 'Nechte si dopočítat spotřební materiál', matNextTitle: 'Vyberte rohož a regulaci',
+      filmNextText: 'Nejprve vložte metrážovou fólii a termostaty do košíku. Potom v košíku použijte tlačítko Vypočítat spotřební materiál — množství vodičů, konektorů a pásek se dopočítá podle vybraného systému. U složitější dispozice využijte AI nacenění projektu.',
+      matNextText: 'Vyberte velikost rohože tak, aby nepřesáhla čistou vytápěnou plochu. Pokud nekupujete sadu, přidejte termostat pro každý samostatný okruh. Lepidlo, penetraci a elektroinstalační materiál zvolte podle konkrétní skladby.',
+      products: 'Vybrat doporučené produkty', thermostat: 'Vybrat termostat', consumables: 'Prohlédnout spotřební materiál',
+      safetyTitle: 'Než objednáte', safetyText: 'Výsledek je orientační, nikoli elektroprojekt. Rozložení pásů, výkon, jištění, proudový chránič, zemnění a připojení k síti musí ověřit kvalifikovaný elektrikář.',
+      aiQuote: 'AI nacenění složitějšího projektu', installation: 'Prohlédnout instalační návod', edit: 'Upravit parametry', restart: 'Začít znovu'
+    },
+    en: {
+      pageTitle: 'Interactive ordering guide - LARX', heroEyebrow: 'Smart LARX tool', heroTitle: 'Interactive ordering guide',
+      heroText: 'Select your floor build-up and answer a few short questions. We will recommend a suitable system, an approximate quantity and a list of what you will need.',
+      heroAria: 'Guide features', features: ['3 short steps', 'No registration', 'Instant result'], progressAria: 'Guide progress', progressTitle: 'Preliminary system selection',
+      pathAria: 'Guide steps', pathTitle: 'Your selection', reset: 'Clear selection', pending: 'Waiting for selection',
+      stepLabels: ['Floor type', 'Suitable option', 'Dimensions and controls', 'Recommendation'], stepOf: 'Step {current} of {total}',
+      back: 'Back', continue: 'Continue', showResult: 'Show recommendation',
+      structureTitle: 'What will be directly above the heating?', structureText: 'Select the floor construction. It determines the suitable heating element and the required protective layers.', structureAria: 'Floor construction type',
+      solutionAria: 'System option', solutionHeadings: { tile: 'Do you want a heating mat only or a set with a thermostat?', screed: 'Which layer will the film be installed in?', floating: 'What type of environment is the floor in?' },
+      solutionTexts: { tile: 'The mat size is selected according to the net heated area. The set also includes a matched thermostat.', screed: 'Select a wet screed layer or a dry floor panel system. In both cases, we recommend durable cut-to-length film.', floating: 'In damp areas, grounding, protective bonding and a suitable floor build-up must be considered.' },
+      parameterTitle: 'What is the net heated area?', parameterText: 'Exclude the bathtub, shower and fixed furniture with a solid base. Each independently controlled room normally forms its own circuit.',
+      area: 'Heated area', areaRange: '0.5 to 500 m²', zones: 'Number of control circuits', zonesHint: 'Usually one per room', pieces: 'pcs',
+      widthTitle: 'Expected strip width', widthText: 'If you are unsure, leave 0.5 m selected. In practice, several widths can be combined for better coverage.', widthAria: 'Film width',
+      areaError: 'Enter a heated area from 0.5 to 500 m².', zonesError: 'Enter 1 to 20 whole control circuits.',
+      approximate: 'approx.', linearMetres: 'lm', filmWidth: '{width} m wide film', matsQuantity: 'of mats in available sizes',
+      resultEyebrow: 'Your preliminary solution', estimateAria: 'Approximate quantity', heatedArea: 'Heated area', regulation: 'Controls', regulationNote: 'confirm the number with the electrical design',
+      shoppingEyebrow: 'What you will need', shoppingTitle: 'Shopping and installation list', nextEyebrow: 'Most accurate next step',
+      filmNextTitle: 'Calculate the required installation materials', matNextTitle: 'Select the mat and controls',
+      filmNextText: 'First add the required length of film and the thermostats to the basket. Then use Calculate installation materials in the basket — the required wires, clips and tapes will be calculated for the selected system. For a more complex layout, use the AI project quotation tool.',
+      matNextText: 'Choose a mat size that does not exceed the net heated area. If you are not buying a set, add one thermostat for each independently controlled circuit. Select adhesive, primer and electrical materials according to the floor build-up.',
+      products: 'Select recommended products', thermostat: 'Select a thermostat', consumables: 'View installation materials',
+      safetyTitle: 'Before ordering', safetyText: 'The result is a guide, not an electrical design. Strip layout, output, circuit protection, RCD, grounding and the mains connection must be verified by a qualified electrician.',
+      aiQuote: 'AI quotation for a complex project', installation: 'View the installation guide', edit: 'Edit parameters', restart: 'Start again'
+    },
+    sk: {
+      pageTitle: 'Interaktívny sprievodca objednávkou - LARX', heroEyebrow: 'Inteligentný nástroj LARX', heroTitle: 'Interaktívny sprievodca objednávkou',
+      heroText: 'Vyberte skladbu podlahy a odpovedzte na niekoľko krátkych otázok. Odporučíme vhodný systém, orientačné množstvo a prehľad všetkého, čo budete potrebovať.',
+      heroAria: 'Vlastnosti sprievodcu', features: ['3 krátke kroky', 'Bez registrácie', 'Výsledok ihneď'], progressAria: 'Priebeh sprievodcu', progressTitle: 'Orientačný výber systému',
+      pathAria: 'Postup sprievodcu', pathTitle: 'Váš výber', reset: 'Vymazať výber', pending: 'Čaká na výber',
+      stepLabels: ['Typ podlahy', 'Vhodný variant', 'Rozmery a regulácia', 'Odporúčanie'], stepOf: 'Krok {current} zo {total}',
+      back: 'Späť', continue: 'Pokračovať', showResult: 'Zobraziť odporúčanie',
+      structureTitle: 'Čo bude priamo nad vykurovaním?', structureText: 'Vyberte konštrukciu podlahy. Tá určuje vhodný vykurovací prvok aj potrebné ochranné vrstvy.', structureAria: 'Typ podlahovej konštrukcie',
+      solutionAria: 'Variant riešenia', solutionHeadings: { tile: 'Chcete samostatnú rohož alebo sadu s termostatom?', screed: 'Do akej vrstvy bude fólia inštalovaná?', floating: 'V akom prostredí bude podlaha?' },
+      solutionTexts: { tile: 'Rozmer rohože sa volí podľa čistej vykurovanej plochy. Sada navyše obsahuje zladený termostat.', screed: 'Vyberte mokrú akumulačnú vrstvu alebo suchú skladbu zo systémových dosiek. V oboch prípadoch odporučíme odolnú fóliu na metráž.', floating: 'Vo vlhkom priestore je potrebné zohľadniť uzemnenie, ochranné pospájanie a vhodnú skladbu.' },
+      parameterTitle: 'Aká veľká je čistá vykurovaná plocha?', parameterText: 'Nezapočítavajte vaňu, sprchovací kút ani pevný nábytok s plným dnom. Každá samostatne regulovaná miestnosť zvyčajne tvorí vlastný okruh.',
+      area: 'Vykurovaná plocha', areaRange: '0,5 až 500 m²', zones: 'Počet regulačných okruhov', zonesHint: 'Zvyčajne jeden na miestnosť', pieces: 'ks',
+      widthTitle: 'Predpokladaná šírka pásu', widthText: 'Ak si nie ste istí, ponechajte 0,5 m. V praxi je možné pre lepšie pokrytie kombinovať viac šírok.', widthAria: 'Šírka fólie',
+      areaError: 'Zadajte vykurovanú plochu od 0,5 do 500 m².', zonesError: 'Zadajte 1 až 20 celých regulačných okruhov.',
+      approximate: 'cca', linearMetres: 'bm', filmWidth: 'fólia so šírkou {width} m', matsQuantity: 'rohoží v dostupných veľkostiach',
+      resultEyebrow: 'Vaše orientačné riešenie', estimateAria: 'Orientačné množstvo', heatedArea: 'Vykurovaná plocha', regulation: 'Regulácia', regulationNote: 'počet potvrďte podľa elektroprojektu',
+      shoppingEyebrow: 'Čo budete potrebovať', shoppingTitle: 'Nákupný a inštalačný zoznam', nextEyebrow: 'Najpresnejší ďalší krok',
+      filmNextTitle: 'Nechajte si dopočítať spotrebný materiál', matNextTitle: 'Vyberte rohož a reguláciu',
+      filmNextText: 'Najprv vložte metrážovú fóliu a termostaty do košíka. Potom v košíku použite tlačidlo Vypočítať spotrebný materiál — množstvo vodičov, konektorov a pások sa dopočíta podľa vybraného systému. Pri zložitejšej dispozícii využite AI nacenenie projektu.',
+      matNextText: 'Vyberte veľkosť rohože tak, aby nepresiahla čistú vykurovanú plochu. Ak nekupujete sadu, pridajte termostat pre každý samostatný okruh. Lepidlo, penetráciu a elektroinštalačný materiál zvoľte podľa konkrétnej skladby.',
+      products: 'Vybrať odporúčané produkty', thermostat: 'Vybrať termostat', consumables: 'Prezrieť spotrebný materiál',
+      safetyTitle: 'Pred objednaním', safetyText: 'Výsledok je orientačný, nie elektroprojekt. Rozloženie pásov, výkon, istenie, prúdový chránič, uzemnenie a pripojenie k sieti musí overiť kvalifikovaný elektrikár.',
+      aiQuote: 'AI nacenenie zložitejšieho projektu', installation: 'Prezrieť inštalačný návod', edit: 'Upraviť parametre', restart: 'Začať znova'
+    }
+  }[LANGUAGE];
+
+  var STEP_LABELS = COPY.stepLabels;
   var defaultState = {
     step: 0,
     structure: '',
@@ -245,7 +514,25 @@
   }
 
   function formatNumber(value) {
-    return Number(value).toLocaleString('cs-CZ', { maximumFractionDigits: 1 });
+    return Number(value).toLocaleString(LOCALE, { maximumFractionDigits: 1 });
+  }
+
+  function interpolate(text, values) {
+    return Object.keys(values).reduce(function (result, key) {
+      return result.replace(new RegExp('\\{' + key + '\\}', 'g'), values[key]);
+    }, text);
+  }
+
+  function thermostatWord(count) {
+    if (LANGUAGE === 'en') return count === 1 ? 'thermostat' : 'thermostats';
+    if (LANGUAGE === 'sk') return count === 1 ? 'termostat' : count < 5 ? 'termostaty' : 'termostatov';
+    return count === 1 ? 'termostat' : count < 5 ? 'termostaty' : 'termostatů';
+  }
+
+  function circuitWord(count) {
+    if (LANGUAGE === 'en') return count === 1 ? 'circuit' : 'circuits';
+    if (LANGUAGE === 'sk') return count === 1 ? 'okruh' : count < 5 ? 'okruhy' : 'okruhov';
+    return count === 1 ? 'okruh' : count < 5 ? 'okruhy' : 'okruhů';
   }
 
   function getStructure() {
@@ -274,7 +561,7 @@
   function valueForStep(index) {
     if (index === 0) return getStructure() ? getStructure().title : '';
     if (index === 1) return getSolution() ? getSolution().title : '';
-    if (index === 2 && state.solution) return formatNumber(state.area) + ' m² · ' + state.zones + (state.zones === 1 ? ' okruh' : state.zones < 5 ? ' okruhy' : ' okruhů');
+    if (index === 2 && state.solution) return formatNumber(state.area) + ' m² · ' + state.zones + ' ' + circuitWord(state.zones);
     if (index === 3 && state.solution) return getResult().title;
     return '';
   }
@@ -298,7 +585,7 @@
         '<' + tag + ' class="' + classNames.join(' ') + '"' + attrs + '>' +
           '<span class="larx-guide__path-number">' + (index + 1) + '</span>' +
           '<span class="larx-guide__path-copy"><strong>' + escapeHtml(label) + '</strong>' +
-            (value ? '<small>' + escapeHtml(value) + '</small>' : '<small>Čeká na výběr</small>') +
+            (value ? '<small>' + escapeHtml(value) + '</small>' : '<small>' + escapeHtml(COPY.pending) + '</small>') +
           '</span>' +
         '</' + tag + '>' +
       '</li>';
@@ -315,9 +602,9 @@
 
   function navigationMarkup(canContinue, isLastQuestion) {
     return '<div class="larx-guide__navigation">' +
-      (state.step > 0 ? '<button type="button" class="larx-guide__back" data-guide-back><span aria-hidden="true">←</span> Zpět</button>' : '<span></span>') +
+      (state.step > 0 ? '<button type="button" class="larx-guide__back" data-guide-back><span aria-hidden="true">←</span> ' + escapeHtml(COPY.back) + '</button>' : '<span></span>') +
       '<button type="button" class="larx-guide__next" data-guide-next' + (canContinue ? '' : ' disabled') + '>' +
-        (isLastQuestion ? 'Zobrazit doporučení' : 'Pokračovat') + '<span aria-hidden="true">→</span>' +
+        escapeHtml(isLastQuestion ? COPY.showResult : COPY.continue) + '<span aria-hidden="true">→</span>' +
       '</button>' +
     '</div>';
   }
@@ -331,22 +618,18 @@
   }
 
   function renderStructureStep() {
-    return questionHeader('Krok 1 ze 3', 'Co bude přímo nad vytápěním?', 'Vyberte konstrukci podlahy. Ta určuje vhodný topný prvek i potřebné ochranné vrstvy.') +
-      '<div class="larx-guide__options has-three" role="group" aria-label="Typ podlahové konstrukce">' +
+    return questionHeader(interpolate(COPY.stepOf, { current: 1, total: 3 }), COPY.structureTitle, COPY.structureText) +
+      '<div class="larx-guide__options has-three" role="group" aria-label="' + escapeHtml(COPY.structureAria) + '">' +
         STRUCTURES.map(function (item) { return optionMarkup(item, state.structure === item.key); }).join('') +
       '</div>' + navigationMarkup(Boolean(state.structure), false);
   }
 
   function renderSolutionStep() {
     var options = SOLUTIONS[state.structure] || [];
-    var heading = state.structure === 'tile' ? 'Chcete rohož samostatně, nebo s termostatem?' :
-      state.structure === 'screed' ? 'Do jaké vrstvy bude fólie instalovaná?' :
-      'V jakém prostředí bude podlaha?';
-    var intro = state.structure === 'tile' ? 'Rozměr rohože se volí podle čisté vytápěné plochy. Sada navíc obsahuje sladěný termostat.' :
-      state.structure === 'screed' ? 'Vyberte mokrou akumulační vrstvu nebo suchou skladbu ze systémových desek. V obou případech doporučíme odolnou fólii na metráž.' :
-      'Ve vlhkém prostoru je nutné zohlednit zemnění, ochranné pospojování a vhodnou skladbu.';
-    return questionHeader('Krok 2 ze 3', heading, intro) +
-      '<div class="larx-guide__options' + (options.length === 3 ? ' has-three' : '') + '" role="group" aria-label="Varianta řešení">' +
+    var heading = COPY.solutionHeadings[state.structure];
+    var intro = COPY.solutionTexts[state.structure];
+    return questionHeader(interpolate(COPY.stepOf, { current: 2, total: 3 }), heading, intro) +
+      '<div class="larx-guide__options' + (options.length === 3 ? ' has-three' : '') + '" role="group" aria-label="' + escapeHtml(COPY.solutionAria) + '">' +
         options.map(function (item) { return optionMarkup(item, state.solution === item.key); }).join('') +
       '</div>' + navigationMarkup(Boolean(state.solution), false);
   }
@@ -354,9 +637,9 @@
   function renderWidthSelector() {
     var widths = getAllowedWidths();
     if (widths.length) {
-      return '<fieldset class="larx-guide__width"><legend>Předpokládaná šířka pásu</legend>' +
-        '<p>Pokud si nejste jistí, ponechte 0,5 m. V praxi lze pro lepší pokrytí kombinovat více šířek.</p>' +
-        '<div role="group" aria-label="Šířka fólie">' + widths.map(function (width) {
+      return '<fieldset class="larx-guide__width"><legend>' + escapeHtml(COPY.widthTitle) + '</legend>' +
+        '<p>' + escapeHtml(COPY.widthText) + '</p>' +
+        '<div role="group" aria-label="' + escapeHtml(COPY.widthAria) + '">' + widths.map(function (width) {
           var selected = Number(state.width) === width;
           return '<button type="button" data-guide-width="' + width + '" class="' + (selected ? 'is-selected' : '') + '" aria-pressed="' + (selected ? 'true' : 'false') + '">' + formatNumber(width) + ' m</button>';
         }).join('') + '</div></fieldset>';
@@ -365,10 +648,10 @@
   }
 
   function renderParametersStep() {
-    return questionHeader('Krok 3 ze 3', 'Jak velká je čistá vytápěná plocha?', 'Nezapočítávejte vanu, sprchový kout ani pevný nábytek s plným dnem. Každá samostatně regulovaná místnost obvykle tvoří vlastní okruh.') +
+    return questionHeader(interpolate(COPY.stepOf, { current: 3, total: 3 }), COPY.parameterTitle, COPY.parameterText) +
       '<div class="larx-guide__parameters">' +
-        '<label class="larx-guide__field" for="larx-guide-area"><span>Vytápěná plocha</span><small>0,5 až 500 m²</small><span class="larx-guide__input"><input id="larx-guide-area" data-guide-area type="number" min="0.5" max="500" step="0.5" inputmode="decimal" value="' + escapeHtml(state.area) + '"><em>m²</em></span></label>' +
-        '<label class="larx-guide__field" for="larx-guide-zones"><span>Počet regulačních okruhů</span><small>Obvykle jeden na místnost</small><span class="larx-guide__input"><input id="larx-guide-zones" data-guide-zones type="number" min="1" max="20" step="1" inputmode="numeric" value="' + escapeHtml(state.zones) + '"><em>ks</em></span></label>' +
+        '<label class="larx-guide__field" for="larx-guide-area"><span>' + escapeHtml(COPY.area) + '</span><small>' + escapeHtml(COPY.areaRange) + '</small><span class="larx-guide__input"><input id="larx-guide-area" data-guide-area type="number" min="0.5" max="500" step="0.5" inputmode="decimal" value="' + escapeHtml(state.area) + '"><em>m²</em></span></label>' +
+        '<label class="larx-guide__field" for="larx-guide-zones"><span>' + escapeHtml(COPY.zones) + '</span><small>' + escapeHtml(COPY.zonesHint) + '</small><span class="larx-guide__input"><input id="larx-guide-zones" data-guide-zones type="number" min="1" max="20" step="1" inputmode="numeric" value="' + escapeHtml(state.zones) + '"><em>' + escapeHtml(COPY.pieces) + '</em></span></label>' +
       '</div>' + renderWidthSelector() +
       '<p class="larx-guide__validation" data-guide-validation role="alert" hidden></p>' +
       navigationMarkup(true, true);
@@ -377,43 +660,39 @@
   function quantityMarkup(result) {
     if (result.widths) {
       var metres = Math.ceil((state.area / state.width) * 10) / 10;
-      return '<strong>cca ' + formatNumber(metres) + ' bm</strong><span>fólie šířky ' + formatNumber(state.width) + ' m</span>';
+      return '<strong>' + escapeHtml(COPY.approximate) + ' ' + formatNumber(metres) + ' ' + escapeHtml(COPY.linearMetres) + '</strong><span>' + escapeHtml(interpolate(COPY.filmWidth, { width: formatNumber(state.width) })) + '</span>';
     }
-    return '<strong>cca ' + formatNumber(state.area) + ' m²</strong><span>rohoží v dostupných velikostech</span>';
+    return '<strong>' + escapeHtml(COPY.approximate) + ' ' + formatNumber(state.area) + ' m²</strong><span>' + escapeHtml(COPY.matsQuantity) + '</span>';
   }
 
   function renderResultStep() {
     var result = getResult();
     if (!result) return renderStructureStep();
     var primaryHref = ROUTES[result.route];
-    var thermostatWord = state.zones === 1 ? 'termostat' : state.zones < 5 ? 'termostaty' : 'termostatů';
-    var circuitWord = state.zones === 1 ? 'okruh' : state.zones < 5 ? 'okruhy' : 'okruhů';
-    var zoneText = state.zones + ' ' + thermostatWord + ' · ' + state.zones + ' ' + circuitWord;
+    var zoneText = state.zones + ' ' + thermostatWord(state.zones) + ' · ' + state.zones + ' ' + circuitWord(state.zones);
     var isFilm = Boolean(result.widths);
-    var nextStepTitle = isFilm ? 'Nechte si dopočítat spotřební materiál' : 'Vyberte rohož a regulaci';
-    var nextStepText = isFilm ?
-      'Nejprve vložte metrážovou fólii a termostaty do košíku. Potom v košíku použijte tlačítko Vypočítat spotřební materiál — množství vodičů, konektorů a pásek se dopočítá podle vybraného systému. U složitější dispozice využijte AI nacenění projektu.' :
-      'Vyberte velikost rohože tak, aby nepřesáhla čistou vytápěnou plochu. Pokud nekupujete sadu, přidejte termostat pro každý samostatný okruh. Lepidlo, penetraci a elektroinstalační materiál zvolte podle konkrétní skladby.';
+    var nextStepTitle = isFilm ? COPY.filmNextTitle : COPY.matNextTitle;
+    var nextStepText = isFilm ? COPY.filmNextText : COPY.matNextText;
     var itemMarkup = result.items.map(function (item, index) {
       return '<li><span>' + (index + 1) + '</span><div><strong>' + escapeHtml(item[0]) + '</strong><p>' + escapeHtml(item[1]) + '</p></div></li>';
     }).join('');
 
     return '<div class="larx-guide__result" data-guide-result="' + escapeHtml(result.key) + '">' +
       '<div class="larx-guide__result-head" tabindex="-1">' +
-        '<div><p class="larx-guide__question-eyebrow">Vaše orientační řešení</p><span class="larx-guide__result-badge">' + escapeHtml(result.badge) + '</span><h2>' + escapeHtml(result.title) + '</h2><p>' + escapeHtml(result.why) + '</p></div>' +
+        '<div><p class="larx-guide__question-eyebrow">' + escapeHtml(COPY.resultEyebrow) + '</p><span class="larx-guide__result-badge">' + escapeHtml(result.badge) + '</span><h2>' + escapeHtml(result.title) + '</h2><p>' + escapeHtml(result.why) + '</p></div>' +
         '<div class="larx-guide__result-symbol" aria-hidden="true">' + ICONS[getSolution().icon] + '</div>' +
       '</div>' +
-      '<div class="larx-guide__estimate" aria-label="Orientační množství">' +
-        '<div><small>Topná plocha</small>' + quantityMarkup(result) + '</div>' +
-        '<div><small>Regulace</small><strong>' + escapeHtml(zoneText) + '</strong><span>počet potvrďte podle elektroprojektu</span></div>' +
+      '<div class="larx-guide__estimate" aria-label="' + escapeHtml(COPY.estimateAria) + '">' +
+        '<div><small>' + escapeHtml(COPY.heatedArea) + '</small>' + quantityMarkup(result) + '</div>' +
+        '<div><small>' + escapeHtml(COPY.regulation) + '</small><strong>' + escapeHtml(zoneText) + '</strong><span>' + escapeHtml(COPY.regulationNote) + '</span></div>' +
       '</div>' +
       '<p class="larx-guide__power"><span aria-hidden="true">i</span>' + escapeHtml(result.power) + '</p>' +
-      '<section class="larx-guide__shopping"><div class="larx-guide__section-head"><p class="larx-guide__question-eyebrow">Co budete potřebovat</p><h3>Nákupní a instalační seznam</h3></div><ol>' + itemMarkup + '</ol></section>' +
-      '<section class="larx-guide__cart-flow"><div><p class="larx-guide__question-eyebrow">Nejpřesnější další krok</p><h3>' + escapeHtml(nextStepTitle) + '</h3><p>' + escapeHtml(nextStepText) + '</p></div>' +
-        '<div class="larx-guide__result-actions"><a class="larx-guide__button is-primary" data-guide-primary href="' + primaryHref + '">Vybrat doporučené produkty <span aria-hidden="true">→</span></a><a class="larx-guide__button is-secondary" href="' + ROUTES.thermostats + '">Vybrat termostat</a><a class="larx-guide__text-link" href="' + ROUTES.consumables + '">Prohlédnout spotřební materiál</a></div>' +
+      '<section class="larx-guide__shopping"><div class="larx-guide__section-head"><p class="larx-guide__question-eyebrow">' + escapeHtml(COPY.shoppingEyebrow) + '</p><h3>' + escapeHtml(COPY.shoppingTitle) + '</h3></div><ol>' + itemMarkup + '</ol></section>' +
+      '<section class="larx-guide__cart-flow"><div><p class="larx-guide__question-eyebrow">' + escapeHtml(COPY.nextEyebrow) + '</p><h3>' + escapeHtml(nextStepTitle) + '</h3><p>' + escapeHtml(nextStepText) + '</p></div>' +
+        '<div class="larx-guide__result-actions"><a class="larx-guide__button is-primary" data-guide-primary href="' + primaryHref + '">' + escapeHtml(COPY.products) + ' <span aria-hidden="true">→</span></a><a class="larx-guide__button is-secondary" href="' + ROUTES.thermostats + '">' + escapeHtml(COPY.thermostat) + '</a><a class="larx-guide__text-link" href="' + ROUTES.consumables + '">' + escapeHtml(COPY.consumables) + '</a></div>' +
       '</section>' +
-      '<aside class="larx-guide__safety"><strong>Než objednáte</strong><p>Výsledek je orientační, nikoli elektroprojekt. Rozložení pásů, výkon, jištění, proudový chránič, zemnění a připojení k síti musí ověřit kvalifikovaný elektrikář.</p><div><a href="' + ROUTES.aiQuote + '">AI nacenění složitějšího projektu</a><a href="' + ROUTES.installation + '" target="_blank" rel="noopener">Prohlédnout instalační návod</a></div></aside>' +
-      '<div class="larx-guide__result-footer"><button type="button" class="larx-guide__back" data-guide-back><span aria-hidden="true">←</span> Upravit parametry</button><button type="button" class="larx-guide__reset" data-guide-reset>Začít znovu</button></div>' +
+      '<aside class="larx-guide__safety"><strong>' + escapeHtml(COPY.safetyTitle) + '</strong><p>' + escapeHtml(COPY.safetyText) + '</p><div><a href="' + ROUTES.aiQuote + '">' + escapeHtml(COPY.aiQuote) + '</a><a href="' + ROUTES.installation + '" target="_blank" rel="noopener">' + escapeHtml(COPY.installation) + '</a></div></aside>' +
+      '<div class="larx-guide__result-footer"><button type="button" class="larx-guide__back" data-guide-back><span aria-hidden="true">←</span> ' + escapeHtml(COPY.edit) + '</button><button type="button" class="larx-guide__reset" data-guide-reset>' + escapeHtml(COPY.restart) + '</button></div>' +
     '</div>';
   }
 
@@ -430,7 +709,7 @@
     var progress = Math.round(((state.step + 1) / 4) * 100);
     root.querySelector('[data-guide-progress-bar]').style.width = progress + '%';
     root.querySelector('[data-guide-progress]').setAttribute('aria-valuenow', String(progress));
-    root.querySelector('[data-guide-progress-label]').textContent = 'Krok ' + (state.step + 1) + ' ze 4';
+    root.querySelector('[data-guide-progress-label]').textContent = interpolate(COPY.stepOf, { current: state.step + 1, total: 4 });
     root.querySelector('[data-guide-path]').innerHTML = renderPath();
     root.querySelector('[data-guide-content]').innerHTML = renderContent();
     bindCurrentStep();
@@ -464,12 +743,12 @@
     var area = Number(String(areaInput.value).replace(',', '.'));
     var zones = Number(zonesInput.value);
     var errors = [];
-    if (!isFinite(area) || area < 0.5 || area > 500) errors.push('Zadejte vytápěnou plochu od 0,5 do 500 m².');
-    if (!isFinite(zones) || zones < 1 || zones > 20 || Math.round(zones) !== zones) errors.push('Zadejte 1 až 20 celých regulačních okruhů.');
+    if (!isFinite(area) || area < 0.5 || area > 500) errors.push(COPY.areaError);
+    if (!isFinite(zones) || zones < 1 || zones > 20 || Math.round(zones) !== zones) errors.push(COPY.zonesError);
     if (errors.length) {
       validation.textContent = errors.join(' ');
       validation.hidden = false;
-      (errors[0].indexOf('plochu') > -1 ? areaInput : zonesInput).focus();
+      (errors[0] === COPY.areaError ? areaInput : zonesInput).focus();
       return false;
     }
     validation.hidden = true;
@@ -525,17 +804,18 @@
   var pageArticle = root.closest ? root.closest('.pageArticleDetail') : null;
   var nativeHeader = pageArticle ? pageArticle.querySelector(':scope > header') : null;
   if (nativeHeader) nativeHeader.classList.add('larx-guide__native-title');
-  document.title = 'Interaktivní průvodce objednávkou - LARX';
+  document.title = COPY.pageTitle;
+  root.setAttribute('data-larx-order-guide-language', LANGUAGE);
 
   root.innerHTML = [
     '<section class="larx-guide" aria-labelledby="larx-guide-title">',
       '<header class="larx-guide__hero">',
-        '<div><p class="larx-guide__eyebrow">Chytrý nástroj LARX</p><h1 id="larx-guide-title">Interaktivní průvodce objednávkou</h1><p>Vyberte skladbu podlahy a odpovězte na několik krátkých otázek. Doporučíme vhodný systém, orientační množství a přehled všeho, co budete potřebovat.</p></div>',
-        '<ul aria-label="Vlastnosti průvodce"><li><span>✓</span> 3 krátké kroky</li><li><span>✓</span> Bez registrace</li><li><span>✓</span> Výsledek ihned</li></ul>',
+        '<div><p class="larx-guide__eyebrow">' + escapeHtml(COPY.heroEyebrow) + '</p><h1 id="larx-guide-title">' + escapeHtml(COPY.heroTitle) + '</h1><p>' + escapeHtml(COPY.heroText) + '</p></div>',
+        '<ul aria-label="' + escapeHtml(COPY.heroAria) + '">' + COPY.features.map(function (feature) { return '<li><span>✓</span> ' + escapeHtml(feature) + '</li>'; }).join('') + '</ul>',
       '</header>',
-      '<div class="larx-guide__mobile-progress" data-guide-progress role="progressbar" aria-label="Průběh průvodce" aria-valuemin="0" aria-valuemax="100" aria-valuenow="25"><div><span data-guide-progress-label>Krok 1 ze 4</span><strong>Orientační výběr systému</strong></div><i><span data-guide-progress-bar></span></i></div>',
+      '<div class="larx-guide__mobile-progress" data-guide-progress role="progressbar" aria-label="' + escapeHtml(COPY.progressAria) + '" aria-valuemin="0" aria-valuemax="100" aria-valuenow="25"><div><span data-guide-progress-label>' + escapeHtml(interpolate(COPY.stepOf, { current: 1, total: 4 })) + '</span><strong>' + escapeHtml(COPY.progressTitle) + '</strong></div><i><span data-guide-progress-bar></span></i></div>',
       '<div class="larx-guide__workspace">',
-        '<aside class="larx-guide__path" aria-label="Postup průvodce"><p>Váš výběr</p><ol data-guide-path></ol><button type="button" data-guide-reset>Vymazat výběr</button></aside>',
+        '<aside class="larx-guide__path" aria-label="' + escapeHtml(COPY.pathAria) + '"><p>' + escapeHtml(COPY.pathTitle) + '</p><ol data-guide-path></ol><button type="button" data-guide-reset>' + escapeHtml(COPY.reset) + '</button></aside>',
         '<div class="larx-guide__panel" data-guide-content aria-live="polite"></div>',
       '</div>',
     '</section>'

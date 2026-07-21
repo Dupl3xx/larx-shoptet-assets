@@ -12,8 +12,8 @@
     },
     guide: {
       cs: 'https://www.larx.cz/interaktivni-pruvodce-objednavkou/',
-      sk: 'https://www.larx.cz/interaktivni-pruvodce-objednavkou/',
-      en: 'https://www.larx.cz/interaktivni-pruvodce-objednavkou/'
+      sk: 'https://www.larx.cz/sk/interaktivny-sprievodca-objednavkou/',
+      en: 'https://www.larx.cz/en/interactive-ordering-guide/'
     },
     quote: {
       cs: 'https://www.larx.cz/automaticke-naceneni-projektu-pomoci-ai/',

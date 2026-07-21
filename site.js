@@ -237,9 +237,12 @@
   function ensureOrderGuideRoot() {
     var root = document.getElementById('larx-order-guide') ||
       document.querySelector('[data-larx-order-guide]');
-    var isGuidePath = /^\/interaktivni-pruvodce-objednavkou\/?$/i.test(window.location.pathname);
-    var isGuideBody = document.body &&
-      document.body.classList.contains('in-interaktivni-pruvodce-objednavkou');
+    var isGuidePath = /^\/(?:interaktivni-pruvodce-objednavkou|en\/interactive-ordering-guide|sk\/interaktivny-sprievodca-objednavkou)\/?$/i.test(window.location.pathname);
+    var isGuideBody = document.body && [
+      'in-interaktivni-pruvodce-objednavkou',
+      'in-interactive-ordering-guide',
+      'in-interaktivny-sprievodca-objednavkou'
+    ].some(function (className) { return document.body.classList.contains(className); });
 
     if (!root && (isGuidePath || isGuideBody)) {
       var container = document.querySelector('.pageArticleDetail [itemprop="about"]') ||
