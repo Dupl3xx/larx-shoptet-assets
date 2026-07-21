@@ -48,7 +48,7 @@
     {
       key: 'tile',
       icon: 'tile',
-      title: 'Dlažba nebo kámen',
+      title: 'Dlažba',
       text: 'Tenká topná rohož přímo pod dlažbu do flexibilního lepidla či stěrky.'
     }
   ];
