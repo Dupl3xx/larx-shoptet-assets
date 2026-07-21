@@ -4,6 +4,17 @@
   min-width: 0;
 }
 
+/* The calculator already has its own cards. Remove only Shoptet's generic
+   article frame on this page, in every language mutation of the URL. */
+body.in-kalkulacka-nakladu-na-vytapeni .pageArticleDetail {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+
 .larx-calc,
 .larx-calc * {
   box-sizing: border-box;
