@@ -241,21 +241,21 @@ body.larx-ai-quote-page .larx-ai-quote ol.larx-ai-quote__steps li {
 .larx-ai-quote__file-remove { flex: 0 0 auto; padding: 5px 0; border: 0; background: transparent; color: var(--ai-green-dark); font: inherit; font-size: 13px; font-weight: 700; text-decoration: underline; cursor: pointer; }
 .larx-ai-quote__file-error { margin: 9px 0 0; color: #a5362b; font-size: 14px; }
 
-.larx-ai-quote__consent { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 11px; align-items: start; margin: 25px 0 0; color: #555856; font-size: 14px; line-height: 1.55; }
-.larx-ai-quote__consent input[type="checkbox"] {
-  position: static !important;
-  display: block !important;
-  width: 20px !important;
-  height: 20px !important;
-  margin: 1px 0 0 !important;
-  clip: auto !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  pointer-events: auto !important;
-  accent-color: var(--ai-green);
+.larx-ai-quote__or {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 18px 0;
+  color: var(--ai-muted);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
 }
-.larx-ai-quote__consent > span { display: block; width: auto !important; min-width: 0; max-width: none !important; }
-.larx-ai-quote__consent a { color: var(--ai-green-dark); text-decoration: underline; }
+.larx-ai-quote__or::before,
+.larx-ai-quote__or::after { height: 1px; flex: 1; background: var(--ai-line); content: ""; }
+.larx-ai-quote__url-field small { color: var(--ai-muted); font-size: 12px; line-height: 1.45; }
+.larx-ai-quote__url-field input.is-invalid { border-color: #c84d3c; }
 .larx-ai-quote__honeypot { position: absolute !important; left: -10000px !important; width: 1px !important; height: 1px !important; overflow: hidden !important; }
 
 .larx-ai-quote__actions { display: grid; gap: 12px; margin-top: 26px; }

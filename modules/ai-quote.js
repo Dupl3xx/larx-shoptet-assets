@@ -21,12 +21,12 @@
     cs: {
       eyebrow: 'Chytrý nástroj LARX',
       introTitle: 'Návrh vytápění z půdorysu bez zdlouhavého počítání',
-      introBody: 'Nahrajte půdorys, doplňte kontakt a zvolte typ topného systému. Připravíme automatický návrh materiálu a orientační nacenění, které vám přijde e-mailem.',
+      introBody: 'Nahrajte půdorys nebo vložte odkaz na obrázek či projekt, doplňte kontakt a zvolte typ topného systému. Připravíme automatický návrh materiálu a orientační nacenění, které vám přijde e-mailem.',
       betaStrong: 'Nástroj je v testovacím provozu.',
       betaRest: 'Výsledek před objednáním doporučujeme zkontrolovat.',
       stepsLabel: 'Jak nacenění probíhá',
-      uploadStep: 'Nahrajete půdorys',
-      uploadStepDetail: 'PDF, JPG nebo PNG',
+      uploadStep: 'Přidáte podklady',
+      uploadStepDetail: 'PDF, JPG, PNG nebo odkaz',
       solutionStep: 'Zvolíte řešení',
       solutionStepDetail: '100 W/m² nebo 150 W/m²',
       resultStep: 'Obdržíte nacenění',
@@ -41,12 +41,14 @@
       film100Detail: 'Do obytných místností pod plovoucí podlahu',
       film150: 'Topná fólie 150 W/m²',
       film150Detail: 'Pro vyšší výkon; koupelny řešíme topnými rohožemi',
-      floorplan: 'Půdorys projektu',
+      floorplan: 'Půdorys nebo projekt',
       upload: 'Přetáhněte soubory sem nebo vyberte z počítače',
       uploadHelp: 'PDF, JPG nebo PNG · nejvýše 5 souborů · 10 MB na soubor · 20 MB celkem',
-      consent: 'Souhlasím se zpracováním osobních údajů za účelem vyřízení poptávky.',
-      privacy: 'Více o ochraně osobních údajů',
-      privacyUrl: '/ochrana-osobnich-udaju/',
+      or: 'nebo',
+      projectUrl: 'Veřejná URL obrázku nebo projektu',
+      projectUrlHelp: 'Odkaz musí být dostupný bez přihlášení.',
+      projectUrlPlaceholder: 'https://…',
+      invalidProjectUrl: 'Vložte platnou veřejnou adresu začínající http:// nebo https://.',
       submit: 'Odeslat k automatickému nacenění',
       submitting: 'Odesílám podklady…',
       removeFile: 'Odebrat soubor',
@@ -56,7 +58,7 @@
       maxFiles: 'Můžete nahrát nejvýše 5 souborů.',
       totalSize: 'Celková velikost souborů může být nejvýše 20 MB.',
       required: 'Zkontrolujte prosím povinné údaje.',
-      attach: 'Přiložte prosím alespoň jeden půdorys.',
+      attach: 'Přiložte alespoň jeden soubor nebo vložte URL obrázku či projektu.',
       sendFailed: 'Podklady se nepodařilo odeslat.',
       success: 'Děkujeme. Podklady jsme přijali a nacenění odešleme na zadaný e-mail.',
       timeout: 'Odesílání trvalo příliš dlouho. Zkuste to prosím znovu.',
@@ -65,12 +67,12 @@
     sk: {
       eyebrow: 'Inteligentný nástroj LARX',
       introTitle: 'Návrh vykurovania z pôdorysu bez zdĺhavého počítania',
-      introBody: 'Nahrajte pôdorys, doplňte kontakt a zvoľte typ vykurovacieho systému. Pripravíme automatický návrh materiálu a orientačné nacenenie, ktoré vám príde e-mailom.',
+      introBody: 'Nahrajte pôdorys alebo vložte odkaz na obrázok či projekt, doplňte kontakt a zvoľte typ vykurovacieho systému. Pripravíme automatický návrh materiálu a orientačné nacenenie, ktoré vám príde e-mailom.',
       betaStrong: 'Nástroj je v testovacej prevádzke.',
       betaRest: 'Výsledok odporúčame pred objednaním skontrolovať.',
       stepsLabel: 'Ako nacenenie prebieha',
-      uploadStep: 'Nahráte pôdorys',
-      uploadStepDetail: 'PDF, JPG alebo PNG',
+      uploadStep: 'Pridáte podklady',
+      uploadStepDetail: 'PDF, JPG, PNG alebo odkaz',
       solutionStep: 'Zvolíte riešenie',
       solutionStepDetail: '100 W/m² alebo 150 W/m²',
       resultStep: 'Dostanete nacenenie',
@@ -85,12 +87,14 @@
       film100Detail: 'Do obytných miestností pod plávajúcu podlahu',
       film150: 'Vykurovacia fólia 150 W/m²',
       film150Detail: 'Pre vyšší výkon; kúpeľne riešime vykurovacími rohožami',
-      floorplan: 'Pôdorys projektu',
+      floorplan: 'Pôdorys alebo projekt',
       upload: 'Presuňte súbory sem alebo ich vyberte z počítača',
       uploadHelp: 'PDF, JPG alebo PNG · najviac 5 súborov · 10 MB na súbor · 20 MB celkom',
-      consent: 'Súhlasím so spracovaním osobných údajov na účely vybavenia dopytu.',
-      privacy: 'Viac o ochrane osobných údajov',
-      privacyUrl: '/sk/ochrana-osobnych-udajov/',
+      or: 'alebo',
+      projectUrl: 'Verejná URL obrázka alebo projektu',
+      projectUrlHelp: 'Odkaz musí byť dostupný bez prihlásenia.',
+      projectUrlPlaceholder: 'https://…',
+      invalidProjectUrl: 'Vložte platnú verejnú adresu začínajúcu http:// alebo https://.',
       submit: 'Odoslať na automatické nacenenie',
       submitting: 'Odosielam podklady…',
       removeFile: 'Odstrániť súbor',
@@ -100,7 +104,7 @@
       maxFiles: 'Môžete nahrať najviac 5 súborov.',
       totalSize: 'Celková veľkosť súborov môže byť najviac 20 MB.',
       required: 'Skontrolujte, prosím, povinné údaje.',
-      attach: 'Priložte, prosím, aspoň jeden pôdorys.',
+      attach: 'Priložte aspoň jeden súbor alebo vložte URL obrázka či projektu.',
       sendFailed: 'Podklady sa nepodarilo odoslať.',
       success: 'Ďakujeme. Podklady sme prijali a nacenenie odošleme na zadaný e-mail.',
       timeout: 'Odosielanie trvalo príliš dlho. Skúste to, prosím, znova.',
@@ -109,12 +113,12 @@
     en: {
       eyebrow: 'Smart LARX tool',
       introTitle: 'A heating proposal from your floor plan without lengthy calculations',
-      introBody: 'Upload your floor plan, provide your contact details and select the heating system. We will prepare an automatic material proposal and an indicative quote and send it to you by email.',
+      introBody: 'Upload a floor plan or enter a link to an image or project, provide your contact details and select the heating system. We will prepare an automatic material proposal and an indicative quote and send it to you by email.',
       betaStrong: 'This tool is in test operation.',
       betaRest: 'We recommend checking the result before ordering.',
       stepsLabel: 'How the quote works',
-      uploadStep: 'Upload a floor plan',
-      uploadStepDetail: 'PDF, JPG or PNG',
+      uploadStep: 'Add project documents',
+      uploadStepDetail: 'PDF, JPG, PNG or a link',
       solutionStep: 'Choose a solution',
       solutionStepDetail: '100 W/m² or 150 W/m²',
       resultStep: 'Receive your quote',
@@ -129,12 +133,14 @@
       film100Detail: 'For living areas under floating floors',
       film150: 'Heating film 150 W/m²',
       film150Detail: 'For higher output; bathrooms use heating mats',
-      floorplan: 'Project floor plan',
+      floorplan: 'Floor plan or project',
       upload: 'Drag files here or select them from your computer',
       uploadHelp: 'PDF, JPG or PNG · up to 5 files · 10 MB per file · 20 MB in total',
-      consent: 'I consent to the processing of my personal data for the purpose of handling this enquiry.',
-      privacy: 'Learn more about personal data protection',
-      privacyUrl: '/en/personal-data-protection/',
+      or: 'or',
+      projectUrl: 'Public URL of an image or project',
+      projectUrlHelp: 'The link must be accessible without signing in.',
+      projectUrlPlaceholder: 'https://…',
+      invalidProjectUrl: 'Enter a valid public address beginning with http:// or https://.',
       submit: 'Send for automatic pricing',
       submitting: 'Sending documents…',
       removeFile: 'Remove file',
@@ -144,7 +150,7 @@
       maxFiles: 'You can upload up to 5 files.',
       totalSize: 'The total file size can be no more than 20 MB.',
       required: 'Please check all required fields.',
-      attach: 'Please attach at least one floor plan.',
+      attach: 'Attach at least one file or enter the URL of an image or project.',
       sendFailed: 'The documents could not be sent.',
       success: 'Thank you. We have received your documents and will send the quote to the email address provided.',
       timeout: 'Sending took too long. Please try again.',
@@ -192,12 +198,14 @@
               '<small id="larx-ai-file-help">' + copy.uploadHelp + '</small>',
             '</div>',
             '<div class="larx-ai-quote__files" aria-live="polite"></div>',
+            '<div class="larx-ai-quote__or" aria-hidden="true"><span>' + copy.or + '</span></div>',
+            '<label class="larx-ai-quote__field larx-ai-quote__url-field">',
+              '<span>' + copy.projectUrl + '</span>',
+              '<input name="project_url" type="url" inputmode="url" autocomplete="url" maxlength="2048" placeholder="' + copy.projectUrlPlaceholder + '" aria-describedby="larx-ai-url-help">',
+              '<small id="larx-ai-url-help">' + copy.projectUrlHelp + '</small>',
+            '</label>',
             '<p class="larx-ai-quote__file-error" role="alert" hidden></p>',
           '</fieldset>',
-          '<label class="larx-ai-quote__consent">',
-            '<input type="checkbox" name="souhlas" value="1" required>',
-            '<span>' + copy.consent + ' <a href="' + copy.privacyUrl + '">' + copy.privacy + '</a>. <b aria-hidden="true">*</b></span>',
-          '</label>',
           '<div class="larx-ai-quote__honeypot" aria-hidden="true"><label>Firma<input name="company" type="text" tabindex="-1" autocomplete="off"></label></div>',
           '<input name="language" type="hidden" value="' + language + '">',
           '<input name="type" type="hidden" value="ai-vypocet">',
@@ -217,6 +225,7 @@
   var dropzone = root.querySelector('.larx-ai-quote__dropzone');
   var filesContainer = root.querySelector('.larx-ai-quote__files');
   var fileError = root.querySelector('.larx-ai-quote__file-error');
+  var projectUrlInput = form.elements.project_url;
   var submitButton = root.querySelector('.larx-ai-quote__submit');
   var status = root.querySelector('.larx-ai-quote__status');
   var pageInput = form.elements.page;
@@ -248,6 +257,26 @@
     fileError.textContent = message || '';
     fileError.hidden = !message;
     dropzone.classList.toggle('is-invalid', Boolean(message));
+  }
+
+  function projectUrlValue() {
+    return String(projectUrlInput.value || '').trim();
+  }
+
+  function validateProjectUrl() {
+    var value = projectUrlValue();
+    var valid = true;
+    if (value) {
+      try {
+        var parsed = new window.URL(value);
+        valid = (parsed.protocol === 'http:' || parsed.protocol === 'https:') && Boolean(parsed.hostname);
+      } catch (error) {
+        valid = false;
+      }
+    }
+    projectUrlInput.setCustomValidity(valid ? '' : copy.invalidProjectUrl);
+    projectUrlInput.classList.toggle('is-invalid', !valid);
+    return valid;
   }
 
   function renderFiles() {
@@ -335,6 +364,12 @@
     fileInput.value = '';
   });
 
+  projectUrlInput.addEventListener('input', function () {
+    validateProjectUrl();
+    if (projectUrlValue()) setFileError('');
+  });
+  projectUrlInput.addEventListener('blur', validateProjectUrl);
+
   dropzone.addEventListener('click', function (event) {
     if (event.target !== fileInput) fileInput.click();
   });
@@ -366,19 +401,20 @@
     setStatus('', '');
     setFileError('');
 
-    if (!form.checkValidity()) {
+    if (!validateProjectUrl() || !form.checkValidity()) {
       form.reportValidity();
       setStatus(copy.required, 'error');
       return;
     }
-    if (!selectedFiles.length) {
+    var projectUrl = projectUrlValue();
+    if (!selectedFiles.length && !projectUrl) {
       setFileError(copy.attach);
       dropzone.focus();
       return;
     }
 
     var payload = new FormData();
-    ['name', 'surname', 'phone', 'email', 'folie_typ', 'souhlas', 'company', 'language', 'page', 'type', 'form_started'].forEach(function (name) {
+    ['name', 'surname', 'phone', 'email', 'folie_typ', 'project_url', 'company', 'language', 'page', 'type', 'form_started'].forEach(function (name) {
       payload.append(name, form.elements[name].value);
     });
     selectedFiles.forEach(function (file) {
@@ -409,6 +445,7 @@
       form.reset();
       selectedFiles = [];
       renderFiles();
+      validateProjectUrl();
       startedInput.value = String(Date.now());
       pageInput.value = window.location.href;
       setStatus(copy.success, 'success');
