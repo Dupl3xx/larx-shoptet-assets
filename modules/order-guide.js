@@ -107,6 +107,21 @@
     ]
   };
 
+  var BASE_SCREED_ENVIRONMENTS = [
+    {
+      key: 'screedDamp',
+      icon: 'damp',
+      title: 'Koupelny nebo vlhké prostory',
+      text: 'Koupelny, prádelny, technické místnosti a další prostory se zvýšenou vlhkostí.'
+    },
+    {
+      key: 'screedStandard',
+      icon: 'dry',
+      title: 'Běžné prostory',
+      text: 'Obývací pokoje, ložnice, pracovny, chodby a další prostory bez zvýšené vlhkosti.'
+    }
+  ];
+
   var BASE_RESULTS = {
     floatingDry: {
       key: 'classic-film',
@@ -136,6 +151,21 @@
         ['Regulace', 'Termostat s podlahovým čidlem pro každý samostatný okruh.'],
         ['Připojení a zemnění', 'Vodiče, konektory, izolaci a zemnicí prvek navrhne elektrikář podle konkrétní fólie a místních podmínek.'],
         ['Ochranné vrstvy', 'Podložka, separační a PE fólie dle doporučené skladby a požadavků na ochranu proti vlhkosti.']
+      ]
+    },
+    screedWetLayerDamp: {
+      key: 'grounded-film-screed',
+      title: 'Uhlíková fólie se zemněním pod beton nebo anhydrit',
+      badge: 'Vlhké prostory',
+      route: 'groundedFilm',
+      power: 'Fólie se zemněním je určená pro betonový nebo anhydritový potěr ve vlhkém prostoru.',
+      why: 'Integrovaná zemnicí vrstva zvyšuje bezpečnost v koupelnách, technických místnostech, garážích nebo sklepech.',
+      widths: [0.5],
+      items: [
+        ['Fólie se zemněním', 'Pásy navrhněte podle vytápěné plochy a dilatačních celků místnosti.'],
+        ['Regulace', 'Termostat a podlahové čidlo pro každý samostatně řízený okruh.'],
+        ['Připojení a zemnění', 'Vodiče, konektory, izolaci a zemnicí prvek navrhne elektrikář podle konkrétní fólie a místních podmínek.'],
+        ['Ochranná skladba', 'Rastrová separační fólie, PE fólie 0,2 mm a další vrstvy podle zvoleného potěru.']
       ]
     },
     screedWetLayer: {
@@ -212,6 +242,10 @@
       'Koupelna, technická místnost, sklep či jiné místo, kde je nutné řešit uzemnění.': 'Bathroom, utility room, basement or another area where grounding must be addressed.',
       'Beton nebo anhydrit': 'Concrete or anhydrite',
       'Odolná fólie na metráž v akumulační vrstvě.': 'Durable cut-to-length film in a screed layer.',
+      'Koupelny nebo vlhké prostory': 'Bathrooms or damp areas',
+      'Koupelny, prádelny, technické místnosti a další prostory se zvýšenou vlhkostí.': 'Bathrooms, utility rooms and other areas with increased humidity.',
+      'Běžné prostory': 'Standard areas',
+      'Obývací pokoje, ložnice, pracovny, chodby a další prostory bez zvýšené vlhkosti.': 'Living rooms, bedrooms, studies, hallways and other areas without increased humidity.',
       'Systémové podlahové desky': 'Floor panel system',
       'Odolná fólie na metráž v suché skladbě ze systémových desek.': 'Durable cut-to-length film in a dry floor panel system.',
       'Samostatná topná rohož': 'Heating mat only',
@@ -242,6 +276,9 @@
       'Vodiče, konektory, izolaci a zemnicí prvek navrhne elektrikář podle konkrétní fólie a místních podmínek.': 'The electrician will specify wires, clips, insulation and the grounding element according to the selected film and local conditions.',
       'Ochranné vrstvy': 'Protective layers',
       'Podložka, separační a PE fólie dle doporučené skladby a požadavků na ochranu proti vlhkosti.': 'Underlay, separation film and PE film according to the recommended floor build-up and moisture protection requirements.',
+      'Uhlíková fólie se zemněním pod beton nebo anhydrit': 'Grounded carbon heating film under concrete or anhydrite',
+      'Vlhké prostory': 'Damp areas',
+      'Fólie se zemněním je určená pro betonový nebo anhydritový potěr ve vlhkém prostoru.': 'Grounded film is intended for concrete or anhydrite screed in damp areas.',
       'Odolná uhlíková fólie pod beton nebo anhydrit': 'Durable carbon heating film under concrete or anhydrite',
       'Beton / anhydrit': 'Concrete / anhydrite',
       'Odolná fólie 150 W/m² je určená pod betonový nebo anhydritový potěr.': 'Durable 150 W/m² film is intended for installation under concrete or anhydrite screed.',
@@ -295,6 +332,10 @@
       'Koupelna, technická místnost, sklep či jiné místo, kde je nutné řešit uzemnění.': 'Kúpeľňa, technická miestnosť, pivnica alebo iné miesto, kde je potrebné riešiť uzemnenie.',
       'Beton nebo anhydrit': 'Betón alebo anhydrit',
       'Odolná fólie na metráž v akumulační vrstvě.': 'Odolná fólia na metráž v akumulačnej vrstve.',
+      'Koupelny nebo vlhké prostory': 'Kúpeľne alebo vlhké priestory',
+      'Koupelny, prádelny, technické místnosti a další prostory se zvýšenou vlhkostí.': 'Kúpeľne, práčovne, technické miestnosti a ďalšie priestory so zvýšenou vlhkosťou.',
+      'Běžné prostory': 'Bežné priestory',
+      'Obývací pokoje, ložnice, pracovny, chodby a další prostory bez zvýšené vlhkosti.': 'Obývacie izby, spálne, pracovne, chodby a ďalšie priestory bez zvýšenej vlhkosti.',
       'Systémové podlahové desky': 'Systémové podlahové dosky',
       'Odolná fólie na metráž v suché skladbě ze systémových desek.': 'Odolná fólia na metráž v suchej skladbe zo systémových dosiek.',
       'Samostatná topná rohož': 'Samostatná vykurovacia rohož',
@@ -325,6 +366,9 @@
       'Vodiče, konektory, izolaci a zemnicí prvek navrhne elektrikář podle konkrétní fólie a místních podmínek.': 'Vodiče, konektory, izoláciu a uzemňovací prvok navrhne elektrikár podľa konkrétnej fólie a miestnych podmienok.',
       'Ochranné vrstvy': 'Ochranné vrstvy',
       'Podložka, separační a PE fólie dle doporučené skladby a požadavků na ochranu proti vlhkosti.': 'Podložka, separačná a PE fólia podľa odporúčanej skladby a požiadaviek na ochranu proti vlhkosti.',
+      'Uhlíková fólie se zemněním pod beton nebo anhydrit': 'Uhlíková fólia s uzemnením pod betón alebo anhydrit',
+      'Vlhké prostory': 'Vlhké priestory',
+      'Fólie se zemněním je určená pro betonový nebo anhydritový potěr ve vlhkém prostoru.': 'Fólia s uzemnením je určená pod betónový alebo anhydritový poter vo vlhkom priestore.',
       'Odolná uhlíková fólie pod beton nebo anhydrit': 'Odolná uhlíková fólia pod betón alebo anhydrit',
       'Beton / anhydrit': 'Betón / anhydrit',
       'Odolná fólie 150 W/m² je určená pod betonový nebo anhydritový potěr.': 'Odolná fólia 150 W/m² je určená pod betónový alebo anhydritový poter.',
@@ -381,6 +425,7 @@
 
   var STRUCTURES = localizeData(BASE_STRUCTURES);
   var SOLUTIONS = localizeData(BASE_SOLUTIONS);
+  var SCREED_ENVIRONMENTS = localizeData(BASE_SCREED_ENVIRONMENTS);
   var RESULTS = localizeData(BASE_RESULTS);
 
   var COPY = {
@@ -393,7 +438,8 @@
       back: 'Zpět', continue: 'Pokračovat', showResult: 'Zobrazit doporučení',
       structureTitle: 'Co bude přímo nad vytápěním?', structureText: 'Vyberte konstrukci podlahy. Ta určuje vhodný topný prvek i potřebné ochranné vrstvy.', structureAria: 'Typ podlahové konstrukce',
       solutionAria: 'Varianta řešení', solutionHeadings: { tile: 'Chcete rohož samostatně, nebo s termostatem?', screed: 'Do jaké vrstvy bude fólie instalovaná?', floating: 'V jakém prostředí bude podlaha?' },
-      solutionTexts: { tile: 'Rozměr rohože se volí podle čisté vytápěné plochy. Sada navíc obsahuje sladěný termostat.', screed: 'Vyberte mokrou akumulační vrstvu nebo suchou skladbu ze systémových desek. V obou případech doporučíme odolnou fólii na metráž.', floating: 'Ve vlhkém prostoru je nutné zohlednit zemnění, ochranné pospojování a vhodnou skladbu.' },
+      solutionTexts: { tile: 'Rozměr rohože se volí podle čisté vytápěné plochy. Sada navíc obsahuje sladěný termostat.', screed: 'U betonu nebo anhydritu ještě zohledníme vlhkost prostoru. Pro systémové desky doporučíme odolnou fólii na metráž.', floating: 'Ve vlhkém prostoru je nutné zohlednit zemnění, ochranné pospojování a vhodnou skladbu.' },
+      environmentEyebrow: 'Upřesnění pro beton nebo anhydrit', environmentTitle: 'V jakém prostoru bude podlaha?', environmentText: 'Podle prostředí doporučíme fólii se zemněním, nebo odolnou uhlíkovou fólii.', environmentAria: 'Typ prostoru',
       parameterTitle: 'Jak velká je čistá vytápěná plocha?', parameterText: 'Nezapočítávejte vanu, sprchový kout ani pevný nábytek s plným dnem. Každá samostatně regulovaná místnost obvykle tvoří vlastní okruh.',
       area: 'Vytápěná plocha', areaRange: '0,5 až 500 m²', zones: 'Počet regulačních okruhů', zonesHint: 'Obvykle jeden na místnost', pieces: 'ks',
       widthTitle: 'Předpokládaná šířka pásu', widthText: 'Pokud si nejste jistí, ponechte 0,5 m. V praxi lze pro lepší pokrytí kombinovat více šířek stejného výkonu a typu.', widthAria: 'Šířka fólie',
@@ -417,7 +463,8 @@
       back: 'Back', continue: 'Continue', showResult: 'Show recommendation',
       structureTitle: 'What will be directly above the heating?', structureText: 'Select the floor construction. It determines the suitable heating element and the required protective layers.', structureAria: 'Floor construction type',
       solutionAria: 'System option', solutionHeadings: { tile: 'Do you want a heating mat only or a set with a thermostat?', screed: 'Which layer will the film be installed in?', floating: 'What type of environment is the floor in?' },
-      solutionTexts: { tile: 'The mat size is selected according to the net heated area. The set also includes a matched thermostat.', screed: 'Select a wet screed layer or a dry floor panel system. In both cases, we recommend durable cut-to-length film.', floating: 'In damp areas, grounding, protective bonding and a suitable floor build-up must be considered.' },
+      solutionTexts: { tile: 'The mat size is selected according to the net heated area. The set also includes a matched thermostat.', screed: 'For concrete or anhydrite, we also take the room humidity into account. For floor panel systems, we recommend durable cut-to-length film.', floating: 'In damp areas, grounding, protective bonding and a suitable floor build-up must be considered.' },
+      environmentEyebrow: 'Concrete or anhydrite details', environmentTitle: 'What type of area is the floor in?', environmentText: 'The environment determines whether grounded film or durable carbon film is recommended.', environmentAria: 'Area type',
       parameterTitle: 'What is the net heated area?', parameterText: 'Exclude the bathtub, shower and fixed furniture with a solid base. Each independently controlled room normally forms its own circuit.',
       area: 'Heated area', areaRange: '0.5 to 500 m²', zones: 'Number of control circuits', zonesHint: 'Usually one per room', pieces: 'pcs',
       widthTitle: 'Expected strip width', widthText: 'If you are unsure, leave 0.5 m selected. In practice, several widths of the same output and type can be combined for better coverage.', widthAria: 'Film width',
@@ -441,7 +488,8 @@
       back: 'Späť', continue: 'Pokračovať', showResult: 'Zobraziť odporúčanie',
       structureTitle: 'Čo bude priamo nad vykurovaním?', structureText: 'Vyberte konštrukciu podlahy. Tá určuje vhodný vykurovací prvok aj potrebné ochranné vrstvy.', structureAria: 'Typ podlahovej konštrukcie',
       solutionAria: 'Variant riešenia', solutionHeadings: { tile: 'Chcete samostatnú rohož alebo sadu s termostatom?', screed: 'Do akej vrstvy bude fólia inštalovaná?', floating: 'V akom prostredí bude podlaha?' },
-      solutionTexts: { tile: 'Rozmer rohože sa volí podľa čistej vykurovanej plochy. Sada navyše obsahuje zladený termostat.', screed: 'Vyberte mokrú akumulačnú vrstvu alebo suchú skladbu zo systémových dosiek. V oboch prípadoch odporučíme odolnú fóliu na metráž.', floating: 'Vo vlhkom priestore je potrebné zohľadniť uzemnenie, ochranné pospájanie a vhodnú skladbu.' },
+      solutionTexts: { tile: 'Rozmer rohože sa volí podľa čistej vykurovanej plochy. Sada navyše obsahuje zladený termostat.', screed: 'Pri betóne alebo anhydrite zohľadníme aj vlhkosť priestoru. Pre systémové dosky odporučíme odolnú fóliu na metráž.', floating: 'Vo vlhkom priestore je potrebné zohľadniť uzemnenie, ochranné pospájanie a vhodnú skladbu.' },
+      environmentEyebrow: 'Spresnenie pre betón alebo anhydrit', environmentTitle: 'V akom priestore bude podlaha?', environmentText: 'Podľa prostredia odporučíme fóliu s uzemnením alebo odolnú uhlíkovú fóliu.', environmentAria: 'Typ priestoru',
       parameterTitle: 'Aká veľká je čistá vykurovaná plocha?', parameterText: 'Nezapočítavajte vaňu, sprchovací kút ani pevný nábytok s plným dnom. Každá samostatne regulovaná miestnosť zvyčajne tvorí vlastný okruh.',
       area: 'Vykurovaná plocha', areaRange: '0,5 až 500 m²', zones: 'Počet regulačných okruhov', zonesHint: 'Zvyčajne jeden na miestnosť', pieces: 'ks',
       widthTitle: 'Predpokladaná šírka pásu', widthText: 'Ak si nie ste istí, ponechajte 0,5 m. V praxi je možné pre lepšie pokrytie kombinovať viac šírok rovnakého výkonu a typu.', widthAria: 'Šírka fólie',
@@ -463,6 +511,7 @@
     step: 0,
     structure: '',
     solution: '',
+    environment: '',
     area: 10,
     zones: 1,
     width: 0.5
@@ -484,10 +533,13 @@
     if (!restored || typeof restored !== 'object') return Object.assign({}, defaultState);
     var structureValid = STRUCTURES.some(function (item) { return item.key === restored.structure; });
     var solutionValid = structureValid && (SOLUTIONS[restored.structure] || []).some(function (item) { return item.key === restored.solution; });
+    var environmentValid = restored.solution !== 'screedWetLayer' || SCREED_ENVIRONMENTS.some(function (item) { return item.key === restored.environment; });
+    var selectionComplete = solutionValid && environmentValid;
     return {
-      step: clamp(restored.step, 0, solutionValid ? 3 : (structureValid ? 1 : 0)),
+      step: clamp(restored.step, 0, selectionComplete ? 3 : (structureValid ? 1 : 0)),
       structure: structureValid ? restored.structure : '',
       solution: solutionValid ? restored.solution : '',
+      environment: solutionValid && restored.solution === 'screedWetLayer' && environmentValid ? restored.environment : '',
       area: clamp(restored.area, 0.5, 500),
       zones: Math.round(clamp(restored.zones, 1, 20)),
       width: [0.5, 0.8, 1].indexOf(Number(restored.width)) > -1 ? Number(restored.width) : 0.5
@@ -543,7 +595,21 @@
     return (SOLUTIONS[state.structure] || []).find(function (item) { return item.key === state.solution; }) || null;
   }
 
+  function getEnvironment() {
+    return SCREED_ENVIRONMENTS.find(function (item) { return item.key === state.environment; }) || null;
+  }
+
+  function solutionIsComplete() {
+    if (!getSolution()) return false;
+    return state.solution !== 'screedWetLayer' || Boolean(getEnvironment());
+  }
+
   function getResult() {
+    if (state.solution === 'screedWetLayer') {
+      if (state.environment === 'screedDamp') return RESULTS.screedWetLayerDamp || null;
+      if (state.environment === 'screedStandard') return RESULTS.screedWetLayer || null;
+      return null;
+    }
     return RESULTS[state.solution] || null;
   }
 
@@ -560,15 +626,15 @@
 
   function valueForStep(index) {
     if (index === 0) return getStructure() ? getStructure().title : '';
-    if (index === 1) return getSolution() ? getSolution().title : '';
-    if (index === 2 && state.solution) return formatNumber(state.area) + ' m² · ' + state.zones + ' ' + circuitWord(state.zones);
-    if (index === 3 && state.solution) return getResult().title;
+    if (index === 1) return getSolution() ? getSolution().title + (getEnvironment() ? ' · ' + getEnvironment().title : '') : '';
+    if (index === 2 && solutionIsComplete()) return formatNumber(state.area) + ' m² · ' + state.zones + ' ' + circuitWord(state.zones);
+    if (index === 3 && getResult()) return getResult().title;
     return '';
   }
 
   function maximumAvailableStep() {
     if (!state.structure) return 0;
-    if (!state.solution) return 1;
+    if (!solutionIsComplete()) return 1;
     return 3;
   }
 
@@ -592,8 +658,9 @@
     }).join('');
   }
 
-  function optionMarkup(item, selected) {
-    return '<button type="button" class="larx-guide__option' + (selected ? ' is-selected' : '') + '" data-guide-option="' + escapeHtml(item.key) + '" aria-pressed="' + (selected ? 'true' : 'false') + '">' +
+  function optionMarkup(item, selected, dataAttribute) {
+    dataAttribute = dataAttribute || 'data-guide-option';
+    return '<button type="button" class="larx-guide__option' + (selected ? ' is-selected' : '') + '" ' + dataAttribute + '="' + escapeHtml(item.key) + '" aria-pressed="' + (selected ? 'true' : 'false') + '">' +
       '<span class="larx-guide__option-icon">' + ICONS[item.icon] + '</span>' +
       '<span class="larx-guide__option-copy"><strong>' + escapeHtml(item.title) + '</strong><small>' + escapeHtml(item.text) + '</small></span>' +
       '<span class="larx-guide__check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m6 12 4 4 8-9"></path></svg></span>' +
@@ -631,7 +698,18 @@
     return questionHeader(interpolate(COPY.stepOf, { current: 2, total: 3 }), heading, intro) +
       '<div class="larx-guide__options' + (options.length === 3 ? ' has-three' : '') + '" role="group" aria-label="' + escapeHtml(COPY.solutionAria) + '">' +
         options.map(function (item) { return optionMarkup(item, state.solution === item.key); }).join('') +
-      '</div>' + navigationMarkup(Boolean(state.solution), false);
+      '</div>' + renderEnvironmentFollowup() + navigationMarkup(solutionIsComplete(), false);
+  }
+
+  function renderEnvironmentFollowup() {
+    if (state.structure !== 'screed' || state.solution !== 'screedWetLayer') return '';
+    return '<section class="larx-guide__followup" aria-labelledby="larx-guide-environment-title">' +
+      '<div class="larx-guide__followup-head"><p class="larx-guide__question-eyebrow">' + escapeHtml(COPY.environmentEyebrow) + '</p>' +
+        '<h3 id="larx-guide-environment-title">' + escapeHtml(COPY.environmentTitle) + '</h3><p>' + escapeHtml(COPY.environmentText) + '</p></div>' +
+      '<div class="larx-guide__options larx-guide__options--followup" role="group" aria-label="' + escapeHtml(COPY.environmentAria) + '">' +
+        SCREED_ENVIRONMENTS.map(function (item) { return optionMarkup(item, state.environment === item.key, 'data-guide-environment'); }).join('') +
+      '</div>' +
+    '</section>';
   }
 
   function renderWidthSelector() {
@@ -680,7 +758,7 @@
     return '<div class="larx-guide__result" data-guide-result="' + escapeHtml(result.key) + '">' +
       '<div class="larx-guide__result-head" tabindex="-1">' +
         '<div><p class="larx-guide__question-eyebrow">' + escapeHtml(COPY.resultEyebrow) + '</p><span class="larx-guide__result-badge">' + escapeHtml(result.badge) + '</span><h2>' + escapeHtml(result.title) + '</h2><p>' + escapeHtml(result.why) + '</p></div>' +
-        '<div class="larx-guide__result-symbol" aria-hidden="true">' + ICONS[getSolution().icon] + '</div>' +
+        '<div class="larx-guide__result-symbol" aria-hidden="true">' + ICONS[getEnvironment() ? getEnvironment().icon : getSolution().icon] + '</div>' +
       '</div>' +
       '<div class="larx-guide__estimate" aria-label="' + escapeHtml(COPY.estimateAria) + '">' +
         '<div><small>' + escapeHtml(COPY.heatedArea) + '</small>' + quantityMarkup(result) + '</div>' +
@@ -727,10 +805,13 @@
       if (state.structure !== key) {
         state.structure = key;
         state.solution = '';
+        state.environment = '';
         state.width = 0.5;
       }
     } else if (state.step === 1) {
+      if (state.solution !== key) state.environment = '';
       state.solution = key;
+      if (key !== 'screedWetLayer') state.environment = '';
       normalizeWidth();
     }
     render(false);
@@ -761,6 +842,13 @@
     root.querySelectorAll('[data-guide-option]').forEach(function (button) {
       button.addEventListener('click', function () { selectOption(button.getAttribute('data-guide-option')); });
     });
+    root.querySelectorAll('[data-guide-environment]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        state.environment = button.getAttribute('data-guide-environment');
+        normalizeWidth();
+        render(false);
+      });
+    });
     root.querySelectorAll('[data-guide-width]').forEach(function (button) {
       button.addEventListener('click', function () {
         state.width = Number(button.getAttribute('data-guide-width'));
@@ -771,7 +859,7 @@
     if (next) next.addEventListener('click', function () {
       if (state.step === 2 && !readParameters()) return;
       if (state.step === 0 && !state.structure) return;
-      if (state.step === 1 && !state.solution) return;
+      if (state.step === 1 && !solutionIsComplete()) return;
       state.step = Math.min(3, state.step + 1);
       render(true);
     });

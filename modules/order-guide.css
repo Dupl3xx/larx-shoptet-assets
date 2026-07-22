@@ -327,6 +327,45 @@ button.larx-guide__path-item {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.larx-guide__followup {
+  margin-top: 26px;
+  padding-top: 25px;
+  border-top: 1px solid #edf0eb;
+}
+
+.larx-guide__followup-head {
+  max-width: 780px;
+}
+
+.larx-guide__followup-head h3 {
+  margin: 0;
+  color: var(--guide-ink);
+  font-size: clamp(21px, 2.6vw, 29px);
+  font-weight: 850;
+  letter-spacing: -0.025em;
+  line-height: 1.18;
+}
+
+.larx-guide__followup-head > p:last-child {
+  margin: 10px 0 0;
+  color: var(--guide-muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.larx-guide__options--followup {
+  margin-top: 18px;
+}
+
+.larx-guide__options--followup .larx-guide__option {
+  min-height: 116px;
+  background: linear-gradient(135deg, #fff 0%, #fbfdfb 100%);
+}
+
+.larx-guide__options--followup .larx-guide__option.is-selected {
+  background: linear-gradient(135deg, #fff 0%, #f0faed 100%);
+}
+
 .larx-guide__option {
   position: relative;
   display: grid;
@@ -954,6 +993,10 @@ body.in-interaktivni-pruvodce-objednavkou .larx-guide .larx-guide__power {
     padding-left: 17px;
   }
 
+  .larx-guide__options {
+    grid-template-columns: 1fr;
+  }
+
   .larx-guide__options.has-three {
     grid-template-columns: 1fr;
   }
@@ -1134,6 +1177,19 @@ body.in-interaktivni-pruvodce-objednavkou .larx-guide .larx-guide__power {
   .larx-guide__question-head h2,
   .larx-guide__result-head h2 {
     font-size: clamp(25px, 8.4vw, 33px);
+  }
+
+  .larx-guide__followup {
+    margin-top: 22px;
+    padding-top: 21px;
+  }
+
+  .larx-guide__followup-head h3 {
+    font-size: 21px;
+  }
+
+  .larx-guide__options--followup {
+    margin-top: 15px;
   }
 
   .larx-guide__option,
